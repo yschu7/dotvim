@@ -1,0 +1,1168 @@
+Y.S. Chu's Vim Notes v 1.8
+===========================
+* 使用,h開啟; F2,:bd,:close關閉
+* UTF8版，markdown版
+* vimtutor 基礎vim訓練課程
+* iconv -f BIG5 -t UTF8 input_big5.txt > output_utf8.txt
+* F4: search toggle, \<leader\> m : open in Markd
+
+* 尋找安裝的Plugin所設定的快速鍵：\<leader\> ,
+
+Basic VIM
+=========
+
+### Basic movement
+
+```
+    k             yy  Yank line (copy)
+    ^
+    |             p   Paste below cursor
+h <---> l         P   Paste above cursor
+    |             i   Insert text before cursor
+    v             a   Append text after cursor
+    j
+
+6l      Forward 6 letters      fN    Jump forward to first 'N'
+2j      Down 2 lines           3FN   Jump forward to third 'N'
+
+w       Forward one word       3w    Forward 3 words
+cw      Change word            3cw   Change 3 words
+
+12G     Go to line 12
+G       Go to the end of the file
+gg      Go to the top of the file
+```
+
+### File operations
+
+```
+:w      Write file (save)
+:w!     Overwrite without confirmation
+:q      Quit
+:q!     Quit (discard all changes) or ZQ
+:wq!    Write & Quit
+:x      Exit (same as :wq or ZZ)
+
+:w !sudo tee %  用於當編輯的檔案因權限問題無法正常寫入時，改用sudo tee方式寫入。
+:w filename     Write to a file
+:wq! filename   Write to a file and force quit (通常用於寫到新檔案)
+
+:e filename     Edit a file (:edit open a new buffer)
+:e #            Edit alternate file (:echo expand('#'), 前一個編輯的檔案)
+:e .            Browse a directory (列出當前目錄內容，使用ijkl移動，Enter選擇)
+
+:n abc.txt      Edit next file named abc.txt (:new open a new buffer)
+:f fnew.txt     Rename buffer (:file 改變目前buffer的檔名)
+
+:sav filename   SaveAs filename (open a new buffer)
+:up             Update, like :w, but only write when buffer has been modified
+
+:! ext command  To issue an external command
+:! ls -l        list current directory, and press Enter to return
+
+:r filename     Read a file into (after) current position
+:r! which ruby  Insert the output of the external command
+:r! date        Insert date time after current line
+:r!seq 1 3 50   Gnereate numbers: 1, 4, 7, 10...49
+
+:cd path  Change the working directory, files can be opened with relative path
+          Use TAB to auto-complete directory name, UP/DOWN commands history
+
+:pwd    Print working directory
+:e .    Navigate the current directory
+```
+
+### Misc
+
+```
+V       Enter Visual mode (select lines)
+y       Yank (copy) selected text
+v       Characterwise Visual mode (select characters)
+d       Delete (cut)
+c       Change (cut, then activate Insert mode)
+Vjjjd   Select and Delete
+Vjjjc   Select and Delete text and go into insert mode
+
+:b name	Switch to buffer (try TAB and arrows as well)
+:bp     Previous buffer
+:bn     Next buffer
+:bd     Delete buffer
+
+$vi -N example.conf
+:syntax enable
+:set syntax=apache
+:set hidden
+
+/search_pattern n Search again    N Search backwards
+
+:%s/search/replace/gc   Search & Replace    c confirmation
+
+u       Undo
+U       Undo the whole line (original state)
+Ctrl-R  Redo (undo-undo)
+
+.       Repeat last command
+
+Transform vim into hex editor: xxd is an external command
+<ESC> :%!xxd      (hex mdoe)
+<ESC> :%!xxd -r   (ascii mode)
+```
+
+Configuration
+=============
+~/.vimrc    Most settings go here. Shared terminal and graphical options.    
+~/.gvimrc   Graphic-only settings (font, windows size)    
+~/.vim/     Plugins, language-specific options, color schemes    
+
+### 設定：
+* 所有檔案放在$HOME/bin/dotvim目錄內。
+* 設定檔連結到存放目錄的相對檔案、目錄：
+
+```
+> cd
+> ln -nfs ~/bin/dotvim .vim
+> ln -nfs ~/bin/dotvim/vimrc .vimrc
+> ln -nfs ~/bin/dotvim/gvimrc .gvimrc
+```
+
+* 採用Vundle方式管理Plugins，並使用以下的設定爲基礎    
+[The Vim Configuration of Champions] (https://github.com/mutewinter/dot_vim)
+
+
+### 設定、顯示、重設（SET,SHOW,RESET）
+
+```
+:set list           Turn a boolean value on (顯示TAB,EOL)
+:set nolist         Turn a boolean value off
+:set list?          Show current value
+:set list&          Reset to default value
+:set list!          Toggle value (list <-> nolist)
+
+:set softtabstop=2  Set a value
+:set softtabstop    Show a value
+:set softtabstop?   Show a value(same as above, two ways)
+:set softtabstop&   Reset to default
+
+Vim大部分長指令都有縮寫，例如softtabstop縮寫爲sts
+
+:verbose set wildmode?   查看wildmode的最後設定者
+:options            Show all the options, navigate with Enter and :q
+:set                Show options that are different than default value
+
+:echo &rtp          顯示option(rtp)的目前設定值，類似:set rtp? (runtimepath)
+:echo has('ruby')   顯示VIM是否有包含某個功能特性
+:h +feature-list    顯示VIM所有包含的功能特性
+:ver                顯示VIM版本詳細訊息，包含編譯、連結方式
+
+ModeLines - Include a comment with flile-specific configuration
+            must be within the first/last 5 lines of the file
+/* vim: set ai tw=75: */
+```
+
+### Help <F1>
+
+```
+:help [subject] or :h [subject]
+:helpgrep or helpg [pattern]
+
+:help index
+:help deleting :help rtp (or runtimepath)
+:help tutor (30 mins turorial : vimtutor or vimtutor.bat)
+
+CTRL-]  (jump to tag)       hyperlink |:help|
+CTRL-T  (pop tag)
+Ctrl-[  same as Ctrl-T
+ZZ, :bd (leave help system)
+```
+
+### Help Prefix
+
+```
+What                   Prefix          Example
+Normal-mode commands   (nothing)       :help x, :help gu
+Control character      CTRL-           :help CTRL-u
+Visual-mode commands   v               :help v_u
+Insert-mode commands   i               :h i_<Esc>
+ex-mode commands       :               :h :quit
+Command-line editing   c               :h c_<Del>
+Vim command arguments  -               :h -r
+Options                '(both ends)    :h 'textwidth'
+```
+
+### Files
+
+```
+:set autochdir    Automatically use the current file's directory as the
+                  working directory (把編輯檔案所在目錄自動當成工作目錄)
+:set wildmode=list:longest    Activate TAB autocompletion for file path
+                              啓動編輯檔名時可以按TAB鍵自動完成
+:e <path with TAB>
+:e path           Directory Listing
+                  i   Thin,long,wide or tree listings
+                  s   Sort on name,time, or file size
+                  r   Reverse sort order
+                  gh  Hide or unhide dotfiles
+                  <Enter> Open the file or directory
+                  x   View file with associated application
+                  d   Make directory
+                  D   Delete the file or directory
+                  R   Rename the file or directory
+                  -   Go up a directory
+
+gf                Jump to file under cursor (goto file)
+
+檔案處理相關可以用的Plugins
+Visual  : NERDTree, Project (included within rails.vim)
+Text    : FuzzyFinder, CtrlP
+
+目前所設定的快速鍵：
+FuzzyFinder: <leader>ff
+NERDTree   : <leader>nt
+```
+
+### Window :  A rectangular view of a buffer.
+* Ctrl-w s    Split window horizontally (:split or :sp)
+* Ctrl-w v    Split window vertically (:vsplit or :vsp)
+* Ctrl-w c    Close window (:q or ZZ)
+
+### Window split
+
+```
+:[N] split +cmd file
+    N     the size of the new window in lines (default is half of window)
+    +cmd  an initial command
+    file  the name of the file to edit(default is current file)
+
+:10 sp + file1.txt 開啓10列大小的水平視窗，游標到檔案file.txt最後。
+:h +cmd   關於+cmd的說明
+
+Ctrl-w j  Move focus to bottom window
+Ctrl-w k  Move focus to top window
+Ctrl-w J  Move buffer to bottom
+Ctrl-w K  Move buffer to top
+Ctrl-w h  Move focus to left window
+Ctrl-w l  Move focus to right window
+Ctrl-w H  Move buffer to left
+Ctrl-w L  Move buffer to right
+Ctrl-w w  Cycle focus counter-clockwise
+Ctrl-w W  Cycle focus clockwise
+Ctrl-w x  Exchange current and next window
+Ctrl-w o  Close all but current window (:on)
+
+Ctrl-w +  Increase window size by count(default 1)
+Ctrl-w -  Decrease window size by count(default 1)
+```
+
+### Buffer : The contents of a file in memory.
+
+* 可以使用plugin：
+    + Buffer Explorer <leader> + be
+    + LustyJuggler    <leader> + lj
+
+```
+:ls     List all buffers (:buffers)
+:b3     Go to buffer by number
+:bn     Next buffer
+:bp     Previous buffer
+:bd     Delete buffer (unload the buffer and remove it from bufferlist)
+:bun    Unload buffer (unload the buffer but stay in bufferlist)
+:bf     First buffer
+:bl     Last buffer
+:ba     Buffer all (open all buffers)
+
+Ctrl-^  Open the alternate file (:e #, 前一個編輯的檔案)
+```
+
+### Buffer flags
+
+```
+-       Inactive
+a       Active (loaded and visible)
+h       Buffer is hidden (loaded but not visible)
+%       Current buffer
+#       Alternate buffer (switch using :e# or :b#)
++       Modified
+```
+
+### Movement
+
++  word遇到空白及其他的標點符號(, : . -)都會視為一個單字的結束。    
+   注意：底線(_)視為單字(word)的一部分。    
+   :set iskeyword?    (defines what is in a word)
+
++  code word(大寫指令)則會將連續非空白字元視為一單字，移動時會較快速。
+
++  w/W/b/B移動時游標停在單字首，w/W向前，b/B向後。
+
+```
+       B       b     h     <move>   l      w        W 
+  (code word, word, char;          char,  word, code word)
+```
+
++  e/E移動時游標停在單字尾，e/E沒有對應"向後"的單字鍵，以ge/gE表示。
+
+```
+     0            ^           gE             ge   <edge>     e          E             $ 
+(line start, first char, code word end, word end;        word end, code word end, line end)
+```
+
++  當文字內容長過螢幕視窗時，使用g0,g^,gm,g$來移動 (set :nowrap)。
+
+```
+                        (middle)
+                           gm
+     g0           g^    <screen>      g$
+(line start, first char;          line end)
+```
+
++  Fx , fx ; :  Single character serach (find)    
+   使用逗號(，)及分號(；)往後/往前重複上次搜尋命令。
+
+```
+    Fx         ,          <find>      fx         ;
+(prev x, repeat backward;          next x, repeat forward)
+```
+
++  T/t命令就像F/f，但是他的游標停留在尋找的字元的前一個字元。    
+
+```
+    Tx        ,       <search'til>    tx         ;
+(like Fx, fx except it stops one char before x)
+```
+
++  向前/向後捲動螢幕：一頁，半頁，一列。
+
+```
+    Ctrl-b    (screen - backward)
+    Ctrl-u    (1/2 screen - up)
+    Ctrl-y    (line)
+   <scroll>
+    Ctrl-e    (line)
+    Ctrl-d    (1/2 screen - down，實際幾列由:set scroll?決定)
+    Ctrl-f    (screen - forward)
+
+Ctrl-u, Ctrl-y    實際捲動幾列由:set scroll?決定，也可以隨時改變。
+5Ctrl-u           改變為一次捲動5列
+:set scrolljump?  控制當螢幕要上下捲動時，一次捲/跳動的列數(預設為1)
+:set scrolloff?   控制游標到螢幕上下邊界幾列時，才觸發捲動(0-3間較合理)。
+```
+
++  這系列命令會將游標所在列移動(拉)到相對螢幕的top/middle/bottom位置。    
+   與移動游標的H、M、L命令可以做一對比。
+
+```
+       zt         (near top) :set scrolloff=2 to leave room
+zz  <scroll>      (middle)
+       zb         (near bottom)
+
+在前面加上[number]則把指定的number帶往top/middle/bottom位置。
+88z<Enter>        等於88zt，將列88放到螢幕top位置。
+```
+
++  45G or 45gg    (go straight to an exact line number 45)
+
+```
+    gg            (first, [count]gg - Goto line count)
+  <jump>
+    G             (last,  [count]G  - Goto line count)
+
+Ctrl-g            (show status of the line)
+                  (:set ruler, :set number, :set laststatus=2)
+2Ctrl-g           (list buffer number as well)
+
+     H            (near top)
+M <move>          (middle)
+     L            (near bottom)
+```
+
++  :goto 45       (Go to 45 byte in the buffer)
+
+
+關於g帶頭的命令
+===============
++  它通常代表特別的意義，例如：
+
+```
+gu  變為小寫 (u為undo)，guu/Vgu (整列變小寫), guiw (單字變小寫)
+gU  變為大寫，gUU/VgU (整列變大寫), gUiw (游標所在的單字變大寫)
+    gU5j (將游標所在開始列，往下5列變為大寫)
+g~  大寫變小寫/小寫變大寫，g~~/Vg~ (整列), g~iw (單字)
+    在此~意義雖沒變，但無法以~iw改變單字，必須用viw~，V~改變整列
+g$  移至游標所在列的螢幕尾 ($為end_of_line)
+g0  移至游標所在列的螢幕頭 (0為start_of_line)
+gJ  合併列，但各列前的空白保留 (J的合併會刪除列前空白)
+gf  跳到/開啟游標所在檔案 (Jump to file under cursor)
+gd  Jump to definition under cursor (往前，尋找游標所在變數定義)
+gD  Jump to definition under cursor (往後)
+[n] gs Goto sleep [n] seconds (:sleep n)
+gq  Reformat，gqq format本列 (要設定textwidth或wrapmargin其中之一)
+g?  Encrypt with rot13, g?? encrpyt本列
+gv  上一次選取的範圍
+ga  顯示游標所在字碼(:ascii)
+g ctrl-g  顯示目前位置(以column,line,word,char,byte)
+gi  在列首插入(i為在列首非空白位置)
+```
+
+Marks 標記
+==========
+
+```
+a-z   Lowercase marks are file-specific. (to jump within buffer/file)
+A-Z   Uppercase marks are global. (to jump between buffers/files)
+
+ma    create a mark named 'a'，將目前位置設定(m)標記(a)
+兩種引用標記的命令：倒引號(`)與引號(')
+`a    jump to exact line and column，跳到標記所在實際位置(row&col)
+'a    jump to beginning of marked line only，跳到標記所在列的開頭
+d'a   刪除游標開始到標記a的內容(以列為單位)
+d`a   刪除游標開始到標記a之間的內容
+
+`0-`9 The location of the cursor when you last exited Vim(`0 most recent)
+'.    Location of the last edit/change
+`.    The exact line/column pos of the last edit/change
+''    The position of the cursor before the latest jump
+``    The exact line/column position before the latest jump
+
+:marks            list marks
+:delmarks a b 8   delete 3 marks: a, b and 8
+:delmarks!        delete all marks
+```
+
+Editing Text
+============
+
++  插入 move and then goes to insert mode
+
+```
+i   (游標位置前)
+I   (該列的第一個非空白字元前)
+a   (游標位置後)
+A   (列尾)
+o   (游標所在列後新插入一列,open)
+O   (游標所在列前新插入一列,open)
+```
+
++  修改
+
+```
+r   (replace a single char)
+R   (Go into replace mode)
+
+c3w (change the next three words, and switch to insert mode)
+cw  (change word: delete word and switch to insert mode)
+C   (change to the end of line)
+cc  (change a line)
+
+s   (substitute: delete one character and switch to insert mode)
+S   (delete a line and switch to insert mode, same as cc)
+
+change與substitute都會進入insert mode。在前面加上number的效果：
+3C  將從游標所在位置起，到下2列(共3列)的列尾刪除，進入insert mode。
+3S  刪除3列，進入insert mode。與3cc相同。
+3D  將從游標所在位置起，到下2列(共3列)的列尾刪除。
+3s  將從游標所在位置起3個字元刪除，進入insert mode。
+```
+
++  刪除
+
+```
+x   (delete char under cursor)
+X   (delete char to the left of the cursor)
+dW  (delete a code word)
+dd  (delete a line)
+D   (delete to the end of line)
+```
+
++  移動
+
+```
+      {                (         <move>        )             }
+(begin paragraph, begin sentence;          end sentence  end paragraph)
+
+:help %
+將游標移至目前所在對應的大小括號、引號的另一側
+%   (bounces between matched parentheses, quotes, language-specific blocks)
+
+將游標移至前面的小括號(，游標不在)位置，而是在小括號之中。
+[(  go to previous unmatched '('
+將游標移至前面的大括號{
+[{  go to previous unmatched '{'
+
+將游標移至後面的小括號)
+])  go to next unmatched ')'
+將游標移至後面的大括號}
+]}  go to next unmatched '}'
+
+將游標移至前一個方法定義的開始位置(e.g. def)
+[m  Go to previous start of a method
+將游標移至前一個方法定義的結束位置(e.g. end)
+[M  Go to previous end of a method
+
+將游標移至下一個方法定義的開始位置
+]m  Go to next start of a method
+將游標移至下一個方法定義的結束位置
+]M  Go to next end of a method
+```
+
++  其他
+
+```
+複製
+yy  (copy a line, also Y)
+
+合併
+5J  (join 5 lines - will remove indent space)
+gJ  (join line without removing space)
+
+左右移動靠齊（以tab爲單位）
+       3<<            <shift>            3>>
+(shift left 3 times;            shift right 3 times)
+
+       Ctrl-d         <shift>            Ctrl-t
+(在插入模式下移動，shift operation in insert mode)
+
+:set shiftwidth=2       (:set sw=2)
+:set expandtab          (use spaces in instead of tabs)
+
+Ctrl-X : 游標所在數字加一
+Ctrl-A : 游標所在數字減一
+認識八進位、十進位、十六進位數字
+```
+
+Text-objects
+============
+
+```
+    v              i                t
+    d              a                s
+    y              i                w
+--------    ---------------     ----------
+operator        extent            object
+--------    ---------------     ----------
+c)hange     a)ll delimiters     w)ord
+d)elete     i)nner object       W)ord
+y)ank                           s)entence
+v)isual                         p)aragraph
+                                t)ag
+                                "'<[{()}]>
+
+<h1>Sample code</h1>
+step1. vit or vat : select sample code within tag, or include tag
+step2. c : change
+step1. cit or cat : without visual confirmation, change directly
+
+在Visual mode內移動游標命令o，可以在頭尾兩邊移動，擴大或縮小選擇範圍。
+if (i > 9) then puts "i greater than 9..."
+step1. va)
+step2. o      (toggle position of cursor in selection - visual mode)
+step2. h, l   (move left or right to extend the selection)
+```
+
+Visual mode
+===========
+
+```
+v, V 與 Ctrl-v    以字元，整列，區塊為操作模式
+離開Visual模式    <ESC> 或 v, V, Ctrl-v
+切換模式          v, V 與 Ctrl-v可以在其他Visual模式中切換到不同模式
+常用的搭配命令    d, c, y, <, >, J(gJ)
+
+Block insert時要使用的為I或A命令，在區塊前或後動作。
+Block模式若要選擇包含多列到最後，而各列的結束位置不同時，使用$命令。
+例如：Ctrl-vjjjjj$ or Ctrl-v5j$ 再搭配I, A 或 c。
+
+:help v_b_I       Visual-block Insert
+```
+
+Command mode
+============
+
+```
+使用Q命令進入editing mode(單列模式)，或:命令直接執行(ex-mode)
+使用:vi 後 visual返回
+print or p 列印: 1,5p<CR>  1,/troubel/p<CR>  1,$p<CR>  %p<CR>
+若在Normal mode中有設定marks(ma,mb)，也可以列印: 'a,'b print<CR>
+
+:shell or :sh   暫時離開Vim，進入OS命令介面。exit返回。
+:!<command>     執行外部命令<command>。
+:%!sort         將編輯內容(%)經由sort排序。
+```
+
+Search & Replace
+================
+
+```
+                        ?
+                        Up
+g#      #       N     <Find>  n     *       g*
+Prev    Prev    Prev    /     Next  Next    Next
+partial current match   Down  match current partial
+match   word                        word    match
+
+*   往前尋找目前游標所在位置的單字(完全相同)
+g*  往前尋找目前游標所在位置的單字(部分相同)
+```
+
+### Offset
+
+```
+在往前搜尋/命令之後，加上/offset形成：
+/resp/+3      (move to search position plus 3 lines)
+/resp/-2
+/resp/e+3     (move to search position(end of match) plus 3 chars)
+/resp/s+3     (move to search position(start of match) plus 3 chars)
+若只是要改變offset，搜尋內容不變：
+//5
+或是取消offset，搜尋內容不變：
+//
+
+d/resp/e<Enter> (delete from cursor to the end of search)
+                (刪除從目前游標起往前到第一次的"resp"之間(含)的範圍)
+y?def<Enter>    (yank/copy from cursor to beginning of previous "def")
+                (複製從目前游標起往後到第一次的"def"之間(含)的範圍)
+:%s/resp/Nop/   (search and replace - 取代列中的第一個resp)
+:%s/resp/Nop/g  (search and replace globally - 取代列中的所有resp)
+```
+
+### 相關的選項設定
+
+```
+:hlsearch or :hls  選項：反白顯示符合字串，結束後反白也不會取消。
+nmap <silent> <C-N> :silent noh<CR>
+
+:incsearch or :is  選項：輸入尋找字串時，會同時開始搜尋，游標也會跟著移動，
+                         可以看到即時的結果，並據此修改搜尋條件。
+:ignorecase or :ic 選項：尋找時忽略大小寫。
+
+:wrapscan or :ws   選項：找到檔案盡頭是否繼續循環搜尋。
+```
+
+### Search History
+
+```
+/<Up> or <Down> for search history
+```
+
+### Changing Direction
+
+```
+/ 往前搜尋，n命令重複上一次搜尋(方向不變)，N命令則改由相反方向搜尋。
+? 往後搜尋，n命令重複上一次搜尋(方向不變)，N命令則改由相反方向搜尋。
+在搜尋中，若以/或?按<Enter>，則會改變整個方向(往前或往後)，尋找內容不變。
+```
+
+### Substitute (尋找與取代)
+
+```
+:[range]s/{pattern}/{string}/[flags] [count]
+c   Confirm each match
+i   Ignore case
+I   Case-sensitive
+n   Show number of matches(non-destructive)
+p   print matching lines
+
+:%s/abc/def/    (A leading percent search all lines in the current buffer)
+:s/abc/def      (search only the current line - no range)
+:.,'a s/abc/def (search from cursor . to mark 'a)
+:%s/^\s\{8}\zs-/#/ (保留前面8個空白，將第9個字元-改為#)
+
+第一個//若省略，代表尋找的pattern為最後一次的s或g命令的pattern
+第二個//若省略，代表空，也就是刪除所尋找到的pattern
+若沒有flags則最後的/可以省略
+:s/abc/def/g20  (尋找與取代20列內的abc為def,最後的g20為指定範圍)
+將文件開頭插入當前列數。其中的\=命令為evaluate後面的函數。
+:g/^/s//\=printf("%03d",line("."))
+
+Search by hex code: e.g.: escape
+1. /, 2. \%x1B
+1. /, 2. <Ctrl-V>,<ESC>,<Enter>
+```
+
+### Specify a line (範圍的設定)
+
+```
+.       current line
++5      five lines down
+-7      seven lines up
+1       line 1 of buffer
+$       last line of buffer
+%       all lines in buffer
+'k      position of mark 'k'
+/patn/  next line where pattern matches (also try ?patn?)
+
+Use visual mode to select scope, and :s/abc/def to replace
+```
+
+### global: Search and Execute (尋找與執行)
+
+```
+[range]g/{pattern}/[cmd]
+在指定的範圍內，找到匹配樣式後，執行命令cmd。
+#       show matches with line numbers
+d       delete matching lines
+y       yank matching lines
+normal {command}  execute extended sequence
+
+:g/re/p         (display all lines matches the pattern)
+:g/snap[:idx]/# (show lines and line numbers where pattern occurs)
+:g/^$/d         (delete blank lines)
+:g/abc/+y       (yank line after the ones that match)
+                (全部範圍尋找，最後一個符合配對後一列被複製)
+:g/abc/normal "Byy    (將每一個找到的配對複製到"B暫存器內)
+:g/abc/y B      (與上面相同效果，注意使用大寫B表示要附加)
+:g/abc/normal Ohello abc
+:g/abc/normal nipre   (search pattern 'abc', next, insert text 'pre')
+:g/abc/. w>>match.txt (將每一個找到的配對附加到檔案match.txt)
+:g/abc/z#=4     (列出符合配對附近的4列-上2下2，符合列用虛線標記起來。)
+:g/abc/t.|s/./=/g     (將符合的列拷貝一列到其下方，並將全列內容改為=)
+:g/abc/t.|normal gUU  (將符合的列拷貝一列到其下方，並將全列內容改為大寫)
+                (可以使用|符號隔開命令，g...|s...|normal ...)
+
+:g預設的範圍是全部的buffer，但可以自行設定
+:.,+10g/foo/d   (delete matches from cursor through next 10 lines)
+:.,'f+2g/foo/#  (show line numbers through 2 lines after mark 'f)
+:.,/bar/g/foo/d (delete lines through next line matching 'bar')
+
+:[range1]g/pattern1/{offset1};/pattern2/{offset2}{command}
+可以指定範圍{range1}作:g，而在此範圍下，又只作/pattern1/和/pattern2/
+之間的範圍(包含 pattern1 和 pattern2)加減後面的範圍{offset1}及{offset2}，
+然後在這個已經被比對出來的區域中執行後面的指令{command}。
+
+:g/no1/;/no2/-1move $ (將/no1/,/no2/-1之間的內容移到檔尾)
+:g/no1/;/no2/-1d      (將/no1/,/no2/-1之間的內容刪除)
+
+若要尋找與執行:g的相反(不符合配對)，可以使用:v或:g!
+```
+
+### Regular Expression syntax styles
+
+```
+\v     Similar to Perl, Python, Ruby (Very Magic)
+\m     The default, but awkward (Magic)
+\M     Rerely used (No Magic)
+\V     Rarely used (Very No Magic)
+
+Two ways to search
+/\(.y\)\{3}     (search with default syntax)
+/\v(.y){3}      (search with very magic syntax)
+
+Beginning(\<) and End(\>) of a word 匹配單字(\b作為<BS>)
+/\<install\>
+/\v<install>
+
+*      匹配0或多次
+\+     匹配1或多次
+\=     匹配0或1次(同問號)
+\?     匹配0或1次
+\{n}   匹配n次
+\{n,m} 匹配n到m次
+\{n,}  匹配n次或以上
+\{-}   前面加上負號，代表最少匹配(non-greedy)
+
+Repeat a previous search
+step.1  /         start a search
+step.2  <Ctrl-r>  get from register named...(")
+step.3  /         use the / register (最近一次尋找內容放在暫存器"/)
+step.4  <Enter>   Execute the search
+
+/ + 上下鍵：search command history
+
+:reg             (show all registers)
+:dis             (display, same as registers)
+:help registers  (show help)
+有名暫存器(a-z或A-Z)
+放入內容時，使用小寫字母原來內容被會覆蓋，而大寫字母則會以附加方式處理。
+取用內容時，大小寫沒有差別。
+兩種方式取用在暫存器的內容：<Ctrl-r>+暫存器名稱，或是以"(暫存器名稱)p。
+```
+
+### ACK commands in VIM
+
+```
+$sudo apt-get install ack-grep
+
+$vi ~/.vimrc
+let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+
+:helptags ~/.vim/doc		(install the document, :h ack)
+
+:Ack [options] {pattern} [{directory}]
+Search recursively in {directory} for the {pattern}.
+
+:cn       (Next result)
+:cp       (Previous result)
+:cc3      (display third result)
+:ccl      (close Quickfix window)
+
+o to open (same as enter)
+go to preview file (open but maintain focus on ack.vim results)
+t to open in new tab (開檔，畫面轉向新的分頁)
+T to open in new tab silently (開檔於新的分頁，但畫面停在搜尋結果)
+q to close the quickfix window
+```
+
+### Advanced configuration
+
+```
+:vmap >   >gv   (gv : re-select the previous area, and go visual mode)
+:vmap <   <gv
+
+Map scope
+nmap      Normal mode
+imap      Insert mode
+vmap      Visual mode
+map       Normal, Visual, and operating-pending modes
+map!      Command and Insert modes
+
+:imap <Tab> <C-N>   (insert mode,next for autocomplete select menu)
+:imap <S-Tab> <C-P> (previous)
+:imap <c-b> <c-x><c-o>  (啓動OmniCompletion的key爲Ctrl-b)
+:imap <Tab>         (check to see if <Tab> defined? in imap)
+:iunmap <Tab>       (iu, unmap <Tab> 取消)
+:vmap               (check all vmap maping 顯示所有的visual mode mapping)
+:map <buffer> <F5>  (加上buffer的限制，新開的buffer將會重新設定:filetype不同)
+
+Safely swap strokes
+:nnoremap ; :
+:nnoremap : ;
+
+:let mapleader=","  (change the personal hotkey, default is '\')
+:map! <C-F> <ESC>gUiw`]a      (overwrite the default Ctrl-F)
+:map! <Leader>f <Esc>gUiw`]a  (use leader to make you own key)
+(在插入模式中，將目前游標所在單字變大寫，然後再進入插入模式)
+```
+
+### Abbreviations
+
+```
+:iab ff   Firefox   (declare an abbreviation for insert mode)
+in insert mode, type ff<SPACE> or <ESC>
+:ab teh   the       (rescue the common typing error)
+```
+
+### Folding
+
+```
+:set foldmethod= or fdm=
+indent    Use spaces or tabs to find foldable blocks
+syntax    Fold on language features(methods, classes)
+marker    Fold on textual marks
+diff      Fold unchanged text
+expr      Custom, code-driven folding
+manual    Select ranges to fold
+
+                  zk
+                  UP
+zM        zc    <Fold>  za      zo    zR
+All(Most) Close   zj    Toggle  Open  All(Reduce)
+                  Down
+
+zi    Toggle All
+zx    Close All except current cursor
+
+zk, zj 為依據程式摺疊的情況來往上、往下移動游標
+
+Spacing Out
+shiftwidth=2    The number of spaces inserted when reindent operators or
+                automatic indentation are used.
+softtabstop=2   The number of spaces inserted when TAB is hit.
+:retab          Replace all tabs with spaces in the current buffer.
+
+:set foldcolumn=1  fdc: display fold symbol at beginning of the line
+
+autocmd FileType ruby setlocal foldmethod=syntax
+autocmd FileType css setlocal foldmethod=indent sw=2 ts=2
+```
+
+### Completion
+
+```
+Ctrl-n         Activate completion, or menu for multiple selection
+Ctrl-p         previous item in menu
+Ctrl-b         啓動OmniCompletion
+:set complete  Controls where to serach for words(控制尋找順序)
+:h 'complete'
+:h ins-completion
+:h new-omni-completion  (查看目前支援多少種語言)
+
+除了用complete=k/path..，也可用dict設定，這裡的words指向字典檔案。
+:set dictinoary=/usr/share/dict/words,/home/yschu/words
+
+:set spell     enable dictionary spell checking
+按下Ctrl-x後，可以進一步選擇所要自動完成的尋找目標種類
+Ctrl-x Ctrl-k  dictinoary word completion (insert mode only)
+Ctrl-x Ctrl-f  filenames completion(檔案)
+Ctrl-x Ctrl-l  whole line completion(整列模式)
+```
+
+### filtering
+
+```
+:range!filter  將範圍內的本文作為輸入，傳給filter程式處理後，取代其內容。
+               就像是把filter外部程式作為Vim的pipe對象，不過若沒有指定
+               範圍，filter的輸出會直接顯示，不傳回Vim。
+               但可以使用r命令將filter的輸出讀入(:r!ls)，
+               或使用:.!date (!!date)，事實上它有指定範圍是當前列。
+   ----->
+Vim | filter | Vim  (將資料傳入過濾器處理後，再接回來。)
+          ----->
+
+四種指定整個buffer內容範圍的方法
+Four ways to run the uniq filter on an entire buffer.
+ggVG!uniq
+gg!Guniq
+:1,$!uniq
+:%!uniq
+
+:5,18!sort  (指定範圍列5-18，作為sort的輸入，及其排序後的輸出)
+除了手動指定範圍外，也可以用Visual mode的方式指定。
+The range can be established with visual mode or by specifying a
+range in command-line mode.
+
+Beautiful code
+ggVG=       (use shiftwidth to adjust the level of indentation)
+
+Text alignment
+使用Visual mode選擇範圍後，再以ce, ri, le來置中，靠右，靠左
+V:ce        (ce: center selection on screen)
+V:ri        (ri: right alignment)
+V:le        (le: left alignment)
+也可以直接使用命令指定位置
+:.,+3ri 60  (ri 60: right align on 60 characters wide)
+
+gq          (Reflow paragraph to 80 characters wide,依照tw設定重排)
+:set paste  (Disable automatic indentation)
+```
+
+### Copy/Yank & Registers
+
+```
+Default is unnamed register
+Eight types of registers, 48 total registers
+Delete, change, substitute, search, or yank to any register
+
+p 與 P      (將暫存器內容放到游標所在之後/前，若內容為整列則以列為單位)
+y, yy 與 Y  (複製/複製一整列/複製到列尾)
+:nmap Y y$  原來的Y命令就是yy，以此改變與C,D行為相同
+
+Yank registers 複製到暫存器
+"ayy        (將當前列複製到暫存器a)
+	"a        (use register a，使用暫存器命令"，後可接暫存器名稱)
+	yy        (yank current line)
+"ap         (paste from register a)
+
+""          (The unnamed register, contains the last deleted text)
+"0p         (paste from zero register, contains of the last yank text)
+:registers  (show contents of all registers, or use :display or :dis)
+"+          (System clipboard, "* on Mac/Win/Liunx; Ctrl-r * in Edit mode)
+
+command-g   (search again with contents of search clipboard, Mac)
+
+expression register =
+<C-r>=      (Do back-of-the-envelope calculations in place:在insert mode下計算)
+
+Repeat command (@命令把暫存器的內容當成命令執行)
+@:
+  @         (Execute text as a command)
+  :         (use the : register as the text of the command)
+```
+
+### Recoding (macro)
+
+```
+使用q後面加上a-z作為記錄暫存器，開始記錄鍵盤動作。最後以q結束記錄。
+使用@執行暫存器內容，播放記錄動作，前面可加上次數。
+qadWWPjq
+  qa        (Start a recoding named a)
+  dW        (Delete a word)
+  W         (Go forward one word)
+  P         (Paste contents)
+  j         (Move down one line)
+  q         (Quit recoding)
+@a          (Play recoding named a)
+10@a        (Play 10 times)
+```
+
+### Autocommands
+
+```
+設定在某些事件發生時，自動執行的命令。
+:func DateIns()
+:   $read !date   "insert the date at the end($) of the file
+:endf
+直接呼叫函式
+:call DateIns()
+設定鍵盤對映
+:map <F12> :call DateIns()<CR>\|:write<CR>
+設定自動命令
+:autocmd FileWritePre * :call DateIns()<CR>
+自動命令的一般格式：
+:autocmd [group] events file_pattern [nested] command
+列出定義的自動命令
+:aucodmd 全部列出
+:autocmd [group event pattern] 加上過濾條件
+刪除定義的自動命令
+:autocmd! 全部刪除
+:autocmd! [group event pattern]
+重新定義的自動命令(先刪除再定義)
+:audocmd! group event pattern nested command
+忽略事件
+:set eventignore=WinEnter,WinLeave
+:set eventignore=all  (全部事件都忽略)
+```
+
+Command-Line arguments
+======================
+
+```
+$ vim --help
+ 用法:vim [參數] [檔案 ..]         編輯指定的檔案
+   或:vim [參數] -                 從標準輸入(stdin)讀取檔案
+
+$ vim -x secret.txt 或 :X          加密 (encrpyt)
+$ vim -x -n secret.txt             加密且不使用swap檔案 (無法復原)
+
+在Vim內執行script檔
+$ vim -es file.txt < change.vim    -e: ex mode, -s: silent mode
+$ cat change.vim
+:%s/--person--/Jone Doe/g
+:write
+:quit
+
+$ vim -R file.txt 或 view file.txt 唯讀開啟 (:set readonly)
+$ vim -m file.txt 或 :nowrite      設定不可寫入 (可改為wrtie)
+$ vim -Z file.txt                  限制模式 (不可使用:shell,外部command)
+
+$ vim -N file.txt                  Non-compatible mode (vim模式)
+$ vim -C file.txt                  Compatible mode (vi模式)
+
+$ vim -r file.c                    復原檔案file.c (:recover file.c)
+$ vim -r file.txt.swp              從指定swap檔file.txt.swp復原
+:swapname                          顯示swap檔名
+:set directory=.,/tmp              指定swap檔存放目錄順序
+:preserve                          將資料寫入swap檔案，而不寫入原始檔
+
+$ man grep | vim -                 使用vim從標準輸入讀入資料 (man grep)
+$ man grep | col -b > grep.txt
+
+$ vim `grep -l 'test' *.c`         編輯所有含有'test'的C程式
+:args `grep -l 'test' *.c`
+
+Vim的內建grep (Linux會呼叫grep, Windows會呼叫findstr)
+:grep error *.c                    編輯含有'error'的C程式(只開啟第一個)
+:cnext or :cn                      下一個檔案
+:cprev or :cp                      上一個檔案
+
+Vim的clientserver mode
+:echo has('clientserver')          檢查是否enable
+$ gvim --remote-silent abc.txt     將檔案在遠方的Vim中打開
+在console/xterm的vim還要指定servername
+$ vim --servername ubuntu64 --remote-silent abc.txt
+設定alias
+alias gvi='gvim --remote-silent'
+alias vi="vim --servername $HOSTNAME --remote-silent"
+```
+
+Plugins
+=======
+
+### Pathogen (已使用Vundle取代)
+
+```
+Store plugins in self-contained directories. Pathogen reworks the load path
+to find plugin, doc, syntax, and other files in the plugins's directory instead
+of at the .vim root
+
+~/.vimrc
+silent! call pathogen#runtime_append_all_bundles()
+silent! call pathogen#helptags()
+
+:call pathogen#helptags()		Regenerate docs from all installed plugins
+:helptags ~/.vim/doc				Import standard plugin docs
+```
+
+### Surround
+
+```
+cst       (Change surrounding tag)
+dst       (Delete surrounding tag)
+          (在此t指的是tag，但也可以為{,(,[,",'等符號)
+Vs        (Add a tag around text, 使用V/v/Ctrl-v選擇範圍後，s改變)
+          (可以加入的可能是{,(,[,",',<tag>,或其他的符號)
+yss       (修改游標所在列，將內容以輸入的<tag>或符號括起來)
+ysiw      (在游標所在的單字上，以輸入的<tag>或符號括起來)
+
+:h surround
+```
+
+### tslime
+
+```
+<leader> tr 執行目前編輯的程式（第一次會問pane#）
+visual mode選擇文字後，<ctrl-c><ctrl-c>傳送 (eg.irb)
+<ctrl-c> v 改變要傳送的pane# (tmux)
+<leader> y yank內容到Mac的clipboard
+
+:h slime
+```
+
+```
+再此加入一個功能GetGibberish():
+$HOME/.vim/bundle/vim-tips/plugin/tips.vim (gf to view)
+get gibberish text from http://horseebooksipsum.com/api/v1/
+在insert模式下：Ctrl-e
+```
+
+### Gist
+
+```
+token file: $HOME/.gist-vim, user file: $HOME/.gitconfig
+
+:Gist       將目前編輯內容上傳到Gist，第一次會詢問git密碼，而後產生$HOME/.gist-vim
+:Gist -a    以匿名方式上傳
+:'<,'>Gist  以選擇的區塊內容上傳
+:Gist -l    列出自己的gists（可以使用游標選擇後，按下Enter下載其內容）
+:Gist -l mattn    列出使用者mattn的公開gists
+:Gist gist_id     以上面提供的gist_id下載其內容
+:Gist gist_id -c  下載內容，並將之存放到clipboard中
+:Gist -e          將已下載內容修改後上傳
+:Gist -s "Desc"   將已下載內容（可能經過修改）上傳，並修改其描述
+:Gist -e -s "D"   將已下載內容修改後上傳，並修改其描述
+
+:h gist-vim-usage
+```
+
+### Tcomment
+
+```
+gcc         將目前游標所在註解/反註解
+gc          將目前以Visual mode標識的區域註解/反註解
+<ctrl-_>b   將目前以Visual mode標識區域以語法block的方式註解/反註解
+(control + shift + -)b, 有些語言對單列及多列的註解方式不同，如：ruby, cpp, swift...
+
+:h tcomment
+```
+
+### Ack - 可取代grep, 把尋找的結果放在QuickFix視窗
+
+```
+:Ack pattern [directory]
+:h ack
+```
+
+### Ag - 如同Ack
+
+```
+:Ag pattern [directory]
+
+:h ag
+```
+
+Misc
+====
+
+```
+:execute "helptags " . expand("%:p:h")   在目前編輯檔案所在目錄下產生tags檔案
+                                         % - current file, p - path, h - header, t - tail
+
+```
