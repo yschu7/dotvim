@@ -15,3 +15,6 @@ if has('gui_macvim')
 endif
 
 set visualbell " Keeps the audio bell from sounding in the GUI
+
+" Call my gvimrc
+source ~/.vim/pref/gvimrc.vim
