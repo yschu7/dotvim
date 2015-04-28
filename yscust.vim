@@ -84,14 +84,6 @@ vmap <s-TAB> <gv
 " map the various registers to a leader shortcut for pasting from them
 nmap <leader>0 "0p
 nmap <leader>1 "1p
-nmap <leader>2 "2p
-nmap <leader>3 "3p
-nmap <leader>4 "4p
-nmap <leader>5 "5p
-nmap <leader>6 "6p
-nmap <leader>7 "7p
-nmap <leader>8 "8p
-nmap <leader>9 "9p
 nmap <leader>k "kp
 
 " shortcuts to open/close the quickfix window
@@ -151,6 +143,9 @@ au FileType help nnoremap <buffer><ESC> <C-T> " ESC to go back
 " for markdown -- insert 4 spaces to the end of line (is: insert spaces)
 au FileType markdown noremap <buffer><silent> <leader>is A<Space><Space><Space><Space><ESC>
 
+au FileType markdown set tabstop=4                " Global tab width.
+au FileType markdown set shiftwidth=4             " And again, related.
+
 " If we're editing a .txt file then skip line numbers
 au! BufRead,BufNewFile *.txt set nonu
 
@@ -208,10 +203,6 @@ autocmd FileType swift  setlocal foldmethod=indent shiftwidth=4 tabstop=4 softta
 
 " NERDTree
 noremap <silent> <leader>nt :NERDTree<CR>
-
-" Showmarks
-" ,mt to toggle showmarks
-let g:showmarks_enable = 0
 
 " ChgColor: Change Colorscheme
 noremap <silent> <leader>ic :ChgColor<CR>

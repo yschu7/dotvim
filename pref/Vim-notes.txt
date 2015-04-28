@@ -5,8 +5,15 @@ Y.S. Chu's Vim Notes v 1.8
 * vimtutor 基礎vim訓練課程
 * iconv -f BIG5 -t UTF8 input_big5.txt > output_utf8.txt
 * F4: search toggle, \<leader\> m : open in Markd
-
 * 尋找安裝的Plugin所設定的快速鍵：\<leader\> ,
+
+* 使用Git同步檔案：
+    1. 修改完成後
+        + $ git add .
+        + $ git commit -m 'Commit notes...'
+        + $ git push -u origin master
+    2. 在其他電腦的同步
+        + $ git pull origin
 
 Basic VIM
 =========
@@ -169,8 +176,8 @@ ModeLines - Include a comment with flile-specific configuration
 :help deleting :help rtp (or runtimepath)
 :help tutor (30 mins turorial : vimtutor or vimtutor.bat)
 
-CTRL-]  (jump to tag)       hyperlink |:help|
-CTRL-T  (pop tag)
+Ctrl-]  (jump to tag)       hyperlink |:help|
+Ctrl-T  (pop tag) or Ctrl-O
 Ctrl-[  same as Ctrl-T
 ZZ, :bd (leave help system)
 ```

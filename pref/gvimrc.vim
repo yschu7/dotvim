@@ -3,7 +3,8 @@
 " symlink to ~/.gvimrc or ~/_gvimrc.
 " =====================================================
 if has('mac')                     " Font family and font size.
-  set guifont=Monaco:h18
+  "set guifont=Monaco:h18
+  set guifont=YaHei\ Consolas\ Hybrid:h18
   :nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr>
 elseif has('win32')
   set guifont=Monaco:h12
