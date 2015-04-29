@@ -4,7 +4,7 @@ if exists('g:vundle_installing_plugins')
 endif
 
 " Ensure Ctrl-P isn't bound by default
-let g:ctrlp_map = ''
+"let g:ctrlp_map = ''
 
 " Ensure max height isn't too large. (for performance)
 let g:ctrlp_max_height = 10
@@ -17,7 +17,7 @@ let g:ctrlp_mruf_default_order = 0
 nnoremap <leader>t :CtrlPRoot<CR>
 nnoremap <leader>b :CtrlPBuffer<CR>
 nnoremap <leader>u :CtrlPCurFile<CR>
-nnoremap <leader>m :CtrlPMRUFiles<CR>
+"nnoremap <leader>m :CtrlPMRUFiles<CR>
 
 if executable('ag')
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore

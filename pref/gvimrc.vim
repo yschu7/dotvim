@@ -4,7 +4,8 @@
 " =====================================================
 if has('mac')                     " Font family and font size.
   "set guifont=Monaco:h18
-  set guifont=YaHei\ Consolas\ Hybrid:h18
+  "set guifont=YaHei\ Consolas\ Hybrid:h18
+  set guifont=Sauce\ Code\ Powerline\ Light:h18
   :nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr>
 elseif has('win32')
   set guifont=Monaco:h12
@@ -20,6 +21,7 @@ set lines=32 columns=90          " Window dimensions.
 set guioptions-=r                " Don't show right scrollbar
 
 "colorscheme vividchalk
+colorscheme jellybeans
 
 if has ('win32')                 " Reload menu with UTF-8 encoding
   let $LANG="zh_TW.UTF-8"
