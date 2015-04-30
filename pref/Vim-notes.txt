@@ -1,11 +1,12 @@
-Y.S. Chu's Vim Notes v 1.8
-===========================
+Y.S. Chu's Vim Notes v 1.8.1
+============================
 * 使用,h開啟; F2,:bd,:close關閉
 * UTF8版，markdown版
 * vimtutor 基礎vim訓練課程
 * iconv -f BIG5 -t UTF8 input_big5.txt > output_utf8.txt
-* F4: search toggle, \<leader\> m : open in Markd
-* 尋找安裝的Plugin所設定的快速鍵：\<leader\> ,
+* F4: search toggle, 或 \<leader\> s
+* \<leader\> m : open in Markd
+* \<leader\> o : 在瀏覽器內開啓目前遊標所在的網址
 
 * 使用Git同步檔案：
     1. 修改完成後
@@ -1163,6 +1164,16 @@ gc          將目前以Visual mode標識的區域註解/反註解
 :Ag pattern [directory]
 
 :h ag
+```
+
+### [vim-ruby](https://github.com/vim-ruby/vim-ruby)
+
+```
+在插入模式下，使用Ctrl-X Ctrl-O來啓動completion menu (在.之後)
+它會根據上下文顯示相關的方法，使用Ctrl-N、Ctrl-P往前、往後，Ctrl-Y選擇。
+
+:h ft-ruby-omni
+:h i_CTRL-X_CTRL-O
 ```
 
 Misc

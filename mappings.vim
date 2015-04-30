@@ -12,9 +12,9 @@ let maplocalleader = "\\"
 " -----------------------
 
 " No-op ^ and $ while learning H and L
-noremap ^ <nop>
-noremap $ <nop>
-nnoremap <leader>sc <nop>
+" noremap ^ <nop>
+" noremap $ <nop>
+" nnoremap <leader>sc <nop>
 
 " ---------------
 " Regular Mappings
@@ -35,8 +35,8 @@ nnoremap vy ggVG
 nnoremap Y y$
 
 " Just to beginning and end of lines easier. From http://vimbits.com/bits/16
-noremap H ^
-noremap L $
+" noremap H ^
+" noremap L $
 
 " Create newlines without entering insert mode
 nnoremap go o<Esc>k

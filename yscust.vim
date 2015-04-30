@@ -1,76 +1,31 @@
 " =====================================================
 " Vim configuration.
 " To work with mutewinter dotvim environment
+" ~/.vim/config.vim       Regular Vim Configuration
 " =====================================================
-
 if exists("$GOROOT")
   set rtp+=$GOROOT/misc/vim  " Go setting
 endif
 
-" syntax on                    " Turn on syntax highlighting.
-
-" runtime macros/matchit.vim   " Load the matchit plugin.
-
 set showcmd                  " Display incomplete commands.
-set showmode                 " Display the mode you're in.
-
-set backspace=indent,eol,start    " Intuitive backspacing.
-
-set hidden                   " Handle multiple buffers better.
-
-" set wildmenu                 " Enhanced command line completion.
-" set wildmode=list:longest    " Complete files like a shell.
-
-set ignorecase               " Case-insensitive searching.
-set smartcase                " But case-sensitive if expression contains a capital letter.
-
-set number                   " Show line numbers.
-set ruler                    " Show cursor position.
-
-set incsearch                " Highlight matches as you type.
-set hlsearch                 " Highlight matches.
-
-set wrap                     " Turn on line wrapping.
-set scrolloff=2              " Show 2 lines of context around the cursor.
-
-set title                    " Set the terminal's title
-
 set visualbell               " No beeping.
-
 set nobackup                 " Don't make a backup before overwriting a file.
 set nowritebackup            " And again.
 
-set tabstop=2                " Global tab width.
-set shiftwidth=2             " And again, related.
-set expandtab                " Use spaces instead of tabs
-
-set laststatus=2             " Show the status line all the time
+set wrap                     " Turn on line wrapping.
 " Useful status information at bottom of screen
 "set statusline=[%n]\ %<%.99f\ %h%w%m%r%y[%{&ff},%{&fileencoding}][%b][0x%B]\ %=%-16(\ %l/%L[%p%%],%c\ %)
-
 set cursorline               " nocursorline (cul/nocul)
-
 set fencs=utf-8,big5,gbk,latin1
 
 " =====================================================
 " Basic Maps
-" https://github.com/mitechie/pyvim/blob/master/.vimrc
+" ~/.vim/mappings.vim       Mappings
 " =====================================================
-let mapleader="," " change the leader to be a comma vs slash
 
 " map ctrl-c to something else so I quick using it
 map <c-c> <Nop>
 imap <c-c> <Nop>
-
-" Y yanks to the end of the line
-nmap Y y$
-
-" shortcuts for copying to clipboard
-" nmap <leader>y "*y
-" vmap <leader>y "*y
-" copy the current line to clipboard
-" nmap <leader>yy "*yy
-" nmap <leader>p "*p
 
 " show the registers from things cut/yanked
 nmap <leader>r :registers<CR>
@@ -89,14 +44,6 @@ nmap <leader>k "kp
 " shortcuts to open/close the quickfix window
 " nmap <leader>c :copen<CR>
 " nmap <leader>cc :cclose<CR>
-
-" F5 : run script
-nmap <F5> <ESC>:up!<CR>:! ./%<CR>
-imap <F5> <ESC>:up!<CR>:! ./%<CR>
-autocmd FileType swift nmap <F5> <ESC>:up!<CR>:!xcrun swift ./%<CR>
-autocmd FileType swift imap <F5> <ESC>:up!<CR>:!xcrun swift ./%<CR>
-autocmd FileType javascript nmap <F5> <ESC>:up!<CR>:!node ./%<CR>
-autocmd FileType javascript imap <F5> <ESC>:up!<CR>:!node ./%<CR>
 
 " Press Ctrl-N to turn off highlighting.
 nmap <silent> <C-N> :silent noh<CR>
@@ -149,6 +96,12 @@ au FileType markdown set shiftwidth=4             " And again, related.
 " If we're editing a .txt file then skip line numbers
 au! BufRead,BufNewFile *.txt set nonu
 
+" Automatic fold settings for specific files.
+autocmd FileType ruby   setlocal foldmethod=syntax
+autocmd FileType css    setlocal foldmethod=indent shiftwidth=2 tabstop=2
+autocmd FileType python setlocal foldmethod=indent shiftwidth=4 tabstop=4 softtabstop=4
+autocmd FileType swift  setlocal foldmethod=indent shiftwidth=4 tabstop=4 softtabstop=4
+
 " automatically give executable permissions if file begins with #! and
 " contains '/bin/' in the path
 fun! AfterWrite()
@@ -174,41 +127,10 @@ map <M-,> <C-W>>
 map <M-.> <C-W><
 
 " F2 close current window
-noremap <f2> <Esc>:close<CR><Esc>
+noremap <F2> <Esc>:close<CR><Esc>
 
-" mapping to make movements operate on 1 screen line in wrap mode
-function! ScreenMovement(movement)
-  if &wrap
-    return "g" . a:movement
-  else
-    return a:movement
-  endif
-endfunction
-onoremap <silent> <expr> j ScreenMovement("j")
-onoremap <silent> <expr> k ScreenMovement("k")
-onoremap <silent> <expr> 0 ScreenMovement("0")
-onoremap <silent> <expr> ^ ScreenMovement("^")
-onoremap <silent> <expr> $ ScreenMovement("$")
-nnoremap <silent> <expr> j ScreenMovement("j")
-nnoremap <silent> <expr> k ScreenMovement("k")
-nnoremap <silent> <expr> 0 ScreenMovement("0")
-nnoremap <silent> <expr> ^ ScreenMovement("^")
-nnoremap <silent> <expr> $ ScreenMovement("$")
-
-" Automatic fold settings for specific files. Uncomment to use.
-autocmd FileType ruby   setlocal foldmethod=syntax
-autocmd FileType css    setlocal foldmethod=indent shiftwidth=2 tabstop=2
-autocmd FileType python setlocal foldmethod=indent shiftwidth=4 tabstop=4 softtabstop=4
-autocmd FileType swift  setlocal foldmethod=indent shiftwidth=4 tabstop=4 softtabstop=4
-
-" NERDTree
-noremap <silent> <leader>nt :NERDTree<CR>
-
-" ChgColor: Change Colorscheme
-noremap <silent> <leader>ic :ChgColor<CR>
-
-" SetColor: F7, <Shift>-F7, <Alt>-F7
-noremap <silent> <leader>sc :SetColor my<CR>
+" F3 Toggle paste mode
+nnoremap <silent> <F3> :set paste!<CR>
 
 " Spell check
 function! ToggleSpell()
@@ -221,18 +143,22 @@ function! ToggleSpell()
     endif
 endfunction
 
-" Toggle paste mode with F3
-nnoremap <silent> <F3> :set paste!<CR>
-
 nmap <F4> :call ToggleSpell()<CR>
 imap <F4> <Esc>:call ToggleSpell()<CR>a
 
-" Emmet
-let g:user_emmet_expandabbr_key = '<c-e>'
-let g:use_emmet_complete_tag = 1
-" Enable just for html/css
-autocmd FileType css imap <tab> <plug>(EmmetExpandAbbr)
-autocmd FileType html,htm imap <tab> <plug>(EmmetExpandAbbr)
+" F5 : run script
+nmap <F5> <ESC>:up!<CR>:! ./%<CR>
+imap <F5> <ESC>:up!<CR>:! ./%<CR>
+autocmd FileType swift nmap <F5> <ESC>:up!<CR>:!xcrun swift ./%<CR>
+autocmd FileType swift imap <F5> <ESC>:up!<CR>:!xcrun swift ./%<CR>
+autocmd FileType javascript nmap <F5> <ESC>:up!<CR>:!node ./%<CR>
+autocmd FileType javascript imap <F5> <ESC>:up!<CR>:!node ./%<CR>
+
+" ChgColor: Change Colorscheme
+noremap <silent> <leader>ic :ChgColor<CR>
+
+" SetColor: F7, <Shift>-F7, <Alt>-F7
+noremap <silent> <leader>sc :SetColor my<CR>
 
 let g:w32_dir = '\vimfiles\pref\'
 let g:lnx_dir = '/.vim/pref/'

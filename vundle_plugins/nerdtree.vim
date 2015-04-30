@@ -5,6 +5,7 @@ endif
 
 nnoremap <silent><leader>nn :NERDTreeToggle<CR>:wincmd =<CR>
 nnoremap <silent><leader>nf :NERDTreeFind<CR>:wincmd =<CR>
+nnoremap <silent><leader>nt :NERDTree<CR>
 let g:NERDTreeShowBookmarks = 1
 let g:NERDTreeChDirMode = 1
 let g:NERDTreeMinimalUI = 1

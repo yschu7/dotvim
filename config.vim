@@ -53,7 +53,8 @@ syntax enable
 set backup             " Turn on backups
 set autoread           " Automatically reload changes if detected
 set wildmenu           " Turn on WiLd menu
-set hidden             " Change buffer - without saving
+set hidden             " Change buffer - without saving: Handle multiple buffers better.
+                       " You can have edited buffers that aren't visible in a window somewhere.
 set history=768        " Number of things to remember in history.
 set cf                 " Enable error files & error jumping.
 set clipboard+=unnamed " Yanks go on clipboard instead.
@@ -66,7 +67,7 @@ set foldlevelstart=99  " I really don't like folds.
 set formatoptions=crql
 set iskeyword+=\$,-   " Add extra characters that are valid parts of variables
 set nostartofline      " Don't go to the start of the line after some commands
-set scrolloff=3        " Keep three lines below the last line when scrolling
+set scrolloff=2        " Keep two lines below the last line when scrolling
 set gdefault           " this makes search/replace global by default
 set switchbuf=useopen  " Switch to an existing buffer if one exists
 
