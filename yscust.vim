@@ -73,7 +73,7 @@ augroup YSAutoCommands
   autocmd!
   " make the smarty .tpl files html files for our purposes
   "au BufNewFile,BufRead *.tpl set filetype=html
-  au BufNewFile,BufRead *.pls set filetype=plsql
+  au BufNewFile,BufRead *.pls setlocal filetype=plsql
 
   " Filetypes (au = autocmd)
   "au FileType help set nonumber " no line numbers when viewing help
@@ -81,17 +81,16 @@ augroup YSAutoCommands
   au FileType help nnoremap <buffer><ESC> <C-T> " ESC to go back
 
   " for markdown -- insert 4 spaces to the end of line (is: insert spaces)
-  au FileType markdown noremap <buffer><silent> <leader>is A<Space><Space><Space><Space><ESC>
+  au FileType markdown nnoremap <buffer><silent><leader>is A<Space><Space><Space><Space><ESC>
 
-  au FileType markdown set tabstop=4                " Global tab width.
-  au FileType markdown set shiftwidth=4             " And again, related.
+  au FileType markdown setlocal tabstop=4 shiftwidth=4 softtabstop=4
 
   " If we're editing a .txt file then skip line numbers
-  au! BufRead,BufNewFile *.txt set nonu
+  au BufRead,BufNewFile *.txt setlocal nonu
 
   " Automatic fold settings for specific files.
   autocmd FileType ruby   setlocal foldmethod=syntax
-  autocmd FileType css    setlocal foldmethod=indent shiftwidth=2 tabstop=2
+  autocmd FileType css    setlocal foldmethod=indent shiftwidth=2 tabstop=2 softtabstop=2
   autocmd FileType python setlocal foldmethod=indent shiftwidth=4 tabstop=4 softtabstop=4
   autocmd FileType swift  setlocal foldmethod=indent shiftwidth=4 tabstop=4 softtabstop=4
 
@@ -105,17 +104,18 @@ augroup YSAutoCommands
   " autocmd BufWritePost * call AfterWrite()
 
   " Define <F5> depends on filetype
-  autocmd FileType swift nnoremap <F5> <ESC>:up!<CR>:!xcrun swift ./%<CR>
-  autocmd FileType swift inoremap <F5> <ESC>:up!<CR>:!xcrun swift ./%<CR>
-  autocmd FileType javascript nnoremap <F5> <ESC>:up!<CR>:!node ./%<CR>
-  autocmd FileType javascript inoremap <F5> <ESC>:up!<CR>:!node ./%<CR>
+  autocmd FileType swift nnoremap <buffer><F5><ESC>:up!<CR>:!xcrun swift ./%<CR>
+  autocmd FileType swift inoremap <buffer><F5><ESC>:up!<CR>:!xcrun swift ./%<CR>
+  autocmd FileType javascript nnoremap <buffer><F5><ESC>:up!<CR>:!node ./%<CR>
+  autocmd FileType javascript inoremap <buffer><F5><ESC>:up!<CR>:!node ./%<CR>
 
+  " [Buffer-Local](http://learnvimscriptthehardway.stevelosh.com/chapters/11.html)
   " tmux run script
-  au FileType ruby nnoremap <leader>tx :up!<CR>:call VimuxRunCommand("ruby ".expand('%:p')."\n")<CR>
-  au FileType python nnoremap <leader>tx :up!<CR>:call VimuxRunCommand("python ".expand('%:p')."\n")<CR>
-  au FileType go nnoremap <leader>tx :up!<CR>:call VimuxRunCommand("go run ".expand('%:p')."\n")<CR>
-  au FileType javascript nnoremap <leader>tx :up!<CR>:call VimuxRunCommand("node ".expand('%:p')."\n")<CR>
-  au FileType coffee nnoremap <leader>tx :up!<CR>:call VimuxRunCommand("coffee ".expand('%:p')."\n")<CR>
+  au FileType ruby nnoremap <buffer><leader>tx :up!<CR>:call VimuxRunCommand("ruby ".expand('%:p')."\n")<CR>
+  au FileType python nnoremap <buffer><leader>tx :up!<CR>:call VimuxRunCommand("python ".expand('%:p')."\n")<CR>
+  au FileType go nnoremap <buffer><leader>tx :up!<CR>:call VimuxRunCommand("go run ".expand('%:p')."\n")<CR>
+  au FileType javascript nnoremap <buffer><leader>tx :up!<CR>:call VimuxRunCommand("node ".expand('%:p')."\n")<CR>
+  au FileType coffee nnoremap <buffer><leader>tx :up!<CR>:call VimuxRunCommand("coffee ".expand('%:p')."\n")<CR>
 augroup END
 
 " ==================================================

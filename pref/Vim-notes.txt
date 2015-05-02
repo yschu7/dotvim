@@ -88,7 +88,7 @@ c       Change (cut, then activate Insert mode)
 Vjjjd   Select and Delete
 Vjjjc   Select and Delete text and go into insert mode
 
-:b name	Switch to buffer (try TAB and arrows as well)
+:b name Switch to buffer (try TAB and arrows as well)
 :bp     Previous buffer
 :bn     Next buffer
 :bd     Delete buffer
@@ -288,7 +288,7 @@ h       Buffer is hidden (loaded but not visible)
 
 ### Movement
 
-+  word遇到空白及其他的標點符號(, : . -)都會視為一個單字的結束。
++  word(小寫指令)遇到空白及其他的標點符號(, : . -)都會視為一個單字的結束。
    注意：底線(_)視為單字(word)的一部分。
    :set iskeyword?    (defines what is in a word)
 
@@ -547,7 +547,8 @@ y)ank                           s)entence
 v)isual                         p)aragraph
                                 t)ag
                                 "'<[{()}]>
-
+                                b - shortcut for ()
+                                B - shortcut for {}
 <h1>Sample code</h1>
 step1. vit or vat : select sample code within tag, or include tag
 step2. c : change
@@ -1138,8 +1139,6 @@ visual mode選擇文字後，<ctrl-c><ctrl-c>傳送 (eg.irb)
 * tmux視窗會在執行命令時自動開啓
 * tmux的prefix key爲 <Ctrl-a>
 * vim的視窗bind-key爲 <Ctrl-w>
-* 若同時編輯2種語言，又先後使用tx功能時發生Filetype判斷錯誤，可以使用
-  :bun(buffer unload)，再切回來執行
 
 <leader> tx  開啓一個tmux視窗，執行clear命令
 <leader> tp  詢問輸入命令，在tmux視窗執行該命令(若沒有tmux視窗則開啓一個)
