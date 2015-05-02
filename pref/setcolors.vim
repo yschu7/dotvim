@@ -140,3 +140,25 @@ endfunction
 
 command! -nargs=* ChgColor call <SID>ChangeColor('<args>')
 
+" Change Airline Colorscheme
+function! s:ChangeAirColor(args)
+  let paths = split(globpath(&runtimepath, 'bundle/vim-airline/autoload/airline/themes/*.vim'), "\n")
+  let s:cols = map(paths, 'fnamemodify(v:val, ":t:r")')
+  echo 'Current color scheme names:'
+  let i = 0
+  while i < len(s:cols)
+    echo i . '  '.join(map(s:cols[i : i+4], 'printf("%-14s", v:val)'))
+    let i += 5
+  endwhile
+  call inputsave()
+  let num = len(s:cols)
+  let msg = 'Number(0-' . (num-1) . '): '
+  while num >= len(s:cols)
+    let num = input(msg)
+  endwhile
+  call inputrestore()
+  execute ':AirlineTheme '. s:cols[num]
+endfunction
+
+command! -nargs=* ChgAirColor call <SID>ChangeAirColor('<args>')
+

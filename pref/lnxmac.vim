@@ -22,15 +22,15 @@ cmap w!! w !sudo tee % >/dev/null
 let g:pydiction_location = expand("~") . '/.vim/bundle/vim-python/ftplugin/pydiction/complete-dict'
 
 " tmux run script
-fun! SetRunScript()
-  au FileType ruby nmap <leader>tr :up!<CR>:call Send_to_Tmux("ruby ".expand('%:p')."\n")<CR>
-  au FileType python nmap <leader>tr :up!<CR>:call Send_to_Tmux("python ".expand('%:p')."\n")<CR>
-  au FileType go nmap <leader>tr :up!<CR>:call Send_to_Tmux("go run ".expand('%:p')."\n")<CR>
-  au FileType javascript nmap <leader>tr :up!<CR>:call Send_to_Tmux("node ".expand('%:p')."\n")<CR>
-  au FileType coffee nmap <leader>tr :up!<CR>:call Send_to_Tmux("coffee ".expand('%:p')."\n")<CR>
-endfun
-call SetRunScript()
-au! BufEnter * call SetRunScript()
+" fun! SetRunScript()
+"   au FileType ruby nmap <leader>tr :up!<CR>:call Send_to_Tmux("ruby ".expand('%:p')."\n")<CR>
+"   au FileType python nmap <leader>tr :up!<CR>:call Send_to_Tmux("python ".expand('%:p')."\n")<CR>
+"   au FileType go nmap <leader>tr :up!<CR>:call Send_to_Tmux("go run ".expand('%:p')."\n")<CR>
+"   au FileType javascript nmap <leader>tr :up!<CR>:call Send_to_Tmux("node ".expand('%:p')."\n")<CR>
+"   au FileType coffee nmap <leader>tr :up!<CR>:call Send_to_Tmux("coffee ".expand('%:p')."\n")<CR>
+" endfun
+" call SetRunScript()
+" au! BufEnter * call SetRunScript()
 
 " dbext setting
 " lnx_dir global in vimrc

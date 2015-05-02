@@ -24,3 +24,7 @@ let g:airline_section_c = '%t'
 let g:airline_section_y = ''
 let g:airline_section_z = '%3p%% %#__accent_bold#%4l%#__restore__#:%3'
 let g:airline_section_z = '%3p%% %{substitute(line("."), "\\v(\\d)((\\d\\d\\d)+\\d@!)@=", "\\1,", "g")}|%{substitute(line("$"), "\\v(\\d)((\\d\\d\\d)+\\d@!)@=", "\\1,", "g")}'
+
+"Smarter tab line
+let g:airline#extensions#tabline#enabled = 1
+

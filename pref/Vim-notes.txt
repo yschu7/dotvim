@@ -1,12 +1,9 @@
-Y.S. Chu's Vim Notes v 1.8.1
+Y.S. Chu's Vim Notes v 1.8.2
 ============================
 * 使用,h開啟; F2,:bd,:close關閉
 * UTF8版，markdown版
 * vimtutor 基礎vim訓練課程
 * iconv -f BIG5 -t UTF8 input_big5.txt > output_utf8.txt
-* F4: search toggle, 或 \<leader\> s
-* \<leader\> m : open in Markd
-* \<leader\> o : 在瀏覽器內開啓目前遊標所在的網址
 
 * 使用Git同步檔案：
     1. 修改完成後
@@ -118,9 +115,9 @@ Transform vim into hex editor: xxd is an external command
 
 Configuration
 =============
-~/.vimrc    Most settings go here. Shared terminal and graphical options.    
-~/.gvimrc   Graphic-only settings (font, windows size)    
-~/.vim/     Plugins, language-specific options, color schemes    
+* ~/.vimrc    Most settings go here. Shared terminal and graphical options.
+* ~/.gvimrc   Graphic-only settings (font, windows size)
+* ~/.vim/     Plugins, language-specific options, color schemes
 
 ### 設定：
 * 所有檔案放在$HOME/bin/dotvim目錄內。
@@ -133,7 +130,7 @@ Configuration
 > ln -nfs ~/bin/dotvim/gvimrc .gvimrc
 ```
 
-* 採用Vundle方式管理Plugins，並使用以下的設定爲基礎    
+* 採用Vundle方式管理Plugins，並使用以下的設定爲基礎
 [The Vim Configuration of Champions] (https://github.com/mutewinter/dot_vim)
 
 
@@ -223,9 +220,6 @@ gf                Jump to file under cursor (goto file)
 Visual  : NERDTree, Project (included within rails.vim)
 Text    : FuzzyFinder, CtrlP
 
-目前所設定的快速鍵：
-FuzzyFinder: <leader>ff
-NERDTree   : <leader>nt
 ```
 
 ### Window :  A rectangular view of a buffer.
@@ -294,8 +288,8 @@ h       Buffer is hidden (loaded but not visible)
 
 ### Movement
 
-+  word遇到空白及其他的標點符號(, : . -)都會視為一個單字的結束。    
-   注意：底線(_)視為單字(word)的一部分。    
++  word遇到空白及其他的標點符號(, : . -)都會視為一個單字的結束。
+   注意：底線(_)視為單字(word)的一部分。
    :set iskeyword?    (defines what is in a word)
 
 +  code word(大寫指令)則會將連續非空白字元視為一單字，移動時會較快速。
@@ -303,14 +297,14 @@ h       Buffer is hidden (loaded but not visible)
 +  w/W/b/B移動時游標停在單字首，w/W向前，b/B向後。
 
 ```
-       B       b     h     <move>   l      w        W 
+       B       b     h     <move>   l      w        W
   (code word, word, char;          char,  word, code word)
 ```
 
 +  e/E移動時游標停在單字尾，e/E沒有對應"向後"的單字鍵，以ge/gE表示。
 
 ```
-     0            ^           gE             ge   <edge>     e          E             $ 
+     0            ^           gE             ge   <edge>     e          E             $
 (line start, first char, code word end, word end;        word end, code word end, line end)
 ```
 
@@ -323,7 +317,7 @@ h       Buffer is hidden (loaded but not visible)
 (line start, first char;          line end)
 ```
 
-+  Fx , fx ; :  Single character serach (find)    
++  Fx , fx ; :  Single character serach (find)
    使用逗號(，)及分號(；)往後/往前重複上次搜尋命令。
 
 ```
@@ -331,7 +325,7 @@ h       Buffer is hidden (loaded but not visible)
 (prev x, repeat backward;          next x, repeat forward)
 ```
 
-+  T/t命令就像F/f，但是他的游標停留在尋找的字元的前一個字元。    
++  T/t命令就像F/f，但是他的游標停留在尋找的字元的前一個字元。
 
 ```
     Tx        ,       <search'til>    tx         ;
@@ -355,7 +349,7 @@ Ctrl-u, Ctrl-y    實際捲動幾列由:set scroll?決定，也可以隨時改�
 :set scrolloff?   控制游標到螢幕上下邊界幾列時，才觸發捲動(0-3間較合理)。
 ```
 
-+  這系列命令會將游標所在列移動(拉)到相對螢幕的top/middle/bottom位置。    
++  這系列命令會將游標所在列移動(拉)到相對螢幕的top/middle/bottom位置。
    與移動游標的H、M、L命令可以做一對比。
 
 ```
@@ -406,9 +400,9 @@ gD  Jump to definition under cursor (往後)
 gq  Reformat，gqq format本列 (要設定textwidth或wrapmargin其中之一)
 g?  Encrypt with rot13, g?? encrpyt本列
 gv  上一次選取的範圍
-ga  顯示游標所在字碼(:ascii)
-g ctrl-g  顯示目前位置(以column,line,word,char,byte)
-gi  在列首插入(i為在列首非空白位置)
+ga  顯示游標所在字碼的10、16、8進位數值 (:ascii)
+g ctrl-g  顯示目前位置 (以column,line,word,char,byte)
+gi  在列首插入 (i為在列首非空白位置)
 ```
 
 Marks 標記
@@ -1074,6 +1068,8 @@ alias vi="vim --servername $HOSTNAME --remote-silent"
 Plugins
 =======
 
+### mutewinter [Plugins List](https://github.com/mutewinter/dot_vim)
+
 ### Pathogen (已使用Vundle取代)
 
 ```
@@ -1085,25 +1081,42 @@ of at the .vim root
 silent! call pathogen#runtime_append_all_bundles()
 silent! call pathogen#helptags()
 
-:call pathogen#helptags()		Regenerate docs from all installed plugins
-:helptags ~/.vim/doc				Import standard plugin docs
+:call pathogen#helptags()   Regenerate docs from all installed plugins
+:helptags ~/.vim/doc        Import standard plugin docs
 ```
 
-### Surround
+### [Vundle](http://blog.xuite.net/yschu/wretch/312992849)
 
 ```
-cst       (Change surrounding tag)
-dst       (Delete surrounding tag)
-          (在此t指的是tag，但也可以為{,(,[,",'等符號)
-Vs        (Add a tag around text, 使用V/v/Ctrl-v選擇範圍後，s改變)
-          (可以加入的可能是{,(,[,",',<tag>,或其他的符號)
-yss       (修改游標所在列，將內容以輸入的<tag>或符號括起來)
-ysiw      (在游標所在的單字上，以輸入的<tag>或符號括起來)
+~/.vim/vundle.vim
+設定要安裝的Plugins(~/.vim/vundle_plugins, ~/.vim/vundle_plugins/custom)
+
+* 更新全部Plugins
+    * > vim +PluginUpdate +qall
+* 更新單一Plugin : vim-markdown
+    * > vim +'PluginUpdate vim-markdown' +qall
+```
+
+### [Surround](https://github.com/tpope/vim-surround)
+
+```
+~/.vim/vundle_plugins/vim-surround.vim
+
+cst    Change surrounding tag
+dst    Delete surrounding tag
+       在此t指的是tag，但也可以為{,(,[,",'等符號
+vS     Add a tag around text, 使用V/v/Ctrl-v選擇範圍後，S改變
+       可以加入的可能是{,(,[,",',<tag>,或其他的符號
+yss    修改游標所在列(sentence)，將內容以輸入的<tag>或符號括起來
+ysiw   在游標所在的單字上(inner word)，以輸入的<tag>或符號括起來
+
+ysiw#  將遊標所在的單字var變成#{var}
+<leader> y# 設爲快速鍵(ysiw#)
 
 :h surround
 ```
 
-### tslime
+### tslime (使用vimux取代)
 
 ```
 <leader> tr 執行目前編輯的程式（第一次會問pane#）
@@ -1114,6 +1127,30 @@ visual mode選擇文字後，<ctrl-c><ctrl-c>傳送 (eg.irb)
 :h slime
 ```
 
+### [vimux](https://github.com/benmills/vimux)
+
+* [vimux.txt](https://raw.githubusercontent.com/benmills/vimux/master/doc/vimux.txt)
+* [tmux](http://blog.xuite.net/yschu/wretch/104922439)
+
+```
+~/.vim/vundle_plugins/vimux.vim
+
+* tmux視窗會在執行命令時自動開啓
+* tmux的prefix key爲 <Ctrl-a>
+* vim的視窗bind-key爲 <Ctrl-w>
+* 若同時編輯2種語言，又先後使用tx功能時發生Filetype判斷錯誤，可以使用
+  :bun(buffer unload)，再切回來執行
+
+<leader> tx  開啓一個tmux視窗，執行clear命令
+<leader> tp  詢問輸入命令，在tmux視窗執行該命令(若沒有tmux視窗則開啓一個)
+<leader> tc  關閉tmux視窗
+<leader> tw  寫入buffer後，執行最後一個命令
+<leader> tr  在tmux視窗執行目前選擇的內容(或遊標所在paragraph的內容)
+<leader> tz  將畫面切換到tmux視窗後放大(使用 <Ctrl-a> z 切換回來)
+
+:h vimux
+```
+
 ```
 再此加入一個功能GetGibberish():
 $HOME/.vim/bundle/vim-tips/plugin/tips.vim (gf to view)
@@ -1121,9 +1158,10 @@ get gibberish text from http://horseebooksipsum.com/api/v1/
 在insert模式下：Ctrl-e
 ```
 
-### Gist
+### [Gist](https://github.com/mattn/gist-vim)
 
 ```
+~/.vim/vundle_plugins/gist-vim.vim
 token file: $HOME/.gist-vim, user file: $HOME/.gitconfig
 
 :Gist       將目前編輯內容上傳到Gist，第一次會詢問git密碼，而後產生$HOME/.gist-vim
@@ -1140,9 +1178,11 @@ token file: $HOME/.gist-vim, user file: $HOME/.gitconfig
 :h gist-vim-usage
 ```
 
-### Tcomment
+### [Tcomment](https://github.com/tomtom/tcomment_vim)
 
 ```
+~/.vim/vundle_plugins/tcomment_vim.vim
+
 gcc         將目前游標所在註解/反註解
 gc          將目前以Visual mode標識的區域註解/反註解
 <ctrl-_>b   將目前以Visual mode標識區域以語法block的方式註解/反註解
@@ -1169,12 +1209,79 @@ gc          將目前以Visual mode標識的區域註解/反註解
 ### [vim-ruby](https://github.com/vim-ruby/vim-ruby)
 
 ```
+~/.vim/vundle_plugins/vim-ruby.vim
+
 在插入模式下，使用Ctrl-X Ctrl-O來啓動completion menu (在.之後)
 它會根據上下文顯示相關的方法，使用Ctrl-N、Ctrl-P往前、往後，Ctrl-Y選擇。
 
 :h ft-ruby-omni
 :h i_CTRL-X_CTRL-O
 ```
+
+### [NERDTree](https://github.com/scrooloose/nerdtree)
+
+```
+~/.vim/vundle_plugins/nerdtree.vim
+
+* <leader>nt : 啓動NERDTree
+* <leader>nn : NERDTree Toggle
+
+* ?  : help
+* q  : quit
+* I  : hidden files toggle
+
+:h NERD_tree
+```
+
+### [vim-airline](https://github.com/bling/vim-airline)
+
+* [theme screenshots](https://github.com/bling/vim-airline/wiki/Screenshots)
+
+* ~/.vim/bundle/vim-airline/autoload/airline/themes/*.vim
+* luna, wombat, molokai, jellybeans, laederon, ubaryd, tomorrow, base16, sol
+* simple, murmur, bubblegum, powerlineish, badwolf, dark, light
+
+```
+~/.vim/vundle_plugins/vim-airline.vim
+
+* AirlineTheme murmur   改變airline狀態列的主題
+* 設定選擇畫面改變Airline主題(~/.vim/pref/setcolors.vim)
+* <leader> ia
+
+```
+
+###[UltiSnips](https://github.com/SirVer/ultisnips)
+
+```
+~/.vim/vundle_plugins/ultisnips.vim
+~/.vim/MyUltiSnips : 設定的snippet存放目錄
+
+* <Ctrl> n : 下一個snippet
+* <Ctrl> p : 上一個snippet
+* <Ctrl> j : 選擇snippet (展開)
+* <Ctrl> j : 跳到下一個 (snippet內設定的參數點)
+* <Ctrl> k : 跳到上一個
+
+```
+
+###[vim-eunuch](https://github.com/tpope/vim-eunuch)
+
+#####Vim sugar for Unix shell commands
+* `:Remove`   : Delete a buffer and the file on disk simultaneously.
+* `:Unlink`   : Like :Remove, but keeps the now empty buffer.
+* `:Move`     : Rename a buffer and the file on disk simultaneously.
+* `:Chmod`    : Change the permissions of the current file.
+* `:Mkdir`    : Create a directory, defaulting to the parent of the current file.
+* `:Find`     : Run find and load the results into the quickfix list.
+* `:Wall`     : Write every open window.
+* `:SudoWrite`: Write a privileged file with sudo.
+* `:SudoEdit` : Edit a privileged file with sudo.
+* New files created with a shebang line are automatically made executable.
+
+* `:cd` path  : Change working directory
+* `:pwd`      : Print working directory
+* `:e .`      : Navigate the current directory
+* `:NERDTree` path
 
 Misc
 ====
@@ -1183,4 +1290,17 @@ Misc
 :execute "helptags " . expand("%:p:h")   在目前編輯檔案所在目錄下產生tags檔案
                                          % - current file, p - path, h - header, t - tail
 
+* Customize Mapping: ~/.vim/mappings.vim 主要定義key mapping的檔案
+
+* F4: Search toggle, 或 <leader> s
+* <leader> /  : Clear search highlight, 或<Ctrl> n
+* <leader> m  : open in Markd
+* <leader> o  : 在瀏覽器內開啓目前遊標所在的網址
+* <leader> gg : 在瀏覽器內使用Google查詢目前遊標所在的單字([vim-voogle][01])
+* <Ctrl-w> o  : 將目前的視窗最大化，再按一次恢復原狀(Toggle, [ZoomWin][02])
+
 ```
+
+[01]: https://github.com/papanikge/vim-voogle
+[02]: https://github.com/vim-scripts/ZoomWin
+

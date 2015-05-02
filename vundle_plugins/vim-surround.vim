@@ -9,4 +9,5 @@ endif
 let g:surround_35  = "#{\r}"
 
 " Shortcuts for common surrounds
-map <leader>y# ysi"#
+" map <leader>y# ysi"#
+map <leader>y# ysiw#

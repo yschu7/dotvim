@@ -48,17 +48,6 @@ nmap <leader>k "kp
 " Press Ctrl-N to turn off highlighting.
 nmap <silent> <C-N> :silent noh<CR>
 
-" Tab mappings.
-map <leader>tt :tabnew<cr>
-map <leader>te :tabedit
-map <leader>tc :tabclose<cr>
-map <leader>to :tabonly<cr>
-map <leader>tn :tabnext<cr>
-map <leader>tp :tabprevious<cr>
-map <leader>tf :tabfirst<cr>
-map <leader>tl :tablast<cr>
-map <leader>tm :tabmove
-
 " Clean all end of line extra whitespace with ,S
 " Credit: voyeg3r https://github.com/mitechie/pyvim/issues/#issue/1
 " deletes excess space but maintains the list of jumps unchanged
@@ -78,38 +67,56 @@ map <silent><leader>S <esc>:keepjumps call CleanExtraSpaces()<cr>
 " Auto change the directory to the current file I'm working on
 "autocmd BufEnter * lcd %:p:h
 
-" make the smarty .tpl files html files for our purposes
-"au BufNewFile,BufRead *.tpl set filetype=html
-au BufNewFile,BufRead *.pls set filetype=plsql
+augroup YSAutoCommands
+  " Clear the auto command group so we don't define it multiple times
+  " Idea from http://learnvimscriptthehardway.stevelosh.com/chapters/14.html
+  autocmd!
+  " make the smarty .tpl files html files for our purposes
+  "au BufNewFile,BufRead *.tpl set filetype=html
+  au BufNewFile,BufRead *.pls set filetype=plsql
 
-" Filetypes (au = autocmd)
-"au FileType help set nonumber " no line numbers when viewing help
-au FileType help nnoremap <buffer><cr> <c-]> " Enter selects subject
-au FileType help nnoremap <buffer><ESC> <C-T> " ESC to go back
+  " Filetypes (au = autocmd)
+  "au FileType help set nonumber " no line numbers when viewing help
+  au FileType help nnoremap <buffer><cr> <c-]> " Enter selects subject
+  au FileType help nnoremap <buffer><ESC> <C-T> " ESC to go back
 
-" for markdown -- insert 4 spaces to the end of line (is: insert spaces)
-au FileType markdown noremap <buffer><silent> <leader>is A<Space><Space><Space><Space><ESC>
+  " for markdown -- insert 4 spaces to the end of line (is: insert spaces)
+  au FileType markdown noremap <buffer><silent> <leader>is A<Space><Space><Space><Space><ESC>
 
-au FileType markdown set tabstop=4                " Global tab width.
-au FileType markdown set shiftwidth=4             " And again, related.
+  au FileType markdown set tabstop=4                " Global tab width.
+  au FileType markdown set shiftwidth=4             " And again, related.
 
-" If we're editing a .txt file then skip line numbers
-au! BufRead,BufNewFile *.txt set nonu
+  " If we're editing a .txt file then skip line numbers
+  au! BufRead,BufNewFile *.txt set nonu
 
-" Automatic fold settings for specific files.
-autocmd FileType ruby   setlocal foldmethod=syntax
-autocmd FileType css    setlocal foldmethod=indent shiftwidth=2 tabstop=2
-autocmd FileType python setlocal foldmethod=indent shiftwidth=4 tabstop=4 softtabstop=4
-autocmd FileType swift  setlocal foldmethod=indent shiftwidth=4 tabstop=4 softtabstop=4
+  " Automatic fold settings for specific files.
+  autocmd FileType ruby   setlocal foldmethod=syntax
+  autocmd FileType css    setlocal foldmethod=indent shiftwidth=2 tabstop=2
+  autocmd FileType python setlocal foldmethod=indent shiftwidth=4 tabstop=4 softtabstop=4
+  autocmd FileType swift  setlocal foldmethod=indent shiftwidth=4 tabstop=4 softtabstop=4
 
-" automatically give executable permissions if file begins with #! and
-" contains '/bin/' in the path
-fun! AfterWrite()
-  if getline(1) =~ "^#!" && getline(1) =~ "/bin/"
-     silent !chmod a+x <afile>
-  endif
-endfun
-au BufWritePost * call AfterWrite()
+  " automatically give executable permissions if file begins with #! and
+  " contains '/bin/' in the path (replaced by vim-eunuch)
+  " fun! AfterWrite()
+  " if getline(1) =~ "^#!" && getline(1) =~ "/bin/"
+  "     silent !chmod a+x <afile>
+  " endif
+  " endfun
+  " autocmd BufWritePost * call AfterWrite()
+
+  " Define <F5> depends on filetype
+  autocmd FileType swift nnoremap <F5> <ESC>:up!<CR>:!xcrun swift ./%<CR>
+  autocmd FileType swift inoremap <F5> <ESC>:up!<CR>:!xcrun swift ./%<CR>
+  autocmd FileType javascript nnoremap <F5> <ESC>:up!<CR>:!node ./%<CR>
+  autocmd FileType javascript inoremap <F5> <ESC>:up!<CR>:!node ./%<CR>
+
+  " tmux run script
+  au FileType ruby nnoremap <leader>tx :up!<CR>:call VimuxRunCommand("ruby ".expand('%:p')."\n")<CR>
+  au FileType python nnoremap <leader>tx :up!<CR>:call VimuxRunCommand("python ".expand('%:p')."\n")<CR>
+  au FileType go nnoremap <leader>tx :up!<CR>:call VimuxRunCommand("go run ".expand('%:p')."\n")<CR>
+  au FileType javascript nnoremap <leader>tx :up!<CR>:call VimuxRunCommand("node ".expand('%:p')."\n")<CR>
+  au FileType coffee nnoremap <leader>tx :up!<CR>:call VimuxRunCommand("coffee ".expand('%:p')."\n")<CR>
+augroup END
 
 " ==================================================
 " Windows / Splits
@@ -125,6 +132,9 @@ map + <C-W>+
 " and for vsplits with alt-< or alt->
 map <M-,> <C-W>>
 map <M-.> <C-W><
+
+" F1 delete current buffer
+noremap <F1> <Esc>:bd<CR>
 
 " F2 close current window
 noremap <F2> <Esc>:close<CR><Esc>
@@ -143,22 +153,21 @@ function! ToggleSpell()
     endif
 endfunction
 
-nmap <F4> :call ToggleSpell()<CR>
-imap <F4> <Esc>:call ToggleSpell()<CR>a
+nnoremap <F4> :call ToggleSpell()<CR>
+inoremap <F4> <Esc>:call ToggleSpell()<CR>a
 
 " F5 : run script
-nmap <F5> <ESC>:up!<CR>:! ./%<CR>
-imap <F5> <ESC>:up!<CR>:! ./%<CR>
-autocmd FileType swift nmap <F5> <ESC>:up!<CR>:!xcrun swift ./%<CR>
-autocmd FileType swift imap <F5> <ESC>:up!<CR>:!xcrun swift ./%<CR>
-autocmd FileType javascript nmap <F5> <ESC>:up!<CR>:!node ./%<CR>
-autocmd FileType javascript imap <F5> <ESC>:up!<CR>:!node ./%<CR>
+nnoremap <F5> <ESC>:up!<CR>:! ./%<CR>
+inoremap <F5> <ESC>:up!<CR>:! ./%<CR>
 
 " ChgColor: Change Colorscheme
 noremap <silent> <leader>ic :ChgColor<CR>
 
 " SetColor: F7, <Shift>-F7, <Alt>-F7
 noremap <silent> <leader>sc :SetColor my<CR>
+
+" ChgAirColor: Change Airpline Colorscheme
+noremap <silent> <leader>ia :ChgAirColor<CR>
 
 let g:w32_dir = '\vimfiles\pref\'
 let g:lnx_dir = '/.vim/pref/'
