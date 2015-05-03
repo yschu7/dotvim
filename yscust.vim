@@ -116,6 +116,9 @@ augroup YSAutoCommands
   au FileType go nnoremap <buffer><leader>tx :up!<CR>:call VimuxRunCommand("go run ".expand('%:p')."\n")<CR>
   au FileType javascript nnoremap <buffer><leader>tx :up!<CR>:call VimuxRunCommand("node ".expand('%:p')."\n")<CR>
   au FileType coffee nnoremap <buffer><leader>tx :up!<CR>:call VimuxRunCommand("coffee ".expand('%:p')."\n")<CR>
+
+  " Leave paste mode on exit
+  au InsertLeave * set nopaste
 augroup END
 
 " ==================================================
@@ -140,7 +143,8 @@ noremap <F1> <Esc>:bd<CR>
 noremap <F2> <Esc>:close<CR><Esc>
 
 " F3 Toggle paste mode
-nnoremap <silent> <F3> :set paste!<CR>
+"nnoremap <silent> <F3> :set paste!<CR>
+noremap <silent> <F3> :set paste<CR>o
 
 " Spell check
 function! ToggleSpell()
