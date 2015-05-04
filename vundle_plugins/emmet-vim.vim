@@ -4,8 +4,11 @@ if exists('g:vundle_installing_plugins')
 endif
 
 " Emmet
-let g:user_emmet_expandabbr_key = '<c-e>'
+let g:user_emmet_expandabbr_key = '<c-y>'
 let g:use_emmet_complete_tag = 1
 " Enable just for html/css
-autocmd FileType css imap <tab> <plug>(EmmetExpandAbbr)
-autocmd FileType html,htm imap <tab> <plug>(EmmetExpandAbbr)
+let g:user_emmet_install_global = 0
+autocmd FileType css,html,htm EmmetInstall
+
+" Conflict with YouCompleteMe
+" autocmd FileType css,html,htm imap <tab> <plug>(emmet-expand-abbr)

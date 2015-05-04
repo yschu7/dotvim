@@ -1290,6 +1290,17 @@ gc          將目前以Visual mode標識的區域註解/反註解
 * `:e .`      : Navigate the current directory
 * `:NERDTree` path
 
+###[emmet-vim](https://github.com/mattn/emmet-vim)
+
+* [Emmet doc](http://docs.emmet.io/abbreviations/)
+* [Zen Coding](https://code.google.com/p/zen-coding/)
+
+```
+~/.vim/vundle_plugins/emmet-vim.vim
+
+* <Ctrl> y : 展開
+```
+
 Misc
 ====
 
