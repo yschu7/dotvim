@@ -96,18 +96,22 @@ augroup YSAutoCommands
 
   " automatically give executable permissions if file begins with #! and
   " contains '/bin/' in the path (replaced by vim-eunuch)
-  " fun! AfterWrite()
-  " if getline(1) =~ "^#!" && getline(1) =~ "/bin/"
-  "     silent !chmod a+x <afile>
-  " endif
-  " endfun
-  " autocmd BufWritePost * call AfterWrite()
+  fun! AfterWrite()
+  if getline(1) =~ "^#!" && getline(1) =~ "/bin/"
+      silent !chmod a+x <afile>
+  endif
+  endfun
+  autocmd BufWritePost * call AfterWrite()
 
   " Define <F5> depends on filetype
-  autocmd FileType swift nnoremap <buffer><F5><ESC>:up!<CR>:!xcrun swift ./%<CR>
-  autocmd FileType swift inoremap <buffer><F5><ESC>:up!<CR>:!xcrun swift ./%<CR>
-  autocmd FileType javascript nnoremap <buffer><F5><ESC>:up!<CR>:!node ./%<CR>
-  autocmd FileType javascript inoremap <buffer><F5><ESC>:up!<CR>:!node ./%<CR>
+  autocmd FileType swift nnoremap <buffer><F5> <ESC>:up!<CR>:!xcrun swift ./%<CR>
+  autocmd FileType swift inoremap <buffer><F5> <ESC>:up!<CR>:!xcrun swift ./%<CR>
+  autocmd FileType javascript nnoremap <buffer><F5> <ESC>:up!<CR>:!node ./%<CR>
+  autocmd FileType javascript inoremap <buffer><F5> <ESC>:up!<CR>:!node ./%<CR>
+  autocmd FileType ruby nnoremap <buffer><F5> <ESC>:up!<CR>:!ruby ./%<CR>
+  autocmd FileType ruby inoremap <buffer><F5> <ESC>:up!<CR>:!ruby ./%<CR>
+  autocmd FileType python nnoremap <buffer><F5> <ESC>:up!<CR>:!python3 ./%<CR>
+  autocmd FileType python inoremap <buffer><F5> <ESC>:up!<CR>:!python3 ./%<CR>
 
   " [Buffer-Local](http://learnvimscriptthehardway.stevelosh.com/chapters/11.html)
   " tmux run script
