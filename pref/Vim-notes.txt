@@ -1147,7 +1147,7 @@ visual mode選擇文字後，<ctrl-c><ctrl-c>傳送 (eg.irb)
 * tmux的prefix key爲 <Ctrl-a>
 * vim的視窗bind-key爲 <Ctrl-w>
 
-<leader> tx  開啓一個tmux視窗，執行clear命令
+<leader> tx  開啓一個tmux視窗，執行目前編輯檔案(rb,py,sh...)
 <leader> tp  詢問輸入命令，在tmux視窗執行該命令(若沒有tmux視窗則開啓一個)
 <leader> tc  關閉tmux視窗
 <leader> tw  寫入buffer後，執行最後一個命令
@@ -1306,7 +1306,7 @@ Misc
 
 ```
 :execute "helptags " . expand("%:p:h")   在目前編輯檔案所在目錄下產生tags檔案
-                                         % - current file, p - path, h - header, t - tail
+                            % - current file, p - path, h - header, t - tail
 
 * Customize Mapping: ~/.vim/mappings.vim 主要定義key mapping的檔案
 
@@ -1316,6 +1316,11 @@ Misc
 * <leader> o  : 在瀏覽器內開啓目前遊標所在的網址
 * <leader> gg : 在瀏覽器內使用Google查詢目前遊標所在的單字([vim-voogle][01])
 * <Ctrl-w> o  : 將目前的視窗最大化，再按一次恢復原狀(Toggle, [ZoomWin][02])
+
+* Argument Lists
+    * :args `find lib spec -name '*.rb'`    puts results into argument lists
+    * :args                                 show argument lists
+    * :argdo :%s/Math/MyMath/ge | update    search & replace for each file in..
 
 ```
 
