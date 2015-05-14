@@ -136,9 +136,9 @@ imap <C-W> <C-O><C-W>
 map - <C-W>-
 map + <C-W>+
 
-" and for vsplits with alt-< or alt->
-map <M-,> <C-W>>
-map <M-.> <C-W><
+" and for vsplits with <TAB> and Shift<TAB>
+nmap <TAB> <C-W>>
+nmap <s-TAB> <C-W><
 
 " F1 delete current buffer
 noremap <F1> <Esc>:bd<CR>

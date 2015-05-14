@@ -245,21 +245,31 @@ Text    : FuzzyFinder, CtrlP
 :10 sp + file1.txt 開啓10列大小的水平視窗，游標到檔案file.txt最後。
 :h +cmd   關於+cmd的說明
 
-Ctrl-w j  Move focus to bottom window
+Ctrl-w j  Move focus to bottom window (小寫，移動遊標，焦點改變)
 Ctrl-w k  Move focus to top window
-Ctrl-w J  Move buffer to bottom
+Ctrl-w J  Move buffer to bottom (大寫，移動遊標所在buffer，buffer位置改變)
 Ctrl-w K  Move buffer to top
 Ctrl-w h  Move focus to left window
 Ctrl-w l  Move focus to right window
 Ctrl-w H  Move buffer to left
 Ctrl-w L  Move buffer to right
+
 Ctrl-w w  Cycle focus counter-clockwise
 Ctrl-w W  Cycle focus clockwise
 Ctrl-w x  Exchange current and next window
 Ctrl-w o  Close all but current window (:on)
 
-Ctrl-w +  Increase window size by count(default 1)
-Ctrl-w -  Decrease window size by count(default 1)
+調整視窗大小（上下、左右）
+Ctrl-w +  Increase window height by count(default 1, Ctrl-w 10+ 高度擴大10列)
+Ctrl-w -  Decrease window height by count(default 1)
+Ctrl-w >  Increase window width by count(default 1, Ctrl-w 5> 寬度增加5欄)
+Ctrl-w <  Decrease window width by count(default 1)
+Ctrl-w =  將所有視窗的大小調整爲一樣大
+
+開啓視窗，並把buffer的內容放入新開視窗中（準備編輯）
+:ls       list buffers
+:sb2      Split window and edit buffer number 2
+:vert sb3 Split window vertically and edit buffer number 3
 ```
 
 ### Buffer : The contents of a file in memory.
@@ -533,8 +543,8 @@ gJ  (join line without removing space)
 :set shiftwidth=2       (:set sw=2)
 :set expandtab          (use spaces in instead of tabs)
 
-Ctrl-X : 游標所在數字加一
-Ctrl-A : 游標所在數字減一
+Ctrl-x : 游標所在數字加一
+Ctrl-a : 游標所在數字減一
 認識八進位、十進位、十六進位數字
 ```
 
