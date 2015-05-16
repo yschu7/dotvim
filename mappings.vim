@@ -117,7 +117,11 @@ inoremap jK <Esc>
 noremap <silent><leader>/ :nohls<CR>
 
 " Highlight search word under cursor without jumping to next
-nnoremap <leader>h *<C-O>
+"nnoremap <leader>h *<C-O>
+
+nnoremap <leader>l :ls<CR>:b
+nnoremap <leader>w :w<CR>
+nnoremap <leader>d :bd<CR>
 
 " Toggle spelling mode with ,s
 nnoremap <silent> <leader>s :set spell!<CR>

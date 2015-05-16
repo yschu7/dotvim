@@ -1,7 +1,8 @@
 Y.S. Chu's Vim Notes v 1.8.2
 ============================
-* 使用,h開啟; F2,:bd,:close關閉
-* UTF8版，markdown版
+* ,h  開啟本檔  F2 :bd :close 關閉
+* ,v  開啓 ~/.vimrc  ,vs  開啓 ~/.vim/yscust.vim
+* zM 關閉所有摺疊
 * vimtutor 基礎vim訓練課程
 * iconv -f BIG5 -t UTF8 input_big5.txt > output_utf8.txt
 
@@ -13,6 +14,7 @@ Y.S. Chu's Vim Notes v 1.8.2
     2. 在其他電腦的同步
         + $ git pull origin
 
+<!--- CheetSheet {{{ -->
 Basic VIM
 =========
 
@@ -21,6 +23,9 @@ Basic VIM
 * ![vim CheetSheet](http://www.viemu.com/vi-vim-cheat-sheet.gif)
 * ![vim commands](http://bruxy.regnet.cz/programming/vim_cheatsheet/vim_cheatsheet.pdf)
 
+<!--- }}} -->
+
+<!--- Basic movement {{{ -->
 ### Basic movement
 
 ```
@@ -42,7 +47,9 @@ cw      Change word            3cw   Change 3 words
 G       Go to the end of the file
 gg      Go to the top of the file
 ```
+<!--- }}} -->
 
+<!--- File operations {{{ -->
 ### File operations
 
 ```
@@ -83,7 +90,9 @@ gg      Go to the top of the file
 :pwd    Print working directory
 :e .    Navigate the current directory
 ```
+<!--- }}} -->
 
+<!--- Misc {{{ -->
 ### Misc
 
 ```
@@ -119,7 +128,9 @@ Transform vim into hex editor: xxd is an external command
 <ESC> :%!xxd      (hex mdoe)
 <ESC> :%!xxd -r   (ascii mode)
 ```
+<!--- }}} -->
 
+<!--- Configuration {{{ -->
 Configuration
 =============
 * ~/.vimrc    Most settings go here. Shared terminal and graphical options.
@@ -140,7 +151,9 @@ Configuration
 * 採用Vundle方式管理Plugins，並使用以下的設定爲基礎
 [The Vim Configuration of Champions] (https://github.com/mutewinter/dot_vim)
 
+<!--- }}} -->
 
+<!--- set,show,reset {{{ -->
 ### 設定、顯示、重設（SET,SHOW,RESET）
 
 ```
@@ -170,7 +183,9 @@ ModeLines - Include a comment with flile-specific configuration
             must be within the first/last 5 lines of the file
 /* vim: set ai tw=75: */
 ```
+<!--- }}} -->
 
+<!--- Help {{{ -->
 ### Help <F1>
 
 ```
@@ -200,7 +215,9 @@ Command-line editing   c               :h c_<Del>
 Vim command arguments  -               :h -r
 Options                '(both ends)    :h 'textwidth'
 ```
+<!--- }}} -->
 
+<!--- Files {{{ -->
 ### Files
 
 ```
@@ -228,7 +245,9 @@ Visual  : NERDTree, Project (included within rails.vim)
 Text    : FuzzyFinder, CtrlP
 
 ```
+<!--- }}} -->
 
+<!--- Window {{{ -->
 ### Window :  A rectangular view of a buffer.
 * Ctrl-w s    Split window horizontally (:split or :sp)
 * Ctrl-w v    Split window vertically (:vsplit or :vsp)
@@ -271,7 +290,9 @@ Ctrl-w =  將所有視窗的大小調整爲一樣大
 :sb2      Split window and edit buffer number 2
 :vert sb3 Split window vertically and edit buffer number 3
 ```
+<!--- }}} -->
 
+<!--- Buffer {{{ -->
 ### Buffer : The contents of a file in memory.
 
 * 可以使用plugin：
@@ -302,7 +323,9 @@ h       Buffer is hidden (loaded but not visible)
 #       Alternate buffer (switch using :e# or :b#)
 +       Modified
 ```
+<!--- }}} -->
 
+<!--- Movement {{{ -->
 ### Movement
 
 +  word(小寫指令)遇到空白及其他的標點符號(, : . -)都會視為一個單字的結束。
@@ -395,8 +418,9 @@ M <move>          (middle)
 ```
 
 +  :goto 45       (Go to 45 byte in the buffer)
+<!--- }}} -->
 
-
+<!--- Begining with g {{{ -->
 關於g帶頭的命令
 ===============
 +  它通常代表特別的意義，例如：
@@ -421,7 +445,9 @@ ga  顯示游標所在字碼的10、16、8進位數值 (:ascii)
 g ctrl-g  顯示目前位置 (以column,line,word,char,byte)
 gI  在列首插入 (I為在列首非空白位置)
 ```
+<!--- }}} -->
 
+<!--- Marks {{{ -->
 Marks 標記
 ==========
 
@@ -446,7 +472,9 @@ d`a   刪除游標開始到標記a之間的內容
 :delmarks a b 8   delete 3 marks: a, b and 8
 :delmarks!        delete all marks
 ```
+<!--- }}} -->
 
+<!--- Editing Text {{{ -->
 Editing Text
 ============
 
@@ -491,7 +519,9 @@ dW  (delete a code word)
 dd  (delete a line)
 D   (delete to the end of line)
 ```
+<!--- }}} -->
 
+<!--- Movement {{{ -->
 +  移動
 
 ```
@@ -522,7 +552,9 @@ D   (delete to the end of line)
 將游標移至下一個方法定義的結束位置
 ]M  Go to next end of a method
 ```
+<!--- }}} -->
 
+<!--- Misc {{{ -->
 +  其他
 
 ```
@@ -542,12 +574,15 @@ gJ  (join line without removing space)
 
 :set shiftwidth=2       (:set sw=2)
 :set expandtab          (use spaces in instead of tabs)
+:set softtabstop        (:set sts=2)
 
 Ctrl-x : 游標所在數字加一
 Ctrl-a : 游標所在數字減一
 認識八進位、十進位、十六進位數字
 ```
+<!--- }}} -->
 
+<!--- Text-objects {{{ -->
 Text-objects
 ============
 
@@ -577,7 +612,9 @@ step1. va)
 step2. o      (toggle position of cursor in selection - visual mode)
 step2. h, l   (move left or right to extend the selection)
 ```
+<!--- }}} -->
 
+<!--- Visual mode {{{ -->
 Visual mode
 ===========
 
@@ -593,7 +630,9 @@ Block模式若要選擇包含多列到最後，而各列的結束位置不同時
 
 :help v_b_I       Visual-block Insert
 ```
+<!--- }}} -->
 
+<!--- Command mode {{{ -->
 Command mode
 ============
 
@@ -607,7 +646,9 @@ print or p 列印: 1,5p<CR>  1,/troubel/p<CR>  1,$p<CR>  %p<CR>
 :!<command>     執行外部命令<command>。
 :%!sort         將編輯內容(%)經由sort排序。
 ```
+<!--- }}} -->
 
+<!--- Search & Replace {{{ -->
 Search & Replace
 ================
 
@@ -622,7 +663,9 @@ match   word                        word    match
 *   往前尋找目前游標所在位置的單字(完全相同)
 g*  往前尋找目前游標所在位置的單字(部分相同)
 ```
+<!--- }}} -->
 
+<!--- Offset {{{ -->
 ### Offset
 
 ```
@@ -643,7 +686,9 @@ y?def<Enter>    (yank/copy from cursor to beginning of previous "def")
 :%s/resp/Nop/   (search and replace - 取代列中的第一個resp)
 :%s/resp/Nop/g  (search and replace globally - 取代列中的所有resp)
 ```
+<!--- }}} -->
 
+<!--- Options {{{ -->
 ### 相關的選項設定
 
 ```
@@ -670,7 +715,9 @@ nmap <silent> <C-N> :silent noh<CR>
 ? 往後搜尋，n命令重複上一次搜尋(方向不變)，N命令則改由相反方向搜尋。
 在搜尋中，若以/或?按<Enter>，則會改變整個方向(往前或往後)，尋找內容不變。
 ```
+<!--- }}} -->
 
+<!--- Substitute {{{ -->
 ### Substitute (尋找與取代)
 
 ```
@@ -697,7 +744,9 @@ Search by hex code: e.g.: escape
 1. /, 2. \%x1B
 1. /, 2. <Ctrl-V>,<ESC>,<Enter>
 ```
+<!--- }}} -->
 
+<!--- Specify a line {{{ -->
 ### Specify a line (範圍的設定)
 
 ```
@@ -712,7 +761,9 @@ $       last line of buffer
 
 Use visual mode to select scope, and :s/abc/def to replace
 ```
+<!--- }}} -->
 
+<!--- global: Search and Execute {{{ -->
 ### global: Search and Execute (尋找與執行)
 
 ```
@@ -753,7 +804,9 @@ normal {command}  execute extended sequence
 
 若要尋找與執行:g的相反(不符合配對)，可以使用:v或:g!
 ```
+<!--- }}} -->
 
+<!--- Regular Expression {{{ -->
 ### Regular Expression syntax styles
 
 ```
@@ -795,7 +848,9 @@ step.4  <Enter>   Execute the search
 取用內容時，大小寫沒有差別。
 兩種方式取用在暫存器的內容：<Ctrl-r>+暫存器名稱，或是以"(暫存器名稱)p。
 ```
+<!--- }}} -->
 
+<!--- ACK command in VIM {{{ -->
 ### ACK commands in VIM
 
 ```
@@ -820,7 +875,9 @@ t to open in new tab (開檔，畫面轉向新的分頁)
 T to open in new tab silently (開檔於新的分頁，但畫面停在搜尋結果)
 q to close the quickfix window
 ```
+<!--- }}} -->
 
+<!--- Advanced configuration {{{ -->
 ### Advanced configuration
 
 ```
@@ -851,7 +908,9 @@ Safely swap strokes
 :map! <Leader>f <Esc>gUiw`]a  (use leader to make you own key)
 (在插入模式中，將目前游標所在單字變大寫，然後再進入插入模式)
 ```
+<!--- }}} -->
 
+<!--- Abbreviations {{{ -->
 ### Abbreviations
 
 ```
@@ -859,7 +918,9 @@ Safely swap strokes
 in insert mode, type ff<SPACE> or <ESC>
 :ab teh   the       (rescue the common typing error)
 ```
+<!--- }}} -->
 
+<!--- Folding {{{ -->
 ### Folding
 
 ```
@@ -892,8 +953,12 @@ softtabstop=2   The number of spaces inserted when TAB is hit.
 
 autocmd FileType ruby setlocal foldmethod=syntax
 autocmd FileType css setlocal foldmethod=indent sw=2 ts=2
-```
 
+:set foldmarker   fmr: to get or set the fold marker
+```
+<!--- }}} -->
+
+<!--- Completion {{{ -->
 ### Completion
 
 ```
@@ -914,8 +979,10 @@ Ctrl-x Ctrl-k  dictinoary word completion (insert mode only)
 Ctrl-x Ctrl-f  filenames completion(檔案)
 Ctrl-x Ctrl-l  whole line completion(整列模式)
 ```
+<!--- }}} -->
 
-### filtering
+<!--- Filtering {{{ -->
+### Filtering
 
 ```
 :range!filter  將範圍內的本文作為輸入，傳給filter程式處理後，取代其內容。
@@ -953,7 +1020,9 @@ V:le        (le: left alignment)
 gq          (Reflow paragraph to 80 characters wide,依照tw設定重排)
 :set paste  (Disable automatic indentation)
 ```
+<!--- }}} -->
 
+<!--- Copy/Yank & Registers {{{ -->
 ### Copy/Yank & Registers
 
 ```
@@ -986,7 +1055,9 @@ Repeat command (@命令把暫存器的內容當成命令執行)
   @         (Execute text as a command)
   :         (use the : register as the text of the command)
 ```
+<!--- }}} -->
 
+<!--- Recording (macro) {{{ -->
 ### Recoding (macro)
 
 ```
@@ -1002,7 +1073,9 @@ qadWWPjq
 @a          (Play recoding named a)
 10@a        (Play 10 times)
 ```
+<!--- }}} -->
 
+<!--- Autocommands {{{ -->
 ### Autocommands
 
 ```
@@ -1030,7 +1103,9 @@ qadWWPjq
 :set eventignore=WinEnter,WinLeave
 :set eventignore=all  (全部事件都忽略)
 ```
+<!--- }}} -->
 
+<!--- Command-Line arguments {{{ -->
 Command-Line arguments
 ======================
 
@@ -1082,10 +1157,12 @@ $ vim --servername ubuntu64 --remote-silent abc.txt
 alias gvi='gvim --remote-silent'
 alias vi="vim --servername $HOSTNAME --remote-silent"
 ```
+<!--- }}} -->
 
 Plugins
 =======
 
+<!--- mutewinter {{{ -->
 ### mutewinter [Plugins List](https://github.com/mutewinter/dot_vim)
 
 ### Pathogen (已使用Vundle取代)
@@ -1102,7 +1179,9 @@ silent! call pathogen#helptags()
 :call pathogen#helptags()   Regenerate docs from all installed plugins
 :helptags ~/.vim/doc        Import standard plugin docs
 ```
+<!--- }}} -->
 
+<!--- Vundle {{{ -->
 ### [Vundle](http://blog.xuite.net/yschu/wretch/312992849)
 
 ```
@@ -1114,7 +1193,9 @@ silent! call pathogen#helptags()
 * 更新單一Plugin : vim-markdown
     * > vim +'PluginUpdate vim-markdown' +qall
 ```
+<!--- }}} -->
 
+<!--- Surround {{{ -->
 ### [Surround](https://github.com/tpope/vim-surround)
 
 ```
@@ -1133,7 +1214,9 @@ ysiw#  將遊標所在的單字var變成#{var}
 
 :h surround
 ```
+<!--- }}} -->
 
+<!--- tslime {{{ -->
 ### tslime (使用vimux取代)
 
 ```
@@ -1144,7 +1227,9 @@ visual mode選擇文字後，<ctrl-c><ctrl-c>傳送 (eg.irb)
 
 :h slime
 ```
+<!--- }}} -->
 
+<!--- vimux {{{ -->
 ### [vimux](https://github.com/benmills/vimux)
 
 * [vimux.txt](https://raw.githubusercontent.com/benmills/vimux/master/doc/vimux.txt)
@@ -1166,14 +1251,9 @@ visual mode選擇文字後，<ctrl-c><ctrl-c>傳送 (eg.irb)
 
 :h vimux
 ```
+<!--- }}} -->
 
-```
-再此加入一個功能GetGibberish():
-$HOME/.vim/bundle/vim-tips/plugin/tips.vim (gf to view)
-get gibberish text from http://horseebooksipsum.com/api/v1/
-在insert模式下：Ctrl-e
-```
-
+<!--- Gist {{{ -->
 ### [Gist](https://github.com/mattn/gist-vim)
 
 ```
@@ -1193,7 +1273,9 @@ token file: $HOME/.gist-vim, user file: $HOME/.gitconfig
 
 :h gist-vim-usage
 ```
+<!--- }}} -->
 
+<!--- Tcomment {{{ -->
 ### [Tcomment](https://github.com/tomtom/tcomment_vim)
 
 ```
@@ -1206,7 +1288,9 @@ gc          將目前以Visual mode標識的區域註解/反註解
 
 :h tcomment
 ```
+<!--- }}} -->
 
+<!--- Ack & ag {{{ -->
 ### Ack - 可取代grep, 把尋找的結果放在QuickFix視窗
 
 ```
@@ -1221,7 +1305,9 @@ gc          將目前以Visual mode標識的區域註解/反註解
 
 :h ag
 ```
+<!--- }}} -->
 
+<!--- vim-ruby {{{ -->
 ### [vim-ruby](https://github.com/vim-ruby/vim-ruby)
 
 ```
@@ -1233,7 +1319,9 @@ gc          將目前以Visual mode標識的區域註解/反註解
 :h ft-ruby-omni
 :h i_CTRL-X_CTRL-O
 ```
+<!--- }}} -->
 
+<!--- NERDTree {{{ -->
 ### [NERDTree](https://github.com/scrooloose/nerdtree)
 
 ```
@@ -1249,7 +1337,9 @@ gc          將目前以Visual mode標識的區域註解/反註解
 
 :h NERD_tree
 ```
+<!--- }}} -->
 
+<!--- vim-airline {{{ -->
 ### [vim-airline](https://github.com/bling/vim-airline)
 
 * [theme screenshots](https://github.com/bling/vim-airline/wiki/Screenshots)
@@ -1266,7 +1356,9 @@ gc          將目前以Visual mode標識的區域註解/反註解
 * <leader> ia
 
 ```
+<!--- }}} -->
 
+<!--- UltiSnips {{{ -->
 ###[UltiSnips](https://github.com/SirVer/ultisnips)
 
 ```
@@ -1280,7 +1372,9 @@ gc          將目前以Visual mode標識的區域註解/反註解
 * <Ctrl> k : 跳到上一個
 
 ```
+<!--- }}} -->
 
+<!--- vim-eunuch {{{ -->
 ###[vim-eunuch](https://github.com/tpope/vim-eunuch)
 
 #####Vim sugar for Unix shell commands
@@ -1299,7 +1393,9 @@ gc          將目前以Visual mode標識的區域註解/反註解
 * `:pwd`      : Print working directory
 * `:e .`      : Navigate the current directory
 * `:NERDTree` path
+<!--- }}} -->
 
+<!--- emmet-vim {{{ -->
 ###[emmet-vim](https://github.com/mattn/emmet-vim)
 
 * [Emmet doc](http://docs.emmet.io/abbreviations/)
@@ -1310,7 +1406,9 @@ gc          將目前以Visual mode標識的區域註解/反註解
 
 * <Ctrl> y : 展開
 ```
+<!--- }}} -->
 
+<!--- Misc {{{ -->
 Misc
 ====
 
@@ -1337,3 +1435,4 @@ Misc
 [01]: https://github.com/papanikge/vim-voogle
 [02]: https://github.com/vim-scripts/ZoomWin
 
+<!--- }}} -->

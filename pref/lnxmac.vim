@@ -15,6 +15,8 @@ map <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimr
 
 " ,h brings up my Vim-notes.txt
 map <leader>h :sp ~/.vim/pref/Vim-notes.md<CR><C-W>_
+" ,vs brings up my vimrc: yscust.vim
+map <leader>vs :sp ~/.vim/yscust.vim<CR><C-W>_
 
 " for when we forget to use sudo to open/edit a file
 cmap w!! w !sudo tee % >/dev/null

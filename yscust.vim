@@ -83,10 +83,10 @@ augroup YSAutoCommands
   " for markdown -- insert 4 spaces to the end of line (is: insert spaces)
   au FileType markdown nnoremap <buffer><silent><leader>is A<Space><Space><Space><Space><ESC>
 
-  au FileType markdown setlocal tabstop=4 shiftwidth=4 softtabstop=4
+  au FileType markdown setlocal foldmethod=marker tabstop=4 shiftwidth=4 softtabstop=4 nospell
 
   " If we're editing a .txt file then skip line numbers
-  au BufRead,BufNewFile *.txt setlocal nonu
+  autocmd BufRead,BufNewFile *.txt setlocal nonu
 
   " Automatic fold settings for specific files.
   autocmd FileType ruby   setlocal foldmethod=syntax
