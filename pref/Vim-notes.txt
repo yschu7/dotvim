@@ -22,6 +22,7 @@ Basic VIM
 * ![vim鍵盤指令](http://photo.xuite.net/yschu/11773543/16.jpg)
 * ![vim CheetSheet](http://www.viemu.com/vi-vim-cheat-sheet.gif)
 * ![vim commands](http://bruxy.regnet.cz/programming/vim_cheatsheet/vim_cheatsheet.pdf)
+* ![Vim subreddit](http://reddit.com/r/vim)
 
 <!--- }}} -->
 
@@ -127,6 +128,22 @@ Ctrl-R  Redo (undo-undo)
 Transform vim into hex editor: xxd is an external command
 <ESC> :%!xxd      (hex mdoe)
 <ESC> :%!xxd -r   (ascii mode)
+
+Control you insertions (under insert mode)
+Ctrl-Y  duplicates what's in the same column on the preceding line
+Ctrl-E  duplicates what's in the same column on the following line
+Ctrl-A  inserts again whatever the most-recent inserted text was
+Ctrl-R= evaluates and expression and inserts the result
+Ctrl-T  inserts a tab at the start of the line 
+        (without move the inserting point)
+Ctrl-D  deletes a tab at the start of the line
+        (without move the inserting point)
+Ctrl-V  inserts the next character verbatim
+        (even if it's normally a control character)
+Ctrl-W  deletes the word preceding the cursor
+Ctrl-O  takes you back to normal mode for one command, which is handy,
+        e.g. to clean the rest of the line: ^OD
+
 ```
 <!--- }}} -->
 
@@ -190,7 +207,11 @@ ModeLines - Include a comment with flile-specific configuration
 
 ```
 :help [subject] or :h [subject]
+:h normal-index
+
 :helpgrep or helpg [pattern]
+:cnext(cn), :cprev(cp)
+:cnfile(cnf), :cpfile(cpf)
 
 :help index
 :help deleting :help rtp (or runtimepath)
@@ -402,6 +423,7 @@ zz  <scroll>      (middle)
 ```
 
 +  45G or 45gg    (go straight to an exact line number 45)
++  45%            (go to 45% of the buffer)
 
 ```
     gg            (first, [count]gg - Goto line count)
@@ -532,7 +554,8 @@ D   (delete to the end of line)
 將游標移至目前所在對應的大小括號、引號的另一側
 %   (bounces between matched parentheses, quotes, language-specific blocks)
 
-將游標移至前面的小括號(，游標不在)位置，而是在小括號之中。
+將游標移至前面的小括號(，不像前面的%，游標可以不在括號位置，而是在小括號之中。
+這些移動命令適合於程式碼內使用。
 [(  go to previous unmatched '('
 將游標移至前面的大括號{
 [{  go to previous unmatched '{'

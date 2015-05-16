@@ -1,9 +1,9 @@
 " Change the color scheme from a list of color scheme names.
 " Version 2010-09-12 from http://vim.wikia.com/wiki/VimTip341
 " Press key:
-"   F7                next scheme
-"   Shift-F7          previous scheme
-"   Alt-F7            random scheme
+"   F9                next scheme
+"   Shift-F9          previous scheme
+"   Alt-F9            random scheme
 " Set the list of color schemes used by the above (default is 'all'):
 "   :SetColors all              (all $VIMRUNTIME/colors/*.vim)
 "   :SetColors my               (names built into script)
@@ -16,7 +16,7 @@ if v:version < 700 || exists('loaded_setcolors') || &cp
 endif
 
 let loaded_setcolors = 1
-let s:mycolors = ['slate', 'torte', 'darkblue', 'railscasts', 'murphy', 'elflord', 'pablo', 'koehler', 'vividchalk']  " colorscheme names that we use to set color
+let s:mycolors = ['slate', 'torte', 'darkblue', 'railscasts', 'murphy', 'jellybeans', 'neverland2', 'wombat256', 'vividchalk']  " default colorscheme names that we use to set color
 
 " Set list of color scheme names that we will use, except
 " argument 'now' actually changes the current color scheme.
@@ -94,9 +94,9 @@ function! s:NextColor(how, echo_color)
   endif
 endfunction
 
-nnoremap <F7> :call NextColor(1)<CR>
-nnoremap <S-F7> :call NextColor(-1)<CR>
-nnoremap <A-F7> :call NextColor(0)<CR>
+nnoremap <F9> :call NextColor(1)<CR>
+nnoremap <S-F9> :call NextColor(-1)<CR>
+nnoremap <A-F9> :call NextColor(0)<CR>
 
 " Set color scheme according to current time of day.
 function! s:HourColor()

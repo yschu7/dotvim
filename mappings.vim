@@ -65,19 +65,23 @@ nnoremap <silent> * :let stay_star_view = winsaveview()<cr>*:call winrestview(st
 nnoremap <silent> gh :WriteBufferIfNecessary<CR>:wincmd h<CR>
 nnoremap <silent> gj :WriteBufferIfNecessary<CR>:wincmd j<CR>
 nnoremap <silent> gk :WriteBufferIfNecessary<CR>:wincmd k<CR>
-nnoremap <silent> <M-k> :wincmd k<CR>
 nnoremap <silent> gl :WriteBufferIfNecessary<CR>:wincmd l<CR>
 
-"   4 Window Splits
-"
+"    Window Splits
 "   -----------------
-"   g1 | g2 | g3 | g4
+"      | g1 | g2 | g3
 "   -----------------
-nnoremap <silent> g1 :WriteBufferIfNecessary<CR>:wincmd t<CR>
-nnoremap <silent> g2 :WriteBufferIfNecessary<CR>:wincmd t<bar>:wincmd l<CR>
-nnoremap <silent> g3 :WriteBufferIfNecessary<CR>:wincmd t<bar>:wincmd l<bar>
-      \:wincmd l<CR>
-nnoremap <silent> g4 :WriteBufferIfNecessary<CR>:wincmd b<CR>
+"    gs
+"   -----------------
+nnoremap <silent> g1 :WriteBufferIfNecessary<CR>:wincmd v<CR>
+nnoremap <silent> g2 :WriteBufferIfNecessary<CR>:wincmd v<bar>:wincmd v<CR>
+nnoremap <silent> g3 :WriteBufferIfNecessary<CR>:wincmd v<bar>:wincmd v<bar>
+      \:wincmd v<CR>
+nnoremap <silent> gs :WriteBufferIfNecessary<CR>:wincmd s<CR>
+
+" Split window vertically or horizontally *and* switch to the new split!
+nnoremap <silent> <leader>sp  :split<Bar>:wincmd j<CR>
+nnoremap <silent> <leader>vsp :vsplit<Bar>:wincmd l<CR>
 
 " Previous Window
 nnoremap <silent> gp :wincmd p<CR>
@@ -119,9 +123,58 @@ noremap <silent><leader>/ :nohls<CR>
 " Highlight search word under cursor without jumping to next
 "nnoremap <leader>h *<C-O>
 
+"-------------
+" YS mappings
+"-------------
+" map ctrl-c to something else so I quick using it
+nnoremap <c-c> <Nop>
+inoremap <c-c> <Nop>
+
+" visual mode indent with <TAB> and <S-TAB>
+"nnoremap <TAB> v>
+"nnoremap <s-TAB> v<
+vnoremap <TAB> >gv
+vnoremap <s-TAB> <gv
+
+" show the registers from things cut/yanked
+nnoremap <leader>r :registers<CR>
+
+" map the various registers to a leader shortcut for pasting from them
+nnoremap <leader>0 "0p
+nnoremap <leader>1 "1p
+nnoremap <leader>k "kp
+
+" Press Ctrl-N to turn off highlighting.
+nnoremap <silent> <C-N> :silent noh<CR>
+
+" list and select buffer
 nnoremap <leader>l :ls<CR>:b
-nnoremap <leader>w :w<CR>
 nnoremap <leader>d :bd<CR>
+nnoremap <leader>w :w<CR>
+
+" Actions after helpgrep
+" nnoremap <leader>cn :cnext<CR>
+" nnoremap <leader>cnf :cnfile<CR><C-G>
+" nnoremap <leader>cp :cprev<CR>
+" nnoremap <leader>cpf :cpfile<CR><C-G>
+" shortcuts to open/close the quickfix window
+" nmap <leader>co :copen<CR>
+" nmap <leader>cc :cclose<CR>
+
+"---------
+" Windows
+"---------
+" and lets make these all work in insert mode too ( <C-O> makes next cmd
+" happen as if in command mode )
+inoremap <C-W> <C-O><C-W>
+
+" use - and + to resize horizontal splits
+nnoremap - <C-W>-
+nnoremap + <C-W>+
+
+" and for vsplits with <TAB> and Shift<TAB>
+nnoremap <TAB> <C-W>>
+nnoremap <s-TAB> <C-W><
 
 " Toggle spelling mode with ,s
 nnoremap <silent> <leader>s :set spell!<CR>
@@ -143,7 +196,7 @@ nnoremap <silent> <leader>uul :t.\|s/./=/\|:nohls<cr>
 "          # --------
 "          # Test 123
 "          # --------
-nnoremap <silent> <leader>cul :normal "lyy"lpwvLr-^"lyyk"lP<cr>
+nnoremap <silent> <leader>cul :normal "lyy"lpwv$r-^"lyyk"lP<cr>
 
 " Format the entire file
 nnoremap <leader>fef mx=ggG='x
@@ -153,19 +206,12 @@ nnoremap <leader>fef mx=ggG='x
 nnoremap <leader>jt <Esc>:%!underscore print<CR><Esc>:set filetype=json<CR>
 nnoremap <leader>jts <Esc>:%!underscore print --strict<CR><Esc>:set filetype=json<CR>
 
-" Split window vertically or horizontally *and* switch to the new split!
-nnoremap <silent> <leader>hs :split<Bar>:wincmd j<CR>
-nnoremap <silent> <leader>vs :vsplit<Bar>:wincmd l<CR>
-
-" Close the current window
-nnoremap <silent> <m-w> :close<CR>
-
 " ---------------
 " Typo Fixes
 " ---------------
 
-noremap <F1> <Esc>
-inoremap <F1> <Esc>
+" noremap <F1> <Esc>
+" inoremap <F1> <Esc>
 cnoremap w' w<CR>
 
 " Disable the ever-annoying Ex mode shortcut key. Type visual my ass. Instead,
@@ -175,9 +221,6 @@ nnoremap Q @@
 " Removes doc lookup mapping because it's easy to fat finger and never useful.
 nnoremap K k
 vnoremap K k
-
-" Toggle paste mode with F5
-nnoremap <silent> <F5> :set paste!<CR>
 
 " Insert date
 iabbrev ddate <C-R>=strftime("%Y-%m-%d")<CR>

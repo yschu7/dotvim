@@ -36,10 +36,10 @@ let g:pydiction_location = expand("~") . '/.vim/bundle/vim-python/ftplugin/pydic
 
 " dbext setting
 " lnx_dir global in vimrc
-let fn = expand("$HOME") . lnx_dir . 'dbextlnx.vim'
-if filereadable(fn)
-  execute ':source ' . fn
-endif
+" let fn = expand("$HOME") . lnx_dir . 'dbextlnx.vim'
+" if filereadable(fn)
+"   execute ':source ' . fn
+" endif
 
 " Mac or Linux terminal mode
 "if !has("gui_running") && !has('win32')

@@ -23,31 +23,6 @@ set fencs=utf-8,big5,gbk,latin1
 " ~/.vim/mappings.vim       Mappings
 " =====================================================
 
-" map ctrl-c to something else so I quick using it
-map <c-c> <Nop>
-imap <c-c> <Nop>
-
-" show the registers from things cut/yanked
-nmap <leader>r :registers<CR>
-
-" visual mode indent with <TAB> and <S-TAB>
-"nmap <TAB> v>
-"nmap <s-TAB> v<
-vmap <TAB> >gv
-vmap <s-TAB> <gv
-
-" map the various registers to a leader shortcut for pasting from them
-nmap <leader>0 "0p
-nmap <leader>1 "1p
-nmap <leader>k "kp
-
-" shortcuts to open/close the quickfix window
-" nmap <leader>c :copen<CR>
-" nmap <leader>cc :cclose<CR>
-
-" Press Ctrl-N to turn off highlighting.
-nmap <silent> <C-N> :silent noh<CR>
-
 " Clean all end of line extra whitespace with ,S
 " Credit: voyeg3r https://github.com/mitechie/pyvim/issues/#issue/1
 " deletes excess space but maintains the list of jumps unchanged
@@ -88,6 +63,15 @@ augroup YSAutoCommands
   " If we're editing a .txt file then skip line numbers
   autocmd BufRead,BufNewFile *.txt setlocal nonu
 
+  autocmd BufEnter *.txt call HelpInNewTab()
+  "Only apply to help files
+  fun! HelpInNewTab()
+    if &buftype == 'help'
+      "Convert the help window to a tab
+      execute "normal \<C-W>T"
+    endif
+  endfun
+
   " Automatic fold settings for specific files.
   autocmd FileType ruby   setlocal foldmethod=syntax
   autocmd FileType css    setlocal foldmethod=indent shiftwidth=2 tabstop=2 softtabstop=2
@@ -125,26 +109,15 @@ augroup YSAutoCommands
   au InsertLeave * set nopaste
 augroup END
 
-" ==================================================
-" Windows / Splits
-" ==================================================
-" and lets make these all work in insert mode too ( <C-O> makes next cmd
-" happen as if in command mode )
-imap <C-W> <C-O><C-W>
+" ===============
+"  Function Keys
+" ===============
 
-" use - and + to resize horizontal splits
-map - <C-W>-
-map + <C-W>+
+" F1 Help
+noremap <F1> <Esc>:help<CR>
 
-" and for vsplits with <TAB> and Shift<TAB>
-nmap <TAB> <C-W>>
-nmap <s-TAB> <C-W><
-
-" F1 delete current buffer
-noremap <F1> <Esc>:bd<CR>
-
-" F2 close current window
-noremap <F2> <Esc>:close<CR><Esc>
+" F2 Close window
+noremap <silent> <F2> :close<CR>
 
 " F3 Toggle paste mode
 "nnoremap <silent> <F3> :set paste!<CR>
@@ -168,15 +141,15 @@ inoremap <F4> <Esc>:call ToggleSpell()<CR>a
 nnoremap <F5> <ESC>:up!<CR>:! ./%<CR>
 inoremap <F5> <ESC>:up!<CR>:! ./%<CR>
 
+" F9 : SetColor (~/.vim/pref/setcolors.vim)
+" F9 (next), <Shift>-F9 (prev), <Alt>-F9 (random)
+noremap <silent> <leader>sc :SetColor all<CR>
 " ChgColor: Change Colorscheme
 noremap <silent> <leader>ic :ChgColor<CR>
-
-" SetColor: F7, <Shift>-F7, <Alt>-F7
-noremap <silent> <leader>sc :SetColor my<CR>
-
 " ChgAirColor: Change Airpline Colorscheme
 noremap <silent> <leader>ia :ChgAirColor<CR>
 
+" Source file : platform.vim
 let g:w32_dir = '\vimfiles\pref\'
 let g:lnx_dir = '/.vim/pref/'
 if has('win32')
