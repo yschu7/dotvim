@@ -80,8 +80,12 @@ function! ForAllMatches (command, options)
     endfor
 
     " Make yanked lines available for putting...
-    " let @" = yanked
-    let @* = yanked
+    "let @" = yanked
+    if has('mac')
+      let @* = yanked
+    else
+      let @" = yanked
+    endif
 
     " Return to original position...
     call setpos('.', orig_pos)

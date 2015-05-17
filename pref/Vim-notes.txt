@@ -125,11 +125,19 @@ Ctrl-R  Redo (undo-undo)
 
 .       Repeat last command
 
+Branched undo (branching undo history - timeline)
+使用Undo, Redo之後，如果之間有新的編輯改變，會產生一個新的undo分支。
+在Vim 7.0以前，舊的分支會被拋棄，7.0版以後所有undo分支都被保留。
+可以使用g-, g+跳動到其他時間點的分支，但下面的指令更直覺些。
+:earlier 10m    buffer回到稍早10分鐘前
+:later 10s      buffer往前10秒
+
 Transform vim into hex editor: xxd is an external command
 <ESC> :%!xxd      (hex mdoe)
 <ESC> :%!xxd -r   (ascii mode)
 
 Control you insertions (under insert mode)
+可以在insert mode之下執行的命令鍵
 Ctrl-Y  duplicates what's in the same column on the preceding line
 Ctrl-E  duplicates what's in the same column on the following line
 Ctrl-A  inserts again whatever the most-recent inserted text was
@@ -425,6 +433,8 @@ zz  <scroll>      (middle)
 +  45G or 45gg    (go straight to an exact line number 45)
 +  45%            (go to 45% of the buffer)
 
++  :goto 45       (Go to 45 byte in the buffer)
+
 ```
     gg            (first, [count]gg - Goto line count)
   <jump>
@@ -439,7 +449,6 @@ M <move>          (middle)
      L            (near bottom)
 ```
 
-+  :goto 45       (Go to 45 byte in the buffer)
 <!--- }}} -->
 
 <!--- Begining with g {{{ -->
@@ -466,6 +475,7 @@ gv  上一次選取的範圍
 ga  顯示游標所在字碼的10、16、8進位數值 (:ascii)
 g ctrl-g  顯示目前位置 (以column,line,word,char,byte)
 gI  在列首插入 (I為在列首非空白位置)
+g&  重複執行上次的替代指令，以整個buffer爲範圍(同:%s)
 ```
 <!--- }}} -->
 
@@ -716,11 +726,14 @@ y?def<Enter>    (yank/copy from cursor to beginning of previous "def")
 
 ```
 :hlsearch or :hls  選項：反白顯示符合字串，結束後反白也不會取消。
-nmap <silent> <C-N> :silent noh<CR>
+nnoremap <silent> <C-N> :silent noh<CR>
+nnoremap <silent> <BS> :nohlsearch<CR>
 
 :incsearch or :is  選項：輸入尋找字串時，會同時開始搜尋，游標也會跟著移動，
                          可以看到即時的結果，並據此修改搜尋條件。
 :ignorecase or :ic 選項：尋找時忽略大小寫。
+:smartcase or :scs 選項：當字串含有大寫字母時，忽略:ic設定。
+                         但若只有小寫字母，則與:ic設定相同。
 
 :wrapscan or :ws   選項：找到檔案盡頭是否繼續循環搜尋。
 ```
@@ -752,15 +765,23 @@ n   Show number of matches(non-destructive)
 p   print matching lines
 
 :%s/abc/def/    (A leading percent search all lines in the current buffer)
+
 :s/abc/def      (search only the current line - no range)
+:%s             (repeat the previous substitution globally, same as g&)
+
 :.,'a s/abc/def (search from cursor . to mark 'a)
+
 :%s/^\s\{8}\zs-/#/ (保留前面8個空白，將第9個字元-改為#)
+                   (\zs anything, sets start of match)
 
 第一個//若省略，代表尋找的pattern為最後一次的s或g命令的pattern
 第二個//若省略，代表空，也就是刪除所尋找到的pattern
 若沒有flags則最後的/可以省略
+
 :s/abc/def/g20  (尋找與取代20列內的abc為def,最後的g20為指定範圍)
+
 將文件開頭插入當前列數。其中的\=命令為evaluate後面的函數。
+第1個命令g/^/找出所有的第1列，第2個命令s//..尋找目標不變(同前命令g)。
 :g/^/s//\=printf("%03d",line("."))
 
 Search by hex code: e.g.: escape
@@ -769,7 +790,7 @@ Search by hex code: e.g.: escape
 ```
 <!--- }}} -->
 
-<!--- Specify a line {{{ -->
+<!--- Specify a line (Range) {{{ -->
 ### Specify a line (範圍的設定)
 
 ```
