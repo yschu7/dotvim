@@ -9,20 +9,21 @@ let c_lnxmac = 'lnxmac.vim'   " common for linux and mac
 let c_eval   = 'eval.vim'
 let c_setcol = 'setcolors.vim'
 let c_tetris = 'tetris.vim'
+let c_yankm  = 'yankmatches.vim'
 
 "w32_dir, lnx_dir : global in vimrc
 if has('win32')
-  let call_list = ['win32.vim', c_eval, c_setcol, c_tetris]
+  let call_list = ['win32.vim', c_eval, c_setcol, c_tetris, c_yankm]
   for vimfile in call_list
     call Source_file(g:w32_dir, vimfile)
   endfor
 elseif has('mac')
-  let call_list = ['mac.vim', c_lnxmac, c_eval, c_setcol, c_tetris]
+  let call_list = ['mac.vim', c_lnxmac, c_eval, c_setcol, c_tetris, c_yankm]
   for vimfile in call_list
     call Source_file(g:lnx_dir, vimfile)
   endfor
 else
-  let call_list = ['linux.vim', c_lnxmac, c_eval, c_setcol, c_tetris]
+  let call_list = ['linux.vim', c_lnxmac, c_eval, c_setcol, c_tetris, c_yankm]
   for vimfile in call_list
     call Source_file(g:lnx_dir, vimfile)
   endfor

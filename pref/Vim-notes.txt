@@ -843,8 +843,8 @@ Two ways to search
 /\v(.y){3}      (search with very magic syntax)
 
 Beginning(\<) and End(\>) of a word 匹配單字(\b作為<BS>)
-/\<install\>
-/\v<install>
+/\<for\>  match only at start/end of word
+/\v<for>  matches "for", but not "fortune" nor "enforce"
 
 *      匹配0或多次
 \+     匹配1或多次
@@ -854,6 +854,8 @@ Beginning(\<) and End(\>) of a word 匹配單字(\b作為<BS>)
 \{n,m} 匹配n到m次
 \{n,}  匹配n次或以上
 \{-}   前面加上負號，代表最少匹配(non-greedy)
+\|     或   foo|bar
+\&     且   \.*Java\&.*line
 
 Repeat a previous search
 step.1  /         start a search

@@ -146,6 +146,7 @@ nnoremap <leader>k "kp
 
 " Press Ctrl-N to turn off highlighting.
 nnoremap <silent> <C-N> :silent noh<CR>
+nnoremap <silent> <BS> :nohlsearch<CR>
 
 " list and select buffer
 nnoremap <leader>l :ls<CR>:b

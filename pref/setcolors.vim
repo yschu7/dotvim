@@ -16,7 +16,9 @@ if v:version < 700 || exists('loaded_setcolors') || &cp
 endif
 
 let loaded_setcolors = 1
-let s:mycolors = ['slate', 'torte', 'darkblue', 'railscasts', 'murphy', 'jellybeans', 'neverland2', 'wombat256', 'vividchalk']  " default colorscheme names that we use to set color
+" default colorscheme names that we use to set color
+let s:mycolors = ['slate', 'torte', 'darkblue', 'railscasts', 'murphy',
+               \  'jellybeans', 'neverland2', 'wombat256', 'vividchalk']
 
 " Set list of color scheme names that we will use, except
 " argument 'now' actually changes the current color scheme.
