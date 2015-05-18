@@ -152,6 +152,20 @@ Ctrl-W  deletes the word preceding the cursor
 Ctrl-O  takes you back to normal mode for one command, which is handy,
         e.g. to clean the rest of the line: ^OD
 
+設定遊標所在位置反白顯示
+:set cursorline         nocursorline
+:set cursorcolumn       nocursorcolumn
+設定顯示顏色
+:highlight CursorLine term=bold cterm=inverse
+:highlight CursorColumn term=bold ctermfg=cyan ctermbg=black
+
+Setting a margin guide 設定右邊邊界提醒(80)
+:highlight ColorColumn ctermbg=magenta
+:set colorcolumn=80
+A less-intrusive margin guide   只有第80個字元設定顏色
+:call matchadd('ColorColumn', '\%80v', 100)
+Or could be a little more with: 對超過第80個字元都設定顏色
+:call matchadd('ColorColumn', '\%>80v', 100)
 ```
 <!--- }}} -->
 
