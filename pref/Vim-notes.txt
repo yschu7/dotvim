@@ -62,19 +62,19 @@ gg      Go to the top of the file
 :x      Exit (same as :wq or ZZ)
 
 :w !sudo tee %  用於當編輯的檔案因權限問題無法正常寫入時，改用sudo tee方式寫入。
-:w filename     Write to a file
+:w filename     Write to a file (但是當前的buffer名稱並未改變，與saveas不同)
 :wq! filename   Write to a file and force quit (通常用於寫到新檔案)
 
 :e filename     Edit a file (:edit open a new buffer)
 :e #            Edit alternate file (:echo expand('#'), 前一個編輯的檔案)
 :e .            Browse a directory (列出當前目錄內容，使用ijkl移動，Enter選擇)
 
-:n abc.txt      Edit next file named abc.txt (:new open a new buffer)
+:n abc.txt      Edit next file named abc.txt (:new 開啓新buffer編輯)
 
 :ene            Open new empty file (unnamed buffer)
 :f fnew.txt     Rename buffer (:file 改變目前buffer的檔名)
 
-:sav filename   SaveAs filename (open a new buffer)
+:sav filename   SaveAs filename (並將當前的buffer名稱改爲filename)
 :up             Update, like :w, but only write when buffer has been modified
 
 :! ext command  To issue an external command
@@ -160,12 +160,30 @@ Ctrl-O  takes you back to normal mode for one command, which is handy,
 :highlight CursorColumn term=bold ctermfg=cyan ctermbg=black
 
 Setting a margin guide 設定右邊邊界提醒(80)
-:highlight ColorColumn ctermbg=magenta
+:highlight ColorColumn ctermbg=magenta   背景色
+:highlight ColorColumn ctermbg=16
+:highlight ColorColumn ctermfg=magenta   前景色
 :set colorcolumn=80
 A less-intrusive margin guide   只有第80個字元設定顏色
 :call matchadd('ColorColumn', '\%80v', 100)
 Or could be a little more with: 對超過第80個字元都設定顏色
 :call matchadd('ColorColumn', '\%>80v', 100)
+
+設定顯示行號(絕對、相對)，及其寬度
+:set number
+:set relativenumber
+:set numberwidth=6
+
+nop 設定某些鍵無作用，以下將方向鍵功能去除，強迫使用ijkl
+noremap <left> <nop>
+noremap <right> <nop>
+noremap <up> <nop>
+noremap <down> <nop>
+
+設定狀態列下方顯示--Insert Mode--, --Visual--等編輯模式
+:set showmode
+設定command mode下使用autocomplete時(按<TAB>)，以menu方式提示可能的單字的選項
+:set wildmenu
 ```
 <!--- }}} -->
 
@@ -230,6 +248,7 @@ ModeLines - Include a comment with flile-specific configuration
 ```
 :help [subject] or :h [subject]
 :h normal-index
+:h <topic><TAB>     press <TAB> for autocompletion
 
 :helpgrep or helpg [pattern]
 :cnext(cn), :cprev(cp)
@@ -619,9 +638,16 @@ gJ  (join line without removing space)
        Ctrl-d         <shift>            Ctrl-t
 (在插入模式下移動，shift operation in insert mode)
 
-:set shiftwidth=2       (:set sw=2)
+:set tabstop=4          (:set ts=4)
+:set shiftwidth=4       (:set sw=4)
 :set expandtab          (use spaces in instead of tabs)
-:set softtabstop        (:set sts=2)
+:set softtabstop=4      (:set sts=4)
+
+:set textwidth=65       (輸入到第65 column就會自動換列-自動插入換列符號)
+
+:set wrap               (長度超出畫面時，自動捲到下一列)
+:set linebreak          (以空白爲自動下捲時的依據，不要把一個單字拆開)
+:set showbreak=>\       (設定自動捲到下一列時，在列最前方顯示> 來區分)
 
 Ctrl-x : 游標所在數字加一
 Ctrl-a : 游標所在數字減一
@@ -634,18 +660,18 @@ Text-objects
 ============
 
 ```
-    v              i                t
-    d              a                s
-    y              i                w
---------    ---------------     ----------
-operator        extent            object
---------    ---------------     ----------
-c)hange     a)ll delimiters     w)ord
+    v               i               t
+    d               a               s
+    y               i               w
+--------    ------------------  ----------
+operator          extent          object
+--------    ------------------  ----------
+c)hange     a)round delimiters  w)ord
 d)elete     i)nner object       W)ord
 y)ank                           s)entence
 v)isual                         p)aragraph
-                                t)ag
-                                "'<[{()}]>
+gU)uppercase                    t)ag
+gu)lowercase                    "'<[{()}]>
                                 b - shortcut for ()
                                 B - shortcut for {}
 <h1>Sample code</h1>
@@ -1149,6 +1175,14 @@ qadWWPjq
 :map <F12> :call DateIns()<CR>\|:write<CR>
 設定自動命令
 :autocmd FileWritePre * :call DateIns()<CR>
+
+設定對於html檔案在讀取、寫入前，自動格式化其內容
+:autocmd BufRead,BufWritePre *.html normal gg=G
+
+根據不同檔案形態，執行不同的動作
+:autocmd Filetype html nnoremap <leader>c I<!--<esc>A--><esc>
+:autocmd Filetype javascript nnoremap <leader>c I//<esc>
+
 自動命令的一般格式：
 :autocmd [group] events file_pattern [nested] command
 列出定義的自動命令
@@ -1162,6 +1196,8 @@ qadWWPjq
 忽略事件
 :set eventignore=WinEnter,WinLeave
 :set eventignore=all  (全部事件都忽略)
+
+:help autocmd-events
 ```
 <!--- }}} -->
 
