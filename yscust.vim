@@ -142,9 +142,9 @@ noremap <silent> <leader>ia :ChgAirColor<CR>
 let g:w32_dir = '\vimfiles\pref\'
 let g:lnx_dir = '/.vim/pref/'
 if has('win32')
-  let fn = expand("$HOME") . w32_dir . 'platform.vim'
+  let fn = expand("$HOME") . w32_dir . 'ysmain.vim'
 else
-  let fn = expand("$HOME") . lnx_dir . 'platform.vim'
+  let fn = expand("$HOME") . lnx_dir . 'ysmain.vim'
 endif
 execute ':source ' . fn
 

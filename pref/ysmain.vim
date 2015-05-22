@@ -5,7 +5,6 @@ func! Source_file(dirname, fname)
 endf
 
 " Common files
-let c_lnxmac = 'lnxmac.vim'   " common for linux and mac
 let c_eval   = 'eval.vim'
 let c_setcol = 'setcolors.vim'
 let c_tetris = 'tetris.vim'
@@ -18,12 +17,12 @@ if has('win32')
     call Source_file(g:w32_dir, vimfile)
   endfor
 elseif has('mac')
-  let call_list = ['mac.vim', c_lnxmac, c_eval, c_setcol, c_tetris, c_yankm]
+  let call_list = [c_eval, c_setcol, c_tetris, c_yankm]
   for vimfile in call_list
     call Source_file(g:lnx_dir, vimfile)
   endfor
 else
-  let call_list = ['linux.vim', c_lnxmac, c_eval, c_setcol, c_tetris, c_yankm]
+  let call_list = [c_eval, c_setcol, c_tetris, c_yankm]
   for vimfile in call_list
     call Source_file(g:lnx_dir, vimfile)
   endfor
@@ -39,8 +38,4 @@ endif
 " vnoremap <silent> <F9> :DBExecVisualSQL<CR>
 " nnoremap <silent> <F9> :DBExecSQLUnderCursor<CR>
 " inoremap <silent> <F9> <ESC>:DBExecSQLUnderCursor<CR>
-
-" redefine <F5> in bundle/sql/ftplugin/sql_iabbr.vim (buffer level)
-" filetype = sql, pls, plsql
-" iab sdt select dbms_metadata.get_ddl('TABLE','EMPLOYEES') from dual;
 

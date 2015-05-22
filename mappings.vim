@@ -173,7 +173,27 @@ fun! CleanExtraSpaces()
     call setpos('.', save_cursor)
     call setreg('/', old_query)
 endfun
-map <silent><leader>S <esc>:keepjumps call CleanExtraSpaces()<cr>
+noremap <silent><leader>S <esc>:keepjumps call CleanExtraSpaces()<cr>
+
+" Keep swap files in one location
+set directory=$HOME/.vim/tmp//,.
+
+" set path for searching cmd like: gf, <c-w>f, <c-w>gf
+" use :set path< to copy this global value to local buffers
+set path=~yschu/ruby/**,,.,~yschu/.rvm/rubies/default/lib/ruby/**
+
+" ,v brings up my .vimrc
+" ,V reloads it -- making all changes active (have to save first)
+noremap <leader>v :sp $MYVIMRC<CR><C-W>_
+noremap <silent> <leader>V :source $MYVIMRC<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
+
+" ,h brings up my Vim-notes.txt
+noremap <leader>h :sp ~/.vim/pref/Vim-notes.md<CR><C-W>_
+" ,vs brings up my vimrc: yscust.vim
+noremap <leader>vs :sp ~/.vim/yscust.vim<CR><C-W>_
+
+" for when we forget to use sudo to open/edit a file
+cnoremap w!! w !sudo tee % >/dev/null
 
 "---------
 " Windows
@@ -257,4 +277,9 @@ if has("mac") || has("gui_macvim") || has("gui_mac")
 
   " directory name (/something/src)
   nnoremap <silent> <leader>yd :let @*=expand("%:p:h")<CR>
+
+  " Open current file in Marked.
+  nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr>: !<cr>
 endif
+
+
