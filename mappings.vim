@@ -167,7 +167,7 @@ nnoremap <leader>w :w<CR>
 "---------
 " and lets make these all work in insert mode too ( <C-O> makes next cmd
 " happen as if in command mode )
-inoremap <C-W> <C-O><C-W>
+"inoremap <C-W> <C-O><C-W>
 
 " use - and + to resize horizontal splits
 nnoremap - <C-W>-
