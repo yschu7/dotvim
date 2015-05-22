@@ -1399,6 +1399,8 @@ gc          將目前以Visual mode標識的區域註解/反註解
 ```
 :Ag pattern [directory]
 
+:Ag 'foo|bar' *.txt
+
 :h ag
 ```
 <!--- }}} -->
