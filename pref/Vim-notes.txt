@@ -23,6 +23,8 @@ Basic VIM
 * ![vim CheetSheet](http://www.viemu.com/vi-vim-cheat-sheet.gif)
 * ![vim commands](http://bruxy.regnet.cz/programming/vim_cheatsheet/vim_cheatsheet.pdf)
 * ![Vim subreddit](http://reddit.com/r/vim)
+* ![Learn Vimscript the Hard Way](http://learnvimscriptthehardway.stevelosh.com/)
+* ![Learn Vimscript中文版](http://learnvimscriptthehardway.onefloweroneworld.com/)
 
 <!--- }}} -->
 

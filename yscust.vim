@@ -25,21 +25,9 @@ highlight ColorColumn ctermfg=magenta
 " ~/.vim/mappings.vim       Mappings
 " =====================================================
 
-" Clean all end of line extra whitespace with ,S
-" Credit: voyeg3r https://github.com/mitechie/pyvim/issues/#issue/1
-" deletes excess space but maintains the list of jumps unchanged
-" for more details see: h keepjumps
-fun! CleanExtraSpaces()
-    let save_cursor = getpos(".")
-    let old_query = getreg('/')
-    :%s/\s\+$//e
-    call setpos('.', save_cursor)
-    call setreg('/', old_query)
-endfun
-map <silent><leader>S <esc>:keepjumps call CleanExtraSpaces()<cr>
-
 " ==================================================
 " Filetypes
+" ~/.vim/autocmds.vim       AutoCommands
 " ==================================================
 " Auto change the directory to the current file I'm working on
 "autocmd BufEnter * lcd %:p:h
@@ -52,9 +40,8 @@ augroup YSAutoCommands
   "au BufNewFile,BufRead *.tpl set filetype=html
   au BufNewFile,BufRead *.pls setlocal filetype=plsql
 
-  " Filetypes (au = autocmd)
   "au FileType help set nonumber " no line numbers when viewing help
-  au FileType help nnoremap <buffer><cr> <c-]> " Enter selects subject
+  au FileType help nnoremap <buffer><cr> <c-]>  " Enter selects subject
   au FileType help nnoremap <buffer><ESC> <C-T> " ESC to go back
 
   " for markdown -- insert 4 spaces to the end of line (is: insert spaces)
