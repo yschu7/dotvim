@@ -1379,8 +1379,8 @@ token file: $HOME/.gist-vim, user file: $HOME/.gitconfig
 
 gcc         將目前游標所在註解/反註解
 gc          將目前以Visual mode標識的區域註解/反註解
-<ctrl-_>b   將目前以Visual mode標識區域以語法block的方式註解/反註解
-(control + shift + -)b, 有些語言對單列及多列的註解方式不同，如：ruby, cpp, swift...
+<ctrl ->b   將目前以Visual mode標識區域，以其語法block的方式註解/反註解
+control - b 有些語言對單列及多列的註解方式不同，如：ruby, cpp, swift...
 
 :h tcomment
 ```
@@ -1394,10 +1394,24 @@ gc          將目前以Visual mode標識的區域註解/反註解
 :h ack
 ```
 
-### Ag - 如同Ack
+### [Ag](https://github.com/rking/ag.vim)
 
 ```
-:Ag pattern [directory]
+~/.vim/vundle_plugins/ag.vim
+
+可取代grep，把尋找的結果放在QuickFix視窗
+
+:Ag [options] pattern [directory]
+
+Search recursively in {directory} (which defaults to the current directory)
+for the {pattern}.   遞迴搜尋符合樣式(若未指定目錄，預設爲當前目錄)
+
+:AgBuffer [options] {pattern}   由目前打開的所有buffer內尋找
+:AgFile [options] {pattern} [directory]   尋找符合的檔名
+
+:Ag -t 'foo|bar' ruby   在ruby目錄下遞迴尋找包含foo或bar的文字檔
+
+:LAg [options] pattern [directory]   如同:Ag，但是結果放入location-list
 
 :Ag 'foo|bar' *.txt
 
