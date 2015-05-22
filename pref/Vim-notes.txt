@@ -23,6 +23,8 @@ Basic VIM
 * ![vim CheetSheet](http://www.viemu.com/vi-vim-cheat-sheet.gif)
 * ![vim commands](http://bruxy.regnet.cz/programming/vim_cheatsheet/vim_cheatsheet.pdf)
 * ![Vim subreddit](http://reddit.com/r/vim)
+* ![Learn Vimscript the Hard Way](http://learnvimscriptthehardway.stevelosh.com/)
+* ![Learn Vimscript中文版](http://learnvimscriptthehardway.onefloweroneworld.com/)
 
 <!--- }}} -->
 
@@ -1412,6 +1414,8 @@ for the {pattern}.   遞迴搜尋符合樣式(若未指定目錄，預設爲當�
 :Ag -t 'foo|bar' ruby   在ruby目錄下遞迴尋找包含foo或bar的文字檔
 
 :LAg [options] pattern [directory]   如同:Ag，但是結果放入location-list
+
+:Ag 'foo|bar' *.txt
 
 :h ag
 ```

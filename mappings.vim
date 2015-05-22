@@ -162,6 +162,19 @@ nnoremap <leader>w :w<CR>
 " nmap <leader>co :copen<CR>
 " nmap <leader>cc :cclose<CR>
 
+" Clean all end of line extra whitespace with ,S
+" Credit: voyeg3r https://github.com/mitechie/pyvim/issues/#issue/1
+" deletes excess space but maintains the list of jumps unchanged
+" for more details see: h keepjumps
+fun! CleanExtraSpaces()
+    let save_cursor = getpos(".")
+    let old_query = getreg('/')
+    :%s/\s\+$//e
+    call setpos('.', save_cursor)
+    call setreg('/', old_query)
+endfun
+map <silent><leader>S <esc>:keepjumps call CleanExtraSpaces()<cr>
+
 "---------
 " Windows
 "---------
