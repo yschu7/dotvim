@@ -21,8 +21,8 @@ let maplocalleader = "\\"
 " ---------------
 
 " Use ; for : in normal and visual mode, less keystrokes
-nnoremap ; :
-vnoremap ; :
+" nnoremap ; :
+" vnoremap ; :
 
 " Yank entire buffer with gy
 nnoremap gy :0,$ y<cr>
@@ -55,6 +55,8 @@ nnoremap ` '
 " Use very magic (Perl-like) regex style
 nnoremap / /\v
 vnoremap / /\v
+nnoremap ? ?\v
+vnoremap ? ?\v
 
 " Don't move on *
 nnoremap <silent> * :let stay_star_view = winsaveview()<cr>*:call winrestview(stay_star_view)<cr>

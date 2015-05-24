@@ -20,7 +20,8 @@ Basic VIM
 
 * ![vim命令圖解](http://blog.vgod.tw.s3.amazonaws.com/wp-content/uploads/2009/12/vim-cheat-sheet-full.png)
 * ![vim鍵盤指令](http://photo.xuite.net/yschu/11773543/16.jpg)
-* ![vim CheetSheet](http://www.viemu.com/vi-vim-cheat-sheet.gif)
+* ![vim CheetSheet1](http://www.viemu.com/vi-vim-cheat-sheet.gif)
+* ![vim CheetSheet2](https://cdn.shopify.com/s/files/1/0165/4168/files/preview.png)
 * ![vim commands](http://bruxy.regnet.cz/programming/vim_cheatsheet/vim_cheatsheet.pdf)
 * [Vim subreddit](http://reddit.com/r/vim)
 * [Learn Vimscript the Hard Way](http://learnvimscriptthehardway.stevelosh.com/)
@@ -143,7 +144,8 @@ Control you insertions (under insert mode)
 Ctrl-Y  duplicates what's in the same column on the preceding line
 Ctrl-E  duplicates what's in the same column on the following line
 Ctrl-A  inserts again whatever the most-recent inserted text was
-Ctrl-R= evaluates and expression and inserts the result
+Ctrl-R= evaluates and expression register(=) and inserts the result
+        除了使用"=暫存器之外，也可使用其他任何暫存器(插入該暫存器內容)
 Ctrl-T  inserts a tab at the start of the line 
         (without move the inserting point)
 Ctrl-D  deletes a tab at the start of the line
@@ -685,7 +687,7 @@ step1. cit or cat : without visual confirmation, change directly
 if (i > 9) then puts "i greater than 9..."
 step1. va)
 step2. o      (toggle position of cursor in selection - visual mode)
-step2. h, l   (move left or right to extend the selection)
+step3. h, l   (move left or right to extend the selection)
 ```
 <!--- }}} -->
 
@@ -1114,7 +1116,7 @@ gq          (Reflow paragraph to 80 characters wide,依照tw設定重排)
 ### Copy/Yank & Registers
 
 ```
-Default is unnamed register
+Default is unnamed register 預設的暫存器爲""
 Eight types of registers, 48 total registers
 Delete, change, substitute, search, or yank to any register
 
@@ -1124,12 +1126,13 @@ y, yy 與 Y  (複製/複製一整列/複製到列尾)
 
 Yank registers 複製到暫存器
 "ayy        (將當前列複製到暫存器a)
-	"a        (use register a，使用暫存器命令"，後可接暫存器名稱)
-	yy        (yank current line)
+    "a      (use register a，使用暫存器命令"，後可接暫存器名稱)
+    yy      (yank current line)
 "ap         (paste from register a)
 
 ""          (The unnamed register, contains the last deleted text)
 "0p         (paste from zero register, contains of the last yank text)
+            "0暫存器0會存放最後一次Yank的資料
 :registers  (show contents of all registers, or use :display or :dis)
 "+          (System clipboard, "* on Mac/Win/Liunx; Ctrl-r * in Edit mode)
 
@@ -1140,8 +1143,13 @@ expression register =
 
 Repeat command (@命令把暫存器的內容當成命令執行)
 @:
-  @         (Execute text as a command)
+  @         (Execute text as a command 在normal mode下執行@:)
   :         (use the : register as the text of the command)
+            ":暫存器存放最後執行的命令(command mode)
+
+事實上，巨集的錄製所指定的字母就是暫存器。例如: qq 錄製在暫存器q內。
+@q 則執行暫存器中錄製的內容。
+因爲q只是暫存器，所以可以把它印出("qp)、修改後再放回去("qdd)。
 ```
 <!--- }}} -->
 
@@ -1168,38 +1176,49 @@ qadWWPjq
 
 ```
 設定在某些事件發生時，自動執行的命令。
-:func DateIns()
-:   $read !date   "insert the date at the end($) of the file
-:endf
+func DateIns()
+    $read !date   "insert the date at the end($) of the file
+endf
 直接呼叫函式
 :call DateIns()
 設定鍵盤對映
-:map <F12> :call DateIns()<CR>\|:write<CR>
+map <F12> :call DateIns()<CR>\|:write<CR>
 設定自動命令
-:autocmd FileWritePre * :call DateIns()<CR>
+autocmd FileWritePre * :call DateIns()<CR>
 
 設定對於html檔案在讀取、寫入前，自動格式化其內容
-:autocmd BufRead,BufWritePre *.html normal gg=G
+autocmd BufRead,BufWritePre *.html normal gg=G
 
 根據不同檔案形態，執行不同的動作
-:autocmd Filetype html nnoremap <leader>c I<!--<esc>A--><esc>
-:autocmd Filetype javascript nnoremap <leader>c I//<esc>
+autocmd Filetype html nnoremap <leader>c I<!--<esc>A--><esc>
+autocmd Filetype javascript nnoremap <leader>c I//<esc>
 
 自動命令的一般格式：
-:autocmd [group] events file_pattern [nested] command
+autocmd [group] events file_pattern [nested] command
+
 列出定義的自動命令
 :aucodmd 全部列出
 :autocmd [group event pattern] 加上過濾條件
+
 刪除定義的自動命令
 :autocmd! 全部刪除
 :autocmd! [group event pattern]
+
 重新定義的自動命令(先刪除再定義)
 :audocmd! group event pattern nested command
+
+確保在YSautocmds的命令不會被重複定義
+augroup YSautocmds
+    autocmd!
+    autocmd ... definition ...
+    autocmd ... definition ...
+augroup END
+
 忽略事件
 :set eventignore=WinEnter,WinLeave
 :set eventignore=all  (全部事件都忽略)
 
-:help autocmd-events
+:help autocmd-events  查看各種autocmd的事件
 ```
 <!--- }}} -->
 
@@ -1302,8 +1321,12 @@ silent! call pathogen#helptags()
 cst    Change surrounding tag
 dst    Delete surrounding tag
        在此t指的是tag，但也可以為{,(,[,",'等符號
-vS     Add a tag around text, 使用V/v/Ctrl-v選擇範圍後，S改變
+
+v.&.S  Add a tag around text, 使用V/v/Ctrl-v選擇範圍後，S改變
        可以加入的可能是{,(,[,",',<tag>,或其他的符號
+
+ys     Add surrounding tag，後面爲text-object，最後爲tag。
+yS     同ys，但是開始、結束tag在不同的列，適合HTML的寫法。
 yss    修改游標所在列(sentence)，將內容以輸入的<tag>或符號括起來
 ysiw   在游標所在的單字上(inner word)，以輸入的<tag>或符號括起來
 

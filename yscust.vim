@@ -34,15 +34,15 @@ highlight ColorColumn ctermfg=magenta
 
 augroup YSAutoCommands
   " Clear the auto command group so we don't define it multiple times
-  " Idea from http://learnvimscriptthehardway.stevelosh.com/chapters/14.html
   autocmd!
-  " make the smarty .tpl files html files for our purposes
-  "au BufNewFile,BufRead *.tpl set filetype=html
+
+  " make the .pls files plsql files
   au BufNewFile,BufRead *.pls setlocal filetype=plsql
 
-  "au FileType help set nonumber " no line numbers when viewing help
-  au FileType help nnoremap <buffer><cr> <c-]>  " Enter selects subject
-  au FileType help nnoremap <buffer><ESC> <C-T> " ESC to go back
+  " Enter selects subject
+  au FileType help nnoremap <buffer><cr> <c-]>
+  " ESC to go back
+  au FileType help nnoremap <buffer><ESC> <C-T>
 
   " for markdown -- insert 4 spaces to the end of line (is: insert spaces)
   au FileType markdown nnoremap <buffer><silent><leader>is A<Space><Space><Space><Space><ESC>
@@ -70,9 +70,9 @@ augroup YSAutoCommands
   " automatically give executable permissions if file begins with #! and
   " contains '/bin/' in the path (replaced by vim-eunuch)
   fun! AfterWrite()
-  if getline(1) =~ "^#!" && getline(1) =~ "/bin/"
+    if getline(1) =~ "^#!" && getline(1) =~ "/bin/"
       silent !chmod a+x <afile>
-  endif
+    endif
   endfun
   autocmd BufWritePost * call AfterWrite()
 
