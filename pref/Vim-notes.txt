@@ -500,6 +500,7 @@ gU  變為大寫，gUU/VgU (整列變大寫), gUiw (游標所在的單字變大�
 g~  大寫變小寫/小寫變大寫，g~~/Vg~ (整列), g~iw (單字)
     在此~意義雖沒變，但無法以~iw改變單字，必須用viw~，V~改變整列
 g$  移至游標所在列的螢幕尾 ($為end_of_line)
+g_  移動到最後一個非空字元（$會移動到最後，不管是否爲空白）
 g0  移至游標所在列的螢幕頭 (0為start_of_line)
 gJ  合併列，但各列前的空白保留 (J的合併會刪除列前空白)
 gf  跳到/開啟游標所在檔案 (Jump to file under cursor)
@@ -974,12 +975,13 @@ q to close the quickfix window
 :vmap >   >gv   (gv : re-select the previous area, and go visual mode)
 :vmap <   <gv
 
-Map scope
+Map scope [:h map-modes]
 nmap      Normal mode
 imap      Insert mode
 vmap      Visual mode
 map       Normal, Visual, and operating-pending modes
 map!      Command and Insert modes
+omap      Operator-pending [mode](http://learnvimscriptthehardway.onefloweroneworld.com/chapters/15.html)
 
 :imap <Tab> <C-N>   (insert mode,next for autocomplete select menu)
 :imap <S-Tab> <C-P> (previous)
