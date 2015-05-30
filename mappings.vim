@@ -251,8 +251,6 @@ nnoremap <leader>jts <Esc>:%!underscore print --strict<CR><Esc>:set filetype=jso
 " Typo Fixes
 " ---------------
 
-" noremap <F1> <Esc>
-" inoremap <F1> <Esc>
 cnoremap w' w<CR>
 
 " Disable the ever-annoying Ex mode shortcut key. Type visual my ass. Instead,
@@ -264,11 +262,10 @@ nnoremap K k
 vnoremap K k
 
 " Insert date
-iabbrev ddate <C-R>=strftime("%Y-%m-%d")<CR>
+inoreabbrev ddate <C-R>=strftime("%Y-%m-%d")<CR>
 
-" Insert a console statements
-iabbrev clg console.log
-iabbrev cld console.debug
+noreabbrev teh the
+noreabbrev Wq wq
 
 " copy current file name (relative/absolute) to system clipboard
 " from http://stackoverflow.com/a/17096082/22423
