@@ -3,6 +3,7 @@
 " To work with mutewinter dotvim environment
 " ~/.vim/config.vim       Regular Vim Configuration
 " =====================================================
+" Basic Settings  {{{
 if exists("$GOROOT")
   set rtp+=$GOROOT/misc/vim  " Go setting
 endif
@@ -19,19 +20,21 @@ set cursorline               " nocursorline (cul/nocul)
 set fencs=utf-8,big5,gbk,latin1
 " Only highlight the exceeding character at the margin (set colorcolumn=80)
 highlight ColorColumn ctermfg=magenta
+" }}}
 
-" =====================================================
+" ==================================
 " Basic Maps
-" ~/.vim/mappings.vim       Mappings
-" =====================================================
+" ~/.vim/mappings.vim   Mappings
+" ==================================
 
-" ==================================================
+" ===================================
 " Filetypes
-" ~/.vim/autocmds.vim       AutoCommands
-" ==================================================
+" ~/.vim/autocmds.vim   AutoCommands
+" ===================================
 " Auto change the directory to the current file I'm working on
 "autocmd BufEnter * lcd %:p:h
 
+" AutoCommands settings  {{{
 augroup YSAutoCommands
   " Clear the auto command group so we don't define it multiple times
   autocmd!
@@ -63,6 +66,7 @@ augroup YSAutoCommands
 
   " Automatic fold settings for specific files.
   autocmd FileType ruby   setlocal foldmethod=syntax
+  autocmd FileType vim    setlocal foldmethod=marker
   autocmd FileType css    setlocal foldmethod=indent shiftwidth=2 tabstop=2 softtabstop=2
   autocmd FileType python setlocal foldmethod=indent shiftwidth=4 tabstop=4 softtabstop=4
   autocmd FileType swift  setlocal foldmethod=indent shiftwidth=4 tabstop=4 softtabstop=4
@@ -85,6 +89,8 @@ augroup YSAutoCommands
   autocmd FileType ruby inoremap <buffer><F5> <ESC>:up!<CR>:!ruby ./%<CR>
   autocmd FileType python nnoremap <buffer><F5> <ESC>:up!<CR>:!python3 ./%<CR>
   autocmd FileType python inoremap <buffer><F5> <ESC>:up!<CR>:!python3 ./%<CR>
+  autocmd FileType vim nnoremap <buffer><F5> <ESC>:up!<CR>:source ./%<CR>
+  autocmd FileType vim inoremap <buffer><F5> <ESC>:up!<CR>:source ./%<CR>
 
   " [Buffer-Local](http://learnvimscriptthehardway.stevelosh.com/chapters/11.html)
   " tmux run script
@@ -97,11 +103,11 @@ augroup YSAutoCommands
   " Leave paste mode on exit
   au InsertLeave * set nopaste
 augroup END
+" }}}
 
-" ===============
-"  Function Keys
-" ===============
-
+" ===================
+"  Function Keys  {{{
+" ===================
 " F1 Help
 noremap <F1> <Esc>:help<CR>
 
@@ -137,8 +143,12 @@ noremap <silent> <leader>sc :SetColor all<CR>
 noremap <silent> <leader>ic :ChgColor<CR>
 " ChgAirColor: Change Airpline Colorscheme
 noremap <silent> <leader>ia :ChgAirColor<CR>
+" }}}
 
-" Source file : platform.vim
+" ============================
+" Source file : ysmain.vim {{{
+" ~/.vim/pref/ysmain.vim
+" ============================
 let g:w32_dir = '\vimfiles\pref\'
 let g:lnx_dir = '/.vim/pref/'
 if has('win32')
@@ -147,4 +157,5 @@ else
   let fn = expand("$HOME") . lnx_dir . 'ysmain.vim'
 endif
 execute ':source ' . fn
+" }}}
 
