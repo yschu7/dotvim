@@ -679,6 +679,11 @@ gU)uppercase                    t)ag
 gu)lowercase                    "'<[{()}]>
                                 b - shortcut for ()
                                 B - shortcut for {}
+Extensions:
+gc)omment                       r)ruby block            gcar
+cs)change surround tag          "'<[{()}]> with tag     cs'"
+ys)insert surround tag                                  ysiw"
+
 <h1>Sample code</h1>
 step1. vit or vat : select sample code within tag, or include tag
 step2. c : change
@@ -1544,6 +1549,36 @@ for the {pattern}.   遞迴搜尋符合樣式(若未指定目錄，預設爲當�
 ~/.vim/vundle_plugins/emmet-vim.vim
 
 * <Ctrl> y : 展開
+```
+<!--- }}} -->
+
+<!--- vim-textobj-rubyblock {{{ -->
+###[vim-textobj-rubyblock](https://github.com/nelstrom/vim-textobj-rubyblock)
+
+```
+~/.vim/vundle_plugins/vim-textobj-rubyblock.vim
+擴展textobjects到Ruby的class, module, method, block
+
+ar : select all of a ruby block
+in : select inner portion of a ruby block
+
+gcar : 將整個ruby block做註解(gc)
+```
+<!--- }}} -->
+
+<!--- vim-system-copy {{{ -->
+###[vim-system-copy](https://github.com/christoomey/vim-system-copy)
+
+```
+~/.vim/vundle_plugins/vim-system-copy.vim
+將指定的text object複製到系統剪貼板上
+
+cpiw : copy word into system clipboard
+cp'  : copy inner quotes to system clipboard
+cpar : copy all ruby block to system clipboard
+
+visual mode … cp : select with visual mode then copy to system clipboard
+
 ```
 <!--- }}} -->
 
