@@ -160,6 +160,27 @@ nnoremap <leader>l :ls<CR>:b
 nnoremap <leader>d :bd<CR>
 nnoremap <leader>w :w<CR>
 
+" new operator <leader>g : search the selected object with Ag
+nnoremap <leader>g :set operatorfunc=<SID>AgOperator<CR>g@
+vnoremap <leader>g :<C-U>call <SID>AgOperator(visualmode())<CR>
+function! s:AgOperator(type)
+    let saved_unnamed_register = @@
+
+    if a:type ==# 'v'
+        normal! `<v`>y
+    elseif a:type ==# 'char'
+        normal! `[v`]y
+    else
+        return
+    endif
+
+    silent execute "Ag " . shellescape(@@) . " ."
+
+    let @@ = saved_unnamed_register
+endfunction
+
+" nnoremap <leader>g :silent execute "Ag ".shellescape(expand("<cWORD>"))." ."<CR>
+
 " Actions after helpgrep
 " nnoremap <leader>cn :cnext<CR>
 " nnoremap <leader>cnf :cnfile<CR><C-G>

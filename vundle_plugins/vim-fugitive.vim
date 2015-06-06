@@ -14,6 +14,8 @@ nnoremap <Leader>gd :Gvdiff<CR>
 " Exit a diff by closing the diff window
 nnoremap <Leader>gx :wincmd h<CR>:q<CR>
 " Start git command
-nnoremap <leader>gi :Git<space>
+" conflict with new operator <leader>g
+"nnoremap <leader>gi :Git<space>
+nnoremap <leader>gt :Git<space>
 " Undo the last commit
 command! Gcundo :Git reset HEAD~1

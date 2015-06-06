@@ -1598,6 +1598,8 @@ Misc
 * <leader> o  : 在瀏覽器內開啓目前遊標所在的網址
 * <leader> gg : 在瀏覽器內使用Google查詢目前遊標所在的單字([vim-voogle][01])
 * <Ctrl-w> o  : 將目前的視窗最大化，再按一次恢復原狀(Toggle, [ZoomWin][02])
+* <leader> g  : 使用Ag命令尋找選擇的text object
+                viw<leader>g, <leader>gi( , <leader>gt;
 
 * Argument Lists
     * :args `find lib spec -name '*.rb'`    puts results into argument lists
