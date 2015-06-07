@@ -1600,6 +1600,7 @@ Misc
 * <Ctrl-w> o  : 將目前的視窗最大化，再按一次恢復原狀(Toggle, [ZoomWin][02])
 * <leader> g  : 使用Ag命令尋找選擇的text object
                 viw<leader>g, <leader>gi( , <leader>gt;
+* <leader> q  : QuickFix視窗切換鍵(Toggle)
 
 * Argument Lists
     * :args `find lib spec -name '*.rb'`    puts results into argument lists

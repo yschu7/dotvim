@@ -160,27 +160,6 @@ nnoremap <leader>l :ls<CR>:b
 nnoremap <leader>d :bd<CR>
 nnoremap <leader>w :w<CR>
 
-" new operator <leader>g : search the selected object with Ag
-nnoremap <leader>g :set operatorfunc=<SID>AgOperator<CR>g@
-vnoremap <leader>g :<C-U>call <SID>AgOperator(visualmode())<CR>
-function! s:AgOperator(type)
-    let saved_unnamed_register = @@
-
-    if a:type ==# 'v'
-        normal! `<v`>y
-    elseif a:type ==# 'char'
-        normal! `[v`]y
-    else
-        return
-    endif
-
-    silent execute "Ag " . shellescape(@@) . " ."
-
-    let @@ = saved_unnamed_register
-endfunction
-
-" nnoremap <leader>g :silent execute "Ag ".shellescape(expand("<cWORD>"))." ."<CR>
-
 " Actions after helpgrep
 " nnoremap <leader>cn :cnext<CR>
 " nnoremap <leader>cnf :cnfile<CR><C-G>
@@ -189,26 +168,6 @@ endfunction
 " shortcuts to open/close the quickfix window
 " nmap <leader>co :copen<CR>
 " nmap <leader>cc :cclose<CR>
-
-" Clean all end of line extra whitespace with ,S
-" Credit: voyeg3r https://github.com/mitechie/pyvim/issues/#issue/1
-" deletes excess space but maintains the list of jumps unchanged
-" for more details see: h keepjumps
-fun! CleanExtraSpaces()
-    let save_cursor = getpos(".")
-    let old_query = getreg('/')
-    :%s/\s\+$//e
-    call setpos('.', save_cursor)
-    call setreg('/', old_query)
-endfun
-noremap <silent><leader>S <esc>:keepjumps call CleanExtraSpaces()<cr>
-
-" Keep swap files in one location
-set directory=$HOME/.vim/tmp//,.
-
-" set path for searching cmd like: gf, <c-w>f, <c-w>gf
-" use :set path< to copy this global value to local buffers
-set path=~yschu/ruby/**,,.,~yschu/.rvm/rubies/default/lib/ruby/**
 
 " ,v brings up my .vimrc
 " ,V reloads it -- making all changes active (have to save first)

@@ -254,3 +254,55 @@ function! WordFrequency() range
   sort i
 endfunction
 command! -range=% WordFrequency <line1>,<line2>call WordFrequency()
+
+" new operator <leader>g : search the selected object with Ag
+nnoremap <leader>g :set operatorfunc=<SID>AgOperator<CR>g@
+vnoremap <leader>g :<C-U>call <SID>AgOperator(visualmode())<CR>
+function! s:AgOperator(type)
+    let saved_unnamed_register = @@
+
+    if a:type ==# 'v'
+        normal! `<v`>y
+    elseif a:type ==# 'char'
+        normal! `[v`]y
+    else
+        return
+    endif
+
+    silent execute "Ag " . shellescape(@@) . " ."
+
+    let @@ = saved_unnamed_register
+endfunction
+
+" nnoremap <leader>g :silent execute "Ag ".shellescape(expand("<cWORD>"))." ."<CR>
+
+" Clean all end of line extra whitespace with ,S
+" Credit: voyeg3r https://github.com/mitechie/pyvim/issues/#issue/1
+" deletes excess space but maintains the list of jumps unchanged
+" for more details see: h keepjumps
+fun! s:CleanExtraSpaces()
+    let save_cursor = getpos(".")
+    let old_query = getreg('/')
+    :%s/\s\+$//e
+    call setpos('.', save_cursor)
+    call setreg('/', old_query)
+endfun
+noremap <silent><leader>S <esc>:keepjumps call <SID>CleanExtraSpaces()<cr>
+
+" QuickFix Windows toggle
+let g:quickfix_is_open = 0
+
+function! s:QuickfixToggle()
+    if g:quickfix_is_open
+        cclose
+        let g:quickfix_is_open = 0
+        execute g:quickfix_return_to_window . "wincmd w"
+    else
+        let g:quickfix_return_to_window = winnr()
+        copen
+        let g:quickfix_is_open = 1
+    endif
+endfunction
+
+nnoremap <silent><leader>q :call <SID>QuickfixToggle()<cr>
+

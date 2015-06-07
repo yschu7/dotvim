@@ -24,6 +24,10 @@ if has('persistent_undo')
   set undodir=~/.vim/.undo
 endif
 
+" set path for searching cmd like: gf, <c-w>f, <c-w>gf
+" use :set path< to copy this global value to local buffers
+set path=~/ruby/**,.,~/.rvm/rubies/default/lib/ruby/**
+
 " ---------------
 " UI
 " ---------------
