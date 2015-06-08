@@ -1,3 +1,6 @@
+" disable this plugin without deleting it
+finish
+
 if exists('g:vundle_installing_plugins')
   Plugin 'christoomey/vim-tmux-navigator'
   finish
