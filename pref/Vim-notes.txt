@@ -728,6 +728,9 @@ print or p 列印: 1,5p<CR>  1,/troubel/p<CR>  1,$p<CR>  %p<CR>
 :shell or :sh   暫時離開Vim，進入OS命令介面。exit返回。
 :!<command>     執行外部命令<command>。
 :%!sort         將編輯內容(%)經由sort排序。
+:r!sort -n -k 2 %       以第2欄排序後，寫入目前遊標之後
+:%!sort -s -n -k 2,2    只以第2欄排序，以結果覆蓋目前內容
+[關於排序](http://superuser.com/questions/33362/how-to-unix-sort-by-one-column-only)
 ```
 <!--- }}} -->
 
