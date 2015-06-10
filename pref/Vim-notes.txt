@@ -1,22 +1,56 @@
-Y.S. Chu's Vim Notes v 1.8.2
-============================
-* ,h  開啟本檔  F2 :bd :close 關閉
-* ,v  開啓 ~/.vimrc  ,vs  開啓 ~/.vim/yscust.vim
-* zM 關閉所有摺疊
-* vimtutor 基礎vim訓練課程
-* iconv -f BIG5 -t UTF8 input_big5.txt > output_utf8.txt
+*Vim-notes.txt*        Y.S. Chu's Vim Notes v 1.9
+```
+      __           _                 __      _
+/\_/\/ _\   /\   /(_)_ __ ___     /\ \ \___ | |_ ___  ___
+\_ _/\ \    \ \ / / | '_ ` _ \   /  \/ / _ \| __/ _ \/ __|
+ / \ _\ \    \ V /| | | | | | | / /\  / (_) | ||  __/\__ \
+ \_/ \__/     \_/ |_|_| |_| |_| \_\ \/ \___/ \__\___||___/
 
-* 使用Git同步檔案：
-    1. 修改完成後
-        + $ git add .
-        + $ git commit -m 'Commit notes...'
-        + $ git push -u origin master
-    2. 在其他電腦的同步
-        + $ git pull origin
+=========================================================================
+Contents                                                    *VimNotes*
 
+    01. Cheat Sheet                 |CheatSheet|
+    02. Basic Movement              |BasicMovement|
+    03. File Operations             |FileOperations|
+    04. Basic Misc                  |BasicMisc|
+    05. Configuration               |Configuration|
+    06. Set,Show,Reset              |SetShowReset|
+    07. Help                        |Help|
+    08. Files                       |Files|
+    09. Window                      |Window|
+    10. Buffer                      |Buffer|
+    11. Movement                    |Movement|
+    12. Beginning with G            |SpecialG|
+    13. Marks                       |Marks|
+    14. Editing Text                |EditingText|
+    15. Movement Cont.              |MovementCont|
+    16. Misc Cont.                  |MiscCont|
+    17. Text Objects                |TextObjects|
+    18. Visual Mode                 |VisualMode|
+    19. Command Mode                |CommandMode|
+    20. Search & Replace            |SearchReplace|
+    21. Substitute                  |Substitute|
+    22. Range                       |Range|
+    23. global                      |global|
+    24. Regular Expression          |Regex|
+    25. ACK command in Vim          |Ack|
+    26. Advanced Configuration      |AdvConfig|
+    27. Abbreviations               |Abbrev|
+    28. Folding                     |Folding|
+    29. Completion                  |Completion|
+    30. Filtering                   |Filtering|
+    31. Copy/Yang & Registers       |YankRegister|
+    32. Recording (Macro)           |Macro|
+    33. AutoCommands                |AutoCommands|
+    34. Command-Line Arugments      |CommandArguments|
+    35. Plugins                     |Plugins|
+    36. Misc                        |Misc|
+
+=========================================================================
+```
 <!--- CheetSheet {{{ -->
-Basic VIM
-=========
+Cheat Sheet                                                 *CheatSheet*
+===========
 
 * ![vim命令圖解](http://blog.vgod.tw.s3.amazonaws.com/wp-content/uploads/2009/12/vim-cheat-sheet-full.png)
 * ![vim鍵盤指令](http://photo.xuite.net/yschu/11773543/16.jpg)
@@ -27,10 +61,24 @@ Basic VIM
 * [Learn Vimscript the Hard Way](http://learnvimscriptthehardway.stevelosh.com/)
 * [Learn Vimscript中文版](http://learnvimscriptthehardway.onefloweroneworld.com/)
 
+* ,h  開啟本檔  F2 :bd :close 關閉
+* ,v  開啓 ~/.vimrc  ,vs  開啓 ~/.vim/yscust.vim
+
+* vimtutor 基礎vim訓練課程
+* set ft=help 開啓爲help檔案,使用目錄鏈接
+
+* 使用Git同步檔案：
+    1. 修改完成後
+        + $ git add .
+        + $ git commit -m 'Commit notes...'
+        + $ git push -u origin master
+    2. 在其他電腦的同步
+        + $ git pull origin
+
 <!--- }}} -->
 
-<!--- Basic movement {{{ -->
-### Basic movement
+<!--- Basic Movement {{{ -->
+### Basic Movement                                          *BasicMovement*
 
 ```
     k             yy  Yank line (copy)
@@ -53,8 +101,8 @@ gg      Go to the top of the file
 ```
 <!--- }}} -->
 
-<!--- File operations {{{ -->
-### File operations
+<!--- File Operations {{{ -->
+### File Operations                                         *FileOperations*
 
 ```
 :w      Write file (save)
@@ -96,8 +144,8 @@ gg      Go to the top of the file
 ```
 <!--- }}} -->
 
-<!--- Misc {{{ -->
-### Misc
+<!--- Basic Misc {{{ -->
+### Basic Misc                                              *BasicMisc*
 
 ```
 V       Enter Visual mode (select lines)
@@ -192,7 +240,7 @@ noremap <down> <nop>
 <!--- }}} -->
 
 <!--- Configuration {{{ -->
-Configuration
+Configuration                                               *Configuration*
 =============
 * ~/.vimrc    Most settings go here. Shared terminal and graphical options.
 * ~/.gvimrc   Graphic-only settings (font, windows size)
@@ -214,8 +262,8 @@ Configuration
 
 <!--- }}} -->
 
-<!--- set,show,reset {{{ -->
-### 設定、顯示、重設（SET,SHOW,RESET）
+<!--- Set,Show,Reset {{{ -->
+### 設定、顯示、重設（SET,SHOW,RESET）                      *SetShowReset*
 
 ```
 :set list           Turn a boolean value on (顯示TAB,EOL)
@@ -247,7 +295,7 @@ ModeLines - Include a comment with flile-specific configuration
 <!--- }}} -->
 
 <!--- Help {{{ -->
-### Help <F1>
+### Help <F1>                                               *Help*
 
 ```
 :help [subject] or :h [subject]
@@ -284,7 +332,7 @@ Options                '(both ends)    :h 'textwidth'
 <!--- }}} -->
 
 <!--- Files {{{ -->
-### Files
+### Files                                                   *Files*
 
 ```
 :set autochdir    Automatically use the current file's directory as the
@@ -314,7 +362,7 @@ Text    : FuzzyFinder, CtrlP
 <!--- }}} -->
 
 <!--- Window {{{ -->
-### Window :  A rectangular view of a buffer.
+### Window :  A rectangular view of a buffer.               *Window*
 * Ctrl-w s    Split window horizontally (:split or :sp)
 * Ctrl-w v    Split window vertically (:vsplit or :vsp)
 * Ctrl-w c    Close window (:q or ZZ)
@@ -359,7 +407,7 @@ Ctrl-w =  將所有視窗的大小調整爲一樣大
 <!--- }}} -->
 
 <!--- Buffer {{{ -->
-### Buffer : The contents of a file in memory.
+### Buffer : The contents of a file in memory.              *Buffer*
 
 * 可以使用plugin：
     + Buffer Explorer <leader> + be
@@ -392,7 +440,7 @@ h       Buffer is hidden (loaded but not visible)
 <!--- }}} -->
 
 <!--- Movement {{{ -->
-### Movement
+### Movement                                                *Movement*
 
 +  word(小寫指令)遇到空白及其他的標點符號(, : . -)都會視為一個單字的結束。
    注意：底線(_)視為單字(word)的一部分。
@@ -489,7 +537,7 @@ M <move>          (middle)
 <!--- }}} -->
 
 <!--- Begining with g {{{ -->
-關於g帶頭的命令
+關於g帶頭的命令                                             *SpecialG*
 ===============
 +  它通常代表特別的意義，例如：
 
@@ -518,7 +566,7 @@ g&  重複執行上次的替代指令，以整個buffer爲範圍(同:%s)
 <!--- }}} -->
 
 <!--- Marks {{{ -->
-Marks 標記
+Marks 標記                                                  *Marks*
 ==========
 
 ```
@@ -545,7 +593,7 @@ d`a   刪除游標開始到標記a之間的內容
 <!--- }}} -->
 
 <!--- Editing Text {{{ -->
-Editing Text
+Editing Text                                                *EditingText*
 ============
 
 +  插入 move and then goes to insert mode
@@ -591,8 +639,8 @@ D   (delete to the end of line)
 ```
 <!--- }}} -->
 
-<!--- Movement {{{ -->
-+  移動
+<!--- Movement Cont. {{{ -->
++  移動                                                     *MovementCont*
 
 ```
       {                (         <move>        )             }
@@ -625,8 +673,8 @@ D   (delete to the end of line)
 ```
 <!--- }}} -->
 
-<!--- Misc {{{ -->
-+  其他
+<!--- Misc Cont. {{{ -->
++  其他                                                     *MiscCont*
 
 ```
 複製
@@ -660,8 +708,8 @@ Ctrl-a : 游標所在數字減一
 ```
 <!--- }}} -->
 
-<!--- Text-objects {{{ -->
-Text-objects
+<!--- Text Objects {{{ -->
+Text Objects                                                *TextObjects*
 ============
 
 ```
@@ -697,8 +745,8 @@ step3. h, l   (move left or right to extend the selection)
 ```
 <!--- }}} -->
 
-<!--- Visual mode {{{ -->
-Visual mode
+<!--- Visual Mode {{{ -->
+Visual Mode                                                 *VisualMode*
 ===========
 
 ```
@@ -715,8 +763,8 @@ Block模式若要選擇包含多列到最後，而各列的結束位置不同時
 ```
 <!--- }}} -->
 
-<!--- Command mode {{{ -->
-Command mode
+<!--- Command Mode {{{ -->
+Command Mode                                                *CommandMode*
 ============
 
 ```
@@ -735,7 +783,7 @@ print or p 列印: 1,5p<CR>  1,/troubel/p<CR>  1,$p<CR>  %p<CR>
 <!--- }}} -->
 
 <!--- Search & Replace {{{ -->
-Search & Replace
+Search & Replace                                            *SearchReplace*
 ================
 
 ```
@@ -751,8 +799,8 @@ g*  往前尋找目前游標所在位置的單字(部分相同)
 ```
 <!--- }}} -->
 
-<!--- Offset {{{ -->
-### Offset
+<!--- Search Offset {{{ -->
+### Search Offset                                           *SearchOffset*
 
 ```
 在往前搜尋/命令之後，加上/offset形成：
@@ -774,8 +822,8 @@ y?def<Enter>    (yank/copy from cursor to beginning of previous "def")
 ```
 <!--- }}} -->
 
-<!--- Options {{{ -->
-### 相關的選項設定
+<!--- Search Options {{{ -->
+### 相關的選項設定                                          *SearchOptions*
 
 ```
 :hlsearch or :hls  選項：反白顯示符合字串，結束後反白也不會取消。
@@ -807,7 +855,7 @@ nnoremap <silent> <BS> :nohlsearch<CR>
 <!--- }}} -->
 
 <!--- Substitute {{{ -->
-### Substitute (尋找與取代)
+### Substitute (尋找與取代)                                 *Substitute*
 
 ```
 :[range]s/{pattern}/{string}/[flags] [count]
@@ -844,7 +892,7 @@ Search by hex code: e.g.: escape
 <!--- }}} -->
 
 <!--- Specify a line (Range) {{{ -->
-### Specify a line (範圍的設定)
+### Specify a line (範圍的設定)                             *Range*
 
 ```
 .       current line
@@ -861,7 +909,7 @@ Use visual mode to select scope, and :s/abc/def to replace
 <!--- }}} -->
 
 <!--- global: Search and Execute {{{ -->
-### global: Search and Execute (尋找與執行)
+### global: Search and Execute (尋找與執行)                 *global*
 
 ```
 [range]g/{pattern}/[cmd]
@@ -904,7 +952,7 @@ normal {command}  execute extended sequence
 <!--- }}} -->
 
 <!--- Regular Expression {{{ -->
-### Regular Expression syntax styles
+### Regular Expression syntax styles                        *Regex*
 
 ```
 \v     Similar to Perl, Python, Ruby (Very Magic)
@@ -950,7 +998,7 @@ step.4  <Enter>   Execute the search
 <!--- }}} -->
 
 <!--- ACK command in VIM {{{ -->
-### ACK commands in VIM
+### ACK commands in VIM                                     *Ack*
 
 ```
 $sudo apt-get install ack-grep
@@ -976,8 +1024,8 @@ q to close the quickfix window
 ```
 <!--- }}} -->
 
-<!--- Advanced configuration {{{ -->
-### Advanced configuration
+<!--- Advanced Configuration {{{ -->
+### Advanced Configuration                                  *AdvConfig*
 
 ```
 :vmap >   >gv   (gv : re-select the previous area, and go visual mode)
@@ -1011,7 +1059,7 @@ Safely swap strokes
 <!--- }}} -->
 
 <!--- Abbreviations {{{ -->
-### Abbreviations
+### Abbreviations                                           *Abbrev*
 
 ```
 :iab ff   Firefox   (declare an abbreviation for insert mode)
@@ -1021,7 +1069,7 @@ in insert mode, type ff<SPACE> or <ESC>
 <!--- }}} -->
 
 <!--- Folding {{{ -->
-### Folding
+### Folding                                                 *Folding*
 
 ```
 :set foldmethod= or fdm=
@@ -1059,7 +1107,7 @@ autocmd FileType css setlocal foldmethod=indent sw=2 ts=2
 <!--- }}} -->
 
 <!--- Completion {{{ -->
-### Completion
+### Completion                                              *Completion*
 
 ```
 Ctrl-n         Activate completion, or menu for multiple selection
@@ -1082,7 +1130,7 @@ Ctrl-x Ctrl-l  whole line completion(整列模式)
 <!--- }}} -->
 
 <!--- Filtering {{{ -->
-### Filtering
+### Filtering                                               *Filtering*
 
 ```
 :range!filter  將範圍內的本文作為輸入，傳給filter程式處理後，取代其內容。
@@ -1123,7 +1171,7 @@ gq          (Reflow paragraph to 80 characters wide,依照tw設定重排)
 <!--- }}} -->
 
 <!--- Copy/Yank & Registers {{{ -->
-### Copy/Yank & Registers
+### Copy/Yank & Registers                                   *YankRegister*
 
 ```
 Default is unnamed register 預設的暫存器爲""
@@ -1164,7 +1212,7 @@ Repeat command (@命令把暫存器的內容當成命令執行)
 <!--- }}} -->
 
 <!--- Recording (macro) {{{ -->
-### Recoding (macro)
+### Recoding (macro)                                        *Macro*
 
 ```
 使用q後面加上a-z作為記錄暫存器，開始記錄鍵盤動作。最後以q結束記錄。
@@ -1181,8 +1229,8 @@ qadWWPjq
 ```
 <!--- }}} -->
 
-<!--- Autocommands {{{ -->
-### Autocommands
+<!--- AutoCommands {{{ -->
+### AutoCommands                                            *AutoCommands*
 
 ```
 設定在某些事件發生時，自動執行的命令。
@@ -1233,7 +1281,7 @@ augroup END
 <!--- }}} -->
 
 <!--- Command-Line arguments {{{ -->
-Command-Line arguments
+Command-Line arguments                                      *CommandArguments*
 ======================
 
 ```
@@ -1286,7 +1334,7 @@ alias vi="vim --servername $HOSTNAME --remote-silent"
 ```
 <!--- }}} -->
 
-Plugins
+Plugins                                                     *Plugins*
 =======
 
 <!--- mutewinter {{{ -->
@@ -1586,7 +1634,7 @@ visual mode … cp : select with visual mode then copy to system clipboard
 <!--- }}} -->
 
 <!--- Misc {{{ -->
-Misc
+Misc                                                        *Misc*
 ====
 
 ```
