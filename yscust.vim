@@ -91,6 +91,8 @@ augroup YSAutoCommands
   autocmd FileType python inoremap <buffer><F5> <ESC>:up!<CR>:!python3 ./%<CR>
   autocmd FileType vim nnoremap <buffer><F5> <ESC>:up!<CR>:source ./%<CR>
   autocmd FileType vim inoremap <buffer><F5> <ESC>:up!<CR>:source ./%<CR>
+  autocmd FileType sh nnoremap <buffer><F5> <ESC>:up!<CR>:!clear<CR>:!bash ./%<CR>
+  autocmd FileType sh inoremap <buffer><F5> <ESC>:up!<CR>:!clear<CR>:!bash ./%<CR>
 
   " [Buffer-Local](http://learnvimscriptthehardway.stevelosh.com/chapters/11.html)
   " tmux run script
