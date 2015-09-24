@@ -8,7 +8,7 @@
 set background=dark
 colorscheme jellybeans
 " Force 256 color mode if available
-if $TERM =~ "-256color"
+if $TERM =~ "-256color" || has('unix')
    set t_Co=256
 endif
 
