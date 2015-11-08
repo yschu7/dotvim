@@ -1633,6 +1633,20 @@ visual mode … cp : select with visual mode then copy to system clipboard
 ```
 <!--- }}} -->
 
+<!--- vim-simplenote {{{ -->
+###[vim-simplenote.vim](https://github.com/mrtazz/simplenote.vim)
+```
+~/.vim/vundle_plugins/vim-simplenote.vim
+使用者和密碼設定檔：~/.simplenoterc
+
+:Simplenote -l  [list all]
+:Simplenote -l linux  [list tag name : linux]
+:Simplenote -D  [Delete]
+:Simplenote -t  [tag]
+:Simplenote -n  [new]
+```
+<!--- }}} -->
+
 <!--- Misc {{{ -->
 Misc                                                        *Misc*
 ====

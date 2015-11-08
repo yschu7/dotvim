@@ -26,3 +26,5 @@ source ~/.vim/functions.vim
 source ~/.vim/autocmds.vim
 " YS configuration
 source ~/.vim/yscust.vim
+source ~/.simplenoterc
+
