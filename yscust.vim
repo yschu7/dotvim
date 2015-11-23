@@ -80,6 +80,11 @@ augroup YSAutoCommands
   endfun
   autocmd BufWritePost * call AfterWrite()
 
+  fun! RustCompileAndRun()
+    silent !clear
+    execute "! rustc " . expand('%:t') . " && ./" . expand('%:r')
+  endfun
+
   " Define <F5> depends on filetype
   autocmd FileType swift nnoremap <buffer><F5> <ESC>:up!<CR>:!xcrun swift ./%<CR>
   autocmd FileType swift inoremap <buffer><F5> <ESC>:up!<CR>:!xcrun swift ./%<CR>
@@ -93,11 +98,11 @@ augroup YSAutoCommands
   autocmd FileType vim inoremap <buffer><F5> <ESC>:up!<CR>:source ./%<CR>
   autocmd FileType sh nnoremap <buffer><F5> <ESC>:up!<CR>:!clear<CR>:!bash ./%<CR>
   autocmd FileType sh inoremap <buffer><F5> <ESC>:up!<CR>:!clear<CR>:!bash ./%<CR>
-  autocmd FileType rust nnoremap <buffer><F5> <ESC>:up!<CR>:call VimuxRunCommand("clear && rustc ".expand('%:t')." && ./".expand('%:r')."\n")<CR>
-  autocmd FileType rust inoremap <buffer><F5> <ESC>:up!<CR>:call VimuxRunCommand("clear && rustc ".expand('%:t')." && ./".expand('%:r')."\n")<CR>
+  autocmd FileType rust nnoremap <buffer><F5> <ESC>:up!<CR>:call RustCompileAndRun()<CR>
+  autocmd FileType rust inoremap <buffer><F5> <ESC>:up!<CR>:call RustCompileAndRun()<CR>
 
   " [Buffer-Local](http://learnvimscriptthehardway.stevelosh.com/chapters/11.html)
-  " tmux run script
+  " tmux run script (Split screen to show result)
   au FileType ruby nnoremap <buffer><leader>tx :up!<CR>:call VimuxRunCommand("ruby ".expand('%:p')."\n")<CR>
   au FileType python nnoremap <buffer><leader>tx :up!<CR>:call VimuxRunCommand("python ".expand('%:p')."\n")<CR>
   au FileType go nnoremap <buffer><leader>tx :up!<CR>:call VimuxRunCommand("go run ".expand('%:p')."\n")<CR>
