@@ -3,6 +3,12 @@ if exists('g:vundle_installing_plugins')
   finish
 endif
 
+"[Help](https://raw.githubusercontent.com/benmills/vimux/master/doc/vimux.txt)
+" 40% of the screen
+let g:VimuxHeight = "40"
+" h : horizontal, v : vertical
+let g:VimuxOrientation = "h"
+
 let g:VimuxUseNearestPane = 1
 " nnoremap <leader>a :call VimuxRunCommand("spring rspec --fail-fast")<CR>
 " nnoremap <leader>A :call VimuxRunCommand("spring rspec")<CR>
