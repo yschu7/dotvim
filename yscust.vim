@@ -85,9 +85,9 @@ augroup YSAutoCommands
     execute "! rustc " . expand('%:t') . " && ./" . expand('%:r')
   endfun
 
-  fun! RustCompileAndOpen()
+  fun! AsciiCompileAndOpen()
     silent !clear
-    execute "! asciidoctor " . expand('%:t') . " && open ./" . expand('%:r') . ".html"
+    execute "! asciidoctor " . expand('%:t') . " && open -a '/Applications/Google Chrome.app'  ./" . expand('%:r') . ".html"
   endfun
 
   " Define <F5> depends on filetype
@@ -105,8 +105,8 @@ augroup YSAutoCommands
   autocmd FileType sh inoremap <buffer><F5> <ESC>:up!<CR>:!clear<CR>:!bash ./%<CR>
   autocmd FileType rust nnoremap <buffer><F5> <ESC>:up!<CR>:call RustCompileAndRun()<CR>
   autocmd FileType rust inoremap <buffer><F5> <ESC>:up!<CR>:call RustCompileAndRun()<CR>
-  autocmd FileType asciidoc nnoremap <buffer><F5> <ESC>:up!<CR>:call RustCompileAndOpen()<CR>
-  autocmd FileType asciidoc inoremap <buffer><F5> <ESC>:up!<CR>:call RustCompileAndOpen()<CR>
+  autocmd FileType asciidoc nnoremap <buffer><F5> <ESC>:up!<CR>:call AsciiCompileAndOpen()<CR>
+  autocmd FileType asciidoc inoremap <buffer><F5> <ESC>:up!<CR>:call AsciiCompileAndOpen()<CR>
 
   " [Buffer-Local](http://learnvimscriptthehardway.stevelosh.com/chapters/11.html)
   " tmux run script (Split screen to show result)
