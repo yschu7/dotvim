@@ -70,6 +70,7 @@ augroup YSAutoCommands
   autocmd FileType css    setlocal foldmethod=indent shiftwidth=2 tabstop=2 softtabstop=2
   autocmd FileType python setlocal foldmethod=indent shiftwidth=4 tabstop=4 softtabstop=4
   autocmd FileType swift  setlocal foldmethod=indent shiftwidth=4 tabstop=4 softtabstop=4
+  autocmd FileType java   setlocal foldmethod=indent shiftwidth=4 tabstop=4 softtabstop=4
 
   " automatically give executable permissions if file begins with #! and
   " contains '/bin/' in the path (replaced by vim-eunuch)
@@ -83,6 +84,11 @@ augroup YSAutoCommands
   fun! RustCompileAndRun()
     silent !clear
     execute "! rustc " . expand('%:t') . " && ./" . expand('%:r')
+  endfun
+
+  fun! JavaCompile()
+    silent !clear
+    execute "! javac " . expand('%:t')
   endfun
 
   fun! AsciiCompileAndOpen()
@@ -107,6 +113,8 @@ augroup YSAutoCommands
   autocmd FileType rust inoremap <buffer><F5> <ESC>:up!<CR>:call RustCompileAndRun()<CR>
   autocmd FileType asciidoc nnoremap <buffer><F5> <ESC>:up!<CR>:call AsciiCompileAndOpen()<CR>
   autocmd FileType asciidoc inoremap <buffer><F5> <ESC>:up!<CR>:call AsciiCompileAndOpen()<CR>
+  autocmd FileType java nnoremap <buffer><F5> <ESC>:up!<CR>:call JavaCompile()<CR>
+  autocmd FileType java inoremap <buffer><F5> <ESC>:up!<CR>:call JavaCompile()<CR>
 
   " [Buffer-Local](http://learnvimscriptthehardway.stevelosh.com/chapters/11.html)
   " tmux run script (Split screen to show result)
@@ -116,6 +124,7 @@ augroup YSAutoCommands
   au FileType javascript nnoremap <buffer><leader>tx :up!<CR>:call VimuxRunCommand("node ".expand('%:p')."\n")<CR>
   au FileType coffee nnoremap <buffer><leader>tx :up!<CR>:call VimuxRunCommand("coffee ".expand('%:p')."\n")<CR>
   au FileType rust nnoremap <buffer><leader>tx :up!<CR>:call VimuxRunCommand("clear && rustc ".expand('%:t')." && ./".expand('%:r')."\n")<CR>
+  au FileType java nnoremap <buffer><leader>tx :up!<CR>:call VimuxRunCommand("clear && javac ".expand('%:t')." && java ".expand('%:t:r')."\n")<CR>
 
   " Leave paste mode on exit
   au InsertLeave * set nopaste
