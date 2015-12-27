@@ -12,6 +12,6 @@ let g:syntastic_mode_map = { 'mode': 'active',
 let g:syntastic_html_checkers = ['handlebars']
 
 " Hat tip http://git.io/SPIBfg
-let g:syntastic_error_symbol = '✗'
-let g:syntastic_warning_symbol = '⚠'
-let g:syntastic_full_redraws = 1
+" let g:syntastic_error_symbol = '✗'
+" let g:syntastic_warning_symbol = '⚠'
+" let g:syntastic_full_redraws = 1
