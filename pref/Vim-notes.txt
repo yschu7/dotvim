@@ -1537,6 +1537,25 @@ for the {pattern}.   遞迴搜尋符合樣式(若未指定目錄，預設爲當�
 * CD : 將tree root改到CWD(tree root就是NERDTree顯示的根目錄)
 * C  : 將tree root改到選擇的目錄
 
+在檔案目錄間的移動操作
+* j  : 往下一個檔案，J : 跳到最後一個檔案
+* k  : 往下上個檔案，K : 跳到第一個檔案
+* p  : 往上一個目錄，P : 跳到根目錄(tree root)
+
+目錄操作
+* o  : 開啓/關閉目錄toggle
+* O  : 開啓目錄，包含以下所有子目錄
+* x  : 關閉上層父目錄(當前目錄使用o)
+* X  : 關閉所有子目錄
+* e  : 在主視窗中操作NERDTree
+
+書籤操作(顯示在視窗最上方，如同快捷路徑)
+* B  : Bookmark on/off toggle 啓動/關閉
+:Bookmark [<name>]
+:OpenBookmark <name>
+:ClearAllBookmarks
+:ClearBookmarks <names...>
+
 :h NERD_tree
 ```
 <!--- }}} -->
