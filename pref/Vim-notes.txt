@@ -1,4 +1,4 @@
-*Vim-notes.txt*        Y.S. Chu's Vim Notes v 1.9
+*Vim-notes.txt*        Y.S. Chu's Vim Notes v 2.0
 ```
       __           _                 __      _
 /\_/\/ _\   /\   /(_)_ __ ___     /\ \ \___ | |_ ___  ___
@@ -1526,9 +1526,16 @@ for the {pattern}.   遞迴搜尋符合樣式(若未指定目錄，預設爲當�
 * <leader>nn : NERDTree Toggle
 * <leader>nf : NERDTreeFind (在NERDTree中顯示目前編輯檔案)
 
-* ?  : help
+* ?  : help toggle
 * q  : quit
 * I  : hidden files toggle
+* o  : 開啓選擇檔案/目錄(同Enter)
+* go : 開啓選擇檔案，但是游標還在NERDTree視窗(不要在目錄上操作)
+* m  : 開啓子選單操作檔案：新增a、刪除d、更名m、以系統預設程式開啓o、複製c
+* u  : 往上一層目錄(在tree root也可以使用)
+* cd : 將選擇目錄作爲CWD, 使用:pwd可以驗證
+* CD : 將tree root改到CWD(tree root就是NERDTree顯示的根目錄)
+* C  : 將tree root改到選擇的目錄
 
 :h NERD_tree
 ```
