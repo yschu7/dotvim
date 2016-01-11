@@ -7,6 +7,9 @@
 " ---------------
 set background=dark
 colorscheme jellybeans
+"https://github.com/kristijanhusak/vim-hybrid-material
+colorscheme hybrid_material
+
 " Force 256 color mode if available or Unix like systems
 if $TERM =~ "-256color" || has('unix')
    set t_Co=256
