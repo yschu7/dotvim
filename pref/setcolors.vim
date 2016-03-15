@@ -144,7 +144,7 @@ command! -nargs=* ChgColor call <SID>ChangeColor('<args>')
 
 " Change Airline Colorscheme
 function! s:ChangeAirColor(args)
-  let paths = split(globpath(&runtimepath, 'bundle/vim-airline/autoload/airline/themes/*.vim'), "\n")
+  let paths = split(globpath(&runtimepath, 'bundle/vim-airline-themes/autoload/airline/themes/*.vim'), "\n")
   let s:cols = map(paths, 'fnamemodify(v:val, ":t:r")')
   echo 'Current color scheme names:'
   let i = 0
