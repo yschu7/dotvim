@@ -74,11 +74,17 @@ Cheat Sheet                                                 *CheatSheet*
         + $ git push -u origin master
     2. 在其他電腦的同步
         + $ git pull origin
-    3. 初次安裝步驟
+    3. 修改後，放棄
+        + 已經使用git add (stage)的檔案：git reset
+        + 還原所有未commit的檔案：git checkout . (要在root repo目錄下)
+        + 還原單一目錄、檔案：git checkout [dir|file]
+    4. vim plugins初次安裝步驟
         + git clone git@github.com:yschu7/dotvim.git ~/.vim
         + cd .vim
         + git clone http://github.com/gmarik/vundle.git bundle/vundle
         + vim +PluginInstall +qall
+        單獨更新某一Plugin
+        + vim '+PluginUpdate vim-airline' +qall
 
 <!--- }}} -->
 
@@ -1571,9 +1577,7 @@ for the {pattern}.   遞迴搜尋符合樣式(若未指定目錄，預設爲當�
 
 * [theme screenshots](https://github.com/bling/vim-airline/wiki/Screenshots)
 
-* ~/.vim/bundle/vim-airline/autoload/airline/themes/*.vim
-* luna, wombat, molokai, jellybeans, laederon, ubaryd, tomorrow, base16, sol
-* simple, murmur, bubblegum, powerlineish, badwolf, dark, light
+* ~/.vim/bundle/vim-airline-themes/autoload/airline/themes/*.vim
 
 ```
 ~/.vim/vundle_plugins/vim-airline.vim
