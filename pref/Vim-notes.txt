@@ -1,4 +1,4 @@
-*Vim-notes.txt*        Y.S. Chu's Vim Notes v 2.1
+*Vim-notes.txt*        Y.S. Chu's Vim Notes v 2.2
 ```
       __           _                 __      _
 /\_/\/ _\   /\   /(_)_ __ ___     /\ \ \___ | |_ ___  ___
@@ -60,6 +60,7 @@ Cheat Sheet                                                 *CheatSheet*
 * [Vim subreddit](http://reddit.com/r/vim)
 * [Learn Vimscript the Hard Way](http://learnvimscriptthehardway.stevelosh.com/)
 * [Learn Vimscript中文版](http://learnvimscriptthehardway.onefloweroneworld.com/)
+* [Help Web version](http://blog.xuite.net/yschu/wretch/313272957)
 
 * ,h  開啟本檔  F2 :bd :close 關閉
 * ,v  開啓 ~/.vimrc  ,vs  開啓 ~/.vim/yscust.vim
@@ -1636,6 +1637,38 @@ for the {pattern}.   遞迴搜尋符合樣式(若未指定目錄，預設爲當�
 ~/.vim/vundle_plugins/emmet-vim.vim
 
 * <Ctrl> y : 展開
+
+#  id
+.  class
+[attr]  custom attributes
+*3 multiply 3 times
+>  child element
++  sibling element
+$  number
+$$ leading zero 
+
+Examples: 
+開啓html檔案，複製範例，將遊標移動每列最後一個字元，按Ctrl-Y觀看結果
+
+div
+div#header
+div[title]
+a[title="hello world" rel]
+div#header.some.classes+ul>li*3
+dl*2>dt+dd
+ul>li#item-$*5>a
+div.item$-$-content*6
+div.item$$$*3>a
+ul#nav>li*5>a
+
+div#for-ie>cc:ie6
+head>link+script:src
+
+div#header>ul#navigation>li.item$*5>a
+
+div#content>div.section
+#content>.section
+p>{Click }+a{here}+{ to continue}
 ```
 <!--- }}} -->
 
