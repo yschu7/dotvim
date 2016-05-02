@@ -39,8 +39,9 @@ augroup YSAutoCommands
   " Clear the auto command group so we don't define it multiple times
   autocmd!
 
-  " make the .pls files plsql files
-  au BufNewFile,BufRead *.pls setlocal filetype=plsql
+  " make the following files plsql files
+  au BufNewFile,BufRead *.fun,*.pks,*.pkb,*.sql,*.pls,*.plsql setlocal filetype=plsql
+  au FileType plsql runtime! indent.vim
 
   " Enter selects subject
   au FileType help nnoremap <buffer><cr> <c-]>
