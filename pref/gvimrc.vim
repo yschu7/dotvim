@@ -10,14 +10,15 @@ if has('mac')                     " Font family and font size.
 elseif has('win32')
   set guifont=Monaco:h12
 else
-  set guifont=YaHei\ Consolas\ Hybrid\ 13
+  "set guifont=YaHei\ Consolas\ Hybrid\ 13
+  set guifont=Inconsolata-dz\ for\ Powerline\ Medium\ 12
 endif
 
 set antialias                    " MacVim: smooth fonts.
 set encoding=utf-8               " Use UTF-8 everywhere.
 "set guioptions-=T                " Hide toolbar.
 set background=light             " Background.
-set lines=32 columns=90          " Window dimensions.
+set lines=40 columns=120          " Window dimensions.
 set guioptions-=r                " Don't show right scrollbar
 
 "colorscheme vividchalk
