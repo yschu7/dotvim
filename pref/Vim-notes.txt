@@ -108,6 +108,7 @@ w       Forward one word       3w    Forward 3 words
 cw      Change word            3cw   Change 3 words
 
 12G     Go to line 12
+12gg    Go to line 12
 G       Go to the end of the file
 gg      Go to the top of the file
 ```
@@ -732,7 +733,7 @@ Text Objects                                                *TextObjects*
 operator          extent          object
 --------    ------------------  ----------
 c)hange     a)round delimiters  w)ord
-d)elete     i)nner object       W)ord
+d)elete     i)nner object       W)ORD delimited with space
 y)ank                           s)entence
 v)isual                         p)aragraph
 gU)uppercase                    t)ag

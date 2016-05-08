@@ -21,8 +21,8 @@ if has("autocmd")
           \ endif
 
     " Fix trailing whitespace in my most used programming langauges
-    autocmd BufWritePre *.py,*.coffee,*.rb,*.erb,*.swift,*.scss,*.vim,Cakefile,
-          \*.hbs
+    autocmd BufWritePre *.py,*.coffee,*.rb,*.erb,*.swift,*.scss,*.vim,
+          \*.php,*.js,*.sql,*.plsql,*.c,*.cpp
           \ silent! :StripTrailingWhiteSpace
 
     " Help mode bindings
