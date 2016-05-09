@@ -1,3 +1,4 @@
+" https://github.com/Shougo/unite.vim
 if exists('g:vundle_installing_plugins')
   Plugin 'Shougo/unite.vim'
   Plugin 'Shougo/neomru.vim'
@@ -20,8 +21,7 @@ nnoremap <silent> [unite]d :<C-U>Unite -profile-name=mru directory_mru<CR>
 nnoremap <silent> [unite]p :<C-U>Unite -buffer-name=registers -start-insert register<CR>
 xnoremap <silent> [unite]p "_d:<C-U>Unite -buffer-name=register register<CR>
 nnoremap <silent> [unite]b :<C-U>Unite bookmark<CR>
-" TODO use vim-tabline
-nnoremap <silent> [unite]g :<C-U>Unite -start-insert tab<CR>
+nnoremap <silent> [unite]t :<C-U>Unite -start-insert tab<CR>
 nnoremap <silent> [unite]j :<C-U>Unite jump<CR>
 nnoremap <silent> [unite]c :<C-U>Unite change<CR>
 
@@ -35,12 +35,43 @@ let g:unite_source_file_rec_max_depth = 5
 
 let g:unite_enable_ignore_case = 1
 let g:unite_enable_smart_case = 1
-let g:unite_source_history_yank_enable = 1
-let g:unite_source_history_yank_limit = 40
 
-let s:rtp = "~/.vim"
-let g:unite_data_directory = expand(s:rtp . '/.unite/')
-let g:unite_source_session_path = expand('~/.vim/session/')
+let g:unite_data_directory = g:dotvim_dir . '/.unite/'
+let g:unite_source_session_path = g:dotvim_dir . '/session/'
+
+function! s:unite_settings()
+  nmap <buffer> <C-J> <Plug>(unite_loop_cursor_down)10j
+  nmap <buffer> <C-K> <Plug>(unite_loop_cursor_up)10k
+  imap <buffer> <C-J> <Plug>(unite_insert_leave)<C-J>
+  imap <buffer> <C-K> <Plug>(unite_insert_leave)<C-K>
+  nmap <buffer> <F5> <Plug>(unite_redraw)
+  imap <buffer> <F5> <Plug>(unite_redraw)
+  nmap <buffer> <C-U> <Plug>(unite_append_end)<Plug>(unite_delete_backward_line)
+  nmap <buffer> <LocalLeader>q <Plug>(unite_exit)
+  imap <buffer> <LocalLeader>q <Plug>(unite_exit)
+  nmap <buffer> <LocalLeader>Q <Plug>(unite_all_exit)
+  imap <buffer> <LocalLeader>Q <C-\><C-N><Plug>(unite_all_exit)
+
+  imap <buffer> <LocalLeader><BS> <Plug>(unite_delete_backward_path)
+  imap <buffer> ; <Plug>(unite_delete_backward_word)
+  inoremap <buffer><expr> <LocalLeader>/ unite#do_action('narrow')
+
+  let unite = unite#get_current_unite()
+  if index(unite.source_names, 'file') > -1 || index(unite.source_names, 'file_mru') > -1
+    nnoremap <silent><buffer><expr> <LocalLeader><CR> unite#do_action('open')
+    inoremap <silent><buffer><expr> <LocalLeader><CR> unite#do_action('open')
+  endif
+  if index(unite.source_names, 'file_rec') > -1
+    imap <buffer> <LocalLeader>. <Plug>(unite_redraw)
+  else
+    inoremap <buffer> <LocalLeader>.  **/
+  endif
+endfunction
+
+augroup unite_augrp
+  autocmd!
+  autocmd FileType unite call s:unite_settings()
+augroup END
 
 call unite#custom_source('file,buffer,file_rec', 'matchers', 'matcher_fuzzy')
 

@@ -2,6 +2,8 @@
 " Platform Specific Configuration
 " ----------------------------------------
 
+let g:dotvim_dir = expand("$HOME") . '/.vim'
+
 if has('win32') || has('win64')
   " Windows
   source $VIMRUNTIME/mswin.vim
@@ -18,6 +20,7 @@ if has('win32') || has('win64')
 
   " Windows has a nasty habit of launching gVim in the wrong working directory
   cd ~
+  let g:dotvim_dir = expand("$HOME") . '\vimfiles'
 elseif has('gui_macvim')
   " MacVim
 

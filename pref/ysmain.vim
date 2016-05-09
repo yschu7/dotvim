@@ -1,6 +1,6 @@
 " Source file
 func! Source_file(dirname, fname)
-  let fn = expand("$HOME") . a:dirname . a:fname
+  let fn = a:dirname . a:fname
   execute ':source ' . fn
 endf
 

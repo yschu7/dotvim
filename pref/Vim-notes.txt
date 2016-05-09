@@ -1,4 +1,4 @@
-*Vim-notes.txt*        Y.S. Chu's Vim Notes v 2.2
+*Vim-notes.txt*        Y.S. Chu's Vim Notes v 2.3
 ```
       __           _                 __      _
 /\_/\/ _\   /\   /(_)_ __ ___     /\ \ \___ | |_ ___  ___
@@ -369,7 +369,7 @@ gf                Jump to file under cursor (goto file)
 
 檔案處理相關可以用的Plugins
 Visual  : NERDTree, Project (included within rails.vim)
-Text    : FuzzyFinder, CtrlP
+Text    : FuzzyFinder, CtrlP, Unite
 
 ```
 <!--- }}} -->
@@ -877,6 +877,7 @@ i   Ignore case
 I   Case-sensitive
 n   Show number of matches(non-destructive)
 p   print matching lines
+g   Replace all occurrences in the line
 
 :%s/abc/def/    (A leading percent search all lines in the current buffer)
 
@@ -887,6 +888,10 @@ p   print matching lines
 
 :%s/^\s\{8}\zs-/#/ (保留前面8個空白，將第9個字元-改為#)
                    (\zs anything, sets start of match)
+:%s/[^ ]\zs(/ (/   (在左括號的前面插入一個空白)
+                   ([^ ]限制左括號前必須是非空白字元，\zs限制了此字元不含在內)
+:%s/)\ze,/) /      (將空白插入右括號和逗號之間)
+                   (\ze anything, sets end of match)
 
 第一個//若省略，代表尋找的pattern為最後一次的s或g命令的pattern
 第二個//若省略，代表空，也就是刪除所尋找到的pattern
@@ -901,6 +906,8 @@ p   print matching lines
 Search by hex code: e.g.: escape
 1. /, 2. \%x1B
 1. /, 2. <Ctrl-V>,<ESC>,<Enter>
+
+:help :s or help :su
 ```
 <!--- }}} -->
 
@@ -961,6 +968,8 @@ normal {command}  execute extended sequence
 :g/no1/;/no2/-1d      (將/no1/,/no2/-1之間的內容刪除)
 
 若要尋找與執行:g的相反(不符合配對)，可以使用:v或:g!
+
+:help :g or :help :v
 ```
 <!--- }}} -->
 
@@ -1717,6 +1726,35 @@ visual mode … cp : select with visual mode then copy to system clipboard
 ```
 <!--- }}} -->
 
+<!--- unite.vim {{{ -->
+###[unite.vim](https://github.com/Shougo/unite.vim)
+```
+~/.vim/vundle_plugins/unite.vim
+
+:Unite file buffer
+:Unite fire_rec
+
+* <Leader> ff : file
+* <Leader> fF : file_rec
+* <Leader> fr : file_mru
+* <Leader> fd : directory_mru
+* <Leader> fp : registers
+* <Leader> fb : bookmark
+
+操作指令：
+* q : 離開（normal mode）
+* \q : 離開(上一層)
+* \Q : 離開(全部)
+* ; : 刪除前面的1個字（輸入錯誤時更正用）
+* Space：選擇遊標所在的檔案
+* TAB：對所選擇的檔案操作（action）
+* a：同TAB (action)
+* Enter：將檔案開啓
+* Ctrl-j：進入normal mode，向下10列
+* Ctrl-k：進入normal mode，向上10列
+```
+<!--- }}} -->
+
 <!--- Misc {{{ -->
 Misc                                                        *Misc*
 ====
@@ -1737,10 +1775,19 @@ Misc                                                        *Misc*
                 viw<leader>g, <leader>gi( , <leader>gt;
 * <leader> q  : QuickFix視窗切換鍵(Toggle)
 
-* Argument Lists
+* Argument Lists：相當於從vim指令傳入的參數列，在vim中也可以調整它
     * :args `find lib spec -name '*.rb'`    puts results into argument lists
     * :args                                 show argument lists
     * :argdo :%s/Math/MyMath/ge | update    search & replace for each file in..
+             argdo：對所有arg list內的檔案，執行同一組:ex指令
+             選項：e不顯示錯誤訊息，對於多檔案的取代動作，這是個好選擇
+             這裏最後的update指令，會更新所有arg list的檔案
+    * :silent argdo edit!      將所有檔案回復到最後一次存檔的狀態(改正錯誤用)
+    * :argdo update            更新儲存所有arg list的檔案(有改變的)
+
+    * :bufdo 與argdo不同的是對所有的buffer動作，它可能是arg list的超集合
+             新增加或修改的檔案，只在buffer list中，而不會在arg list內
+    * :ls    顯示目前的buffer list
 
 ```
 

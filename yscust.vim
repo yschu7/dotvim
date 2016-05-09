@@ -73,6 +73,8 @@ augroup YSAutoCommands
   autocmd FileType swift  setlocal foldmethod=indent shiftwidth=4 tabstop=4 softtabstop=4
   autocmd FileType java   setlocal foldmethod=indent shiftwidth=4 tabstop=4 softtabstop=4
 
+  au FileType ruby,python,java,swift,c,javascript,php,rust,sh,vim,go set matchpairs-=<:>
+
   " automatically give executable permissions if file begins with #! and
   " contains '/bin/' in the path (replaced by vim-eunuch)
   fun! AfterWrite()
@@ -176,12 +178,12 @@ noremap <silent> <leader>ia :ChgAirColor<CR>
 " Source file : ysmain.vim {{{
 " ~/.vim/pref/ysmain.vim
 " ============================
-let g:w32_dir = '\vimfiles\pref\'
-let g:lnx_dir = '/.vim/pref/'
-if has('win32')
-  let fn = expand("$HOME") . w32_dir . 'ysmain.vim'
+let g:w32_dir = g:dotvim_dir . '\pref\'
+let g:lnx_dir = g:dotvim_dir . '/pref/'
+if has('win32') || has('win64')
+  let fn = w32_dir . 'ysmain.vim'
 else
-  let fn = expand("$HOME") . lnx_dir . 'ysmain.vim'
+  let fn = lnx_dir . 'ysmain.vim'
 endif
 execute ':source ' . fn
 " }}}
