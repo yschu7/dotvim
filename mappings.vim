@@ -96,6 +96,8 @@ nnoremap <silent> gp :wincmd p<CR>
 nnoremap <silent> g= :wincmd =<CR>
 " Swap Windows
 nnoremap <silent> gx :wincmd x<CR>
+" Close Window
+nnoremap <silent> gz :close!<CR>
 
 " ---------------
 " Modifer Mappings
@@ -197,8 +199,8 @@ nnoremap + <C-W>+
 nnoremap <TAB> <C-W>>
 nnoremap <s-TAB> <C-W><
 
-" Toggle spelling mode with ,s
-nnoremap <silent> <leader>s :set spell!<CR>
+" Toggle spelling mode with ,e
+nnoremap <silent> <leader>e :set spell!<CR>
 
 " Quickly switch to last buffer
 nnoremap <leader>, :e#<CR>
