@@ -73,7 +73,8 @@ augroup YSAutoCommands
   autocmd FileType swift  setlocal foldmethod=indent shiftwidth=4 tabstop=4 softtabstop=4
   autocmd FileType java   setlocal foldmethod=indent shiftwidth=4 tabstop=4 softtabstop=4
 
-  au FileType ruby,python,java,swift,c,javascript,php,rust,sh,vim,go set matchpairs-=<:>
+  au FileType ruby,python,java,swift,javascript,php,rust,sh,vim,go setlocal matchpairs-=<:>
+  au FileType c,cpp,plsql,coffee setlocal matchpairs-=<:>
 
   " automatically give executable permissions if file begins with #! and
   " contains '/bin/' in the path (replaced by vim-eunuch)
