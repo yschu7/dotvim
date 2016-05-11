@@ -2,6 +2,10 @@
 /sessions
 .DS_Store
 /.netrwhist
+/.undo
+/.tmp
+/.backup
+/.unite
 /spell
 /vundle_plugins/custom
 /shada/*

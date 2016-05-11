@@ -156,9 +156,9 @@ nnoremap <silent> <C-N> :silent noh<CR>
 nnoremap <silent> <BS> :nohlsearch<CR>
 
 " list and select buffer
-nnoremap <leader>l :ls<CR>:b
-nnoremap <leader>d :bd<CR>
-nnoremap <leader>w :w<CR>
+nnoremap <silent> <leader>l :ls<CR>:b
+nnoremap <silent> <leader>d :bd<CR>
+" nnoremap <leader>w :w<CR>
 
 " Actions after helpgrep
 " nnoremap <leader>cn :cnext<CR>
