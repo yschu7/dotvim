@@ -79,13 +79,19 @@ Cheat Sheet                                                 *CheatSheet*
         + 已經使用git add (stage)的檔案：git reset
         + 還原所有未commit的檔案：git checkout . (要在root repo目錄下)
         + 還原單一目錄、檔案：git checkout [dir|file]
-    4. vim plugins初次安裝步驟
+
+* vim plugin的安裝與維護：
+    1. vim plugins初次安裝步驟
         + git clone git@github.com:yschu7/dotvim.git ~/.vim
         + cd .vim
         + git clone http://github.com/gmarik/vundle.git bundle/vundle
         + vim +PluginInstall +qall
+    2. 更新plugins
         單獨更新某一Plugin
         + vim '+PluginUpdate vim-airline' +qall
+        + 在vim中按快捷鍵：
+          * <leader> pi : plugin install
+          * <leader> pu : plugin update
 
 <!--- }}} -->
 
@@ -378,12 +384,12 @@ Text    : FuzzyFinder, CtrlP, Unite
 ### Window :  A rectangular view of a buffer.               *Window*
 * Ctrl-w s    Split window horizontally (:split or :sp)
 * Ctrl-w v    Split window vertically (:vsplit or :vsp)
-* Ctrl-w c    Close window (:q or ZZ)
+* Ctrl-w c    Close window (:close)
 
 ### Window split
 
 ```
-:[N] split +cmd file
+:[N] split [+cmd] file
     N     the size of the new window in lines (default is half of window)
     +cmd  an initial command
     file  the name of the file to edit(default is current file)
@@ -697,7 +703,7 @@ yy  (copy a line, also Y)
 5J  (join 5 lines - will remove indent space)
 gJ  (join line without removing space)
 
-左右移動靠齊（以tab爲單位）
+左右移動靠齊（以swiftwidth爲單位）
        3<<            <shift>            3>>
 (shift left 3 times;            shift right 3 times)
 
@@ -705,9 +711,20 @@ gJ  (join line without removing space)
 (在插入模式下移動，shift operation in insert mode)
 
 :set tabstop=4          (:set ts=4)
+                        預設值=8，改變此值，檔案中的tab會跟着改變，有時會影響到
+                        既有的檔案
 :set shiftwidth=4       (:set sw=4)
+                        左右靠齊動作時，依據此設定刪除/插入空白字數
 :set expandtab          (use spaces in instead of tabs)
+                        將tab展開爲空白，好處是檔案以後不會受到ts改變的影響
 :set softtabstop=4      (:set sts=4)
+                        在insert mode下，按一個tab所插入的空白字數
+
+shiftwidth=2    The number of spaces inserted when reindent operators or
+                automatic indentation are used.
+softtabstop=2   The number of spaces inserted when TAB is hit.
+
+:retab          Replace all tabs with spaces in the current buffer.
 
 :set textwidth=65       (輸入到第65 column就會自動換列-自動插入換列符號)
 
@@ -1113,12 +1130,6 @@ zx    Close All except current cursor
 
 zk, zj 為依據程式摺疊的情況來往上、往下移動游標
 
-Spacing Out
-shiftwidth=2    The number of spaces inserted when reindent operators or
-                automatic indentation are used.
-softtabstop=2   The number of spaces inserted when TAB is hit.
-:retab          Replace all tabs with spaces in the current buffer.
-
 :set foldcolumn=1  fdc: display fold symbol at beginning of the line
 
 autocmd FileType ruby setlocal foldmethod=syntax
@@ -1163,6 +1174,7 @@ Ctrl-x Ctrl-l  whole line completion(整列模式)
    ----->
 Vim | filter | Vim  (將資料傳入過濾器處理後，再接回來。)
           ----->
+:1,$!nl -w3 -nrz -ba  寫入行號：寬度3、前補零、全部編號（空白列也要）
 
 四種指定整個buffer內容範圍的方法
 Four ways to run the uniq filter on an entire buffer.
@@ -1390,6 +1402,9 @@ silent! call pathogen#helptags()
     * 目錄.vim/bundle爲此更新的目標目錄，不在git的控管範圍
 * 更新單一Plugin : vim-markdown
     * > vim +'PluginUpdate vim-markdown' +qall
+* 在vim之中使用快捷鍵：
+    * <leader> pi : install
+    * <leader> pu : update
 ```
 <!--- }}} -->
 
