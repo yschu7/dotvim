@@ -96,7 +96,7 @@ nnoremap <silent> gp :wincmd p<CR>
 nnoremap <silent> g= :wincmd =<CR>
 " Swap Windows
 nnoremap <silent> gx :wincmd x<CR>
-" Close Window
+" Close Window or F2 defined in ~/.vim/yscust.vim
 nnoremap <silent> gz :close!<CR>
 
 " ---------------
@@ -198,9 +198,6 @@ nnoremap + <C-W>+
 " and for vsplits with <TAB> and Shift<TAB>
 nnoremap <TAB> <C-W>>
 nnoremap <s-TAB> <C-W><
-
-" Toggle spelling mode with ,e
-nnoremap <silent> <leader>e :set spell!<CR>
 
 " Quickly switch to last buffer
 nnoremap <leader>, :e#<CR>

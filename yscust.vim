@@ -48,11 +48,6 @@ augroup YSAutoCommands
   " ESC to go back
   au FileType help nnoremap <buffer><ESC> <C-T>
 
-  " for markdown -- insert 4 spaces to the end of line (is: insert spaces)
-  au FileType markdown nnoremap <buffer><silent><leader>is A<Space><Space><Space><Space><ESC>
-
-  au FileType markdown setlocal foldmethod=marker tabstop=4 shiftwidth=4 softtabstop=4 nospell
-
   " If we're editing a .txt file then skip line numbers
   autocmd BufRead,BufNewFile *.txt setlocal nonu
 
@@ -72,6 +67,8 @@ augroup YSAutoCommands
   autocmd FileType python setlocal foldmethod=indent shiftwidth=4 tabstop=4 softtabstop=4
   autocmd FileType swift  setlocal foldmethod=indent shiftwidth=4 tabstop=4 softtabstop=4
   autocmd FileType java   setlocal foldmethod=indent shiftwidth=4 tabstop=4 softtabstop=4
+
+  au FileType markdown setlocal foldmethod=marker tabstop=4 shiftwidth=4 softtabstop=4 nospell
 
   au FileType ruby,python,java,swift,javascript,php,rust,sh,vim,go setlocal matchpairs-=<:>
   au FileType c,cpp,plsql,coffee setlocal matchpairs-=<:>
