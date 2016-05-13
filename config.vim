@@ -36,7 +36,7 @@ set path=~/ruby/**,.,~/.rvm/rubies/default/lib/ruby/**
 " ---------------
 set ruler          " Ruler on
 set number         " Line numbers on
-set relativenumber " Relative Number on
+" set relativenumber " Relative Number on
 set nowrap         " Line wrapping off
 set laststatus=2   " Always show the statusline
 set cmdheight=2    " Make the command area two lines high
@@ -84,7 +84,7 @@ set switchbuf=useopen  " Switch to an existing buffer if one exists
 " ---------------
 set tabstop=2
 set backspace=indent,eol,start " Delete everything with backspace
-set shiftwidth=2 " Tabs under smart indent
+set shiftwidth=2      " tab under insert mode : 2 spaces
 set shiftround
 set cindent
 set autoindent
@@ -95,7 +95,7 @@ set expandtab
 " Searching
 " ---------------
 set ignorecase " Case insensitive search
-set smartcase  " Non-case sensitive search
+set smartcase  " Non-case sensitive search if only input lowercase
 set incsearch  " Incremental search
 set hlsearch   " Highlight search results
 set wildignore+=*.o,*.obj,*.exe,*.so,*.dll,*.pyc,.svn,.hg,.bzr,.git,
@@ -115,8 +115,7 @@ endtry
 " ---------------
 set showmatch   " Show matching brackets.
 set matchtime=2 " How many tenths of a second to blink
-" Show invisible characters
-set list
+set list        " Show invisible characters
 
 " Show trailing spaces as dots and carrots for extended lines.
 " From Janus, http://git.io/PLbAlw

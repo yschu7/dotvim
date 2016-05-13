@@ -61,6 +61,8 @@ Cheat Sheet                                                 *CheatSheet*
 * [Learn Vimscript the Hard Way](http://learnvimscriptthehardway.stevelosh.com/)
 * [Learn Vimscript中文版](http://learnvimscriptthehardway.onefloweroneworld.com/)
 * [Help Web version](http://blog.xuite.net/yschu/wretch/313272957)
+* [Vim Videos](http://derekwyatt.org/vim/tutorials/)
+* [Nettuts+ Vim](http://net.tutsplus.com/articles/web-roundups/25-vim-tutorials-screencasts-and-resources)
 
 * ,h  開啟本檔  F2 :bd :close 關閉
 * ,v  開啓 ~/.vimrc  ,vs  開啓 ~/.vim/yscust.vim
@@ -705,7 +707,9 @@ gJ  (join line without removing space)
 
 左右移動靠齊（以swiftwidth爲單位）
        3<<            <shift>            3>>
-(shift left 3 times;            shift right 3 times)
+                       3==
+(shift left 3 times;  auto indent;     shift right 3 times)
+            自動靠齊（遊標含以下3列，自動對齊到適合的位置）
 
        Ctrl-d         <shift>            Ctrl-t
 (在插入模式下移動，shift operation in insert mode)
