@@ -7,4 +7,5 @@ endif
 " https://github.com/morhetz/gruvbox/wiki/Terminal-specific
 if has('gui_gnome')
   let g:gruvbox_italic=1
+  set background=dark
 endif

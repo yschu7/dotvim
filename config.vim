@@ -6,9 +6,10 @@
 " Color
 " ---------------
 set background=dark
-colorscheme jellybeans
+"colorscheme jellybeans
 "https://github.com/kristijanhusak/vim-hybrid-material
-colorscheme hybrid_material
+"colorscheme hybrid_material
+colorscheme gruvbox
 
 " Force 256 color mode if available or Unix like systems
 if $TERM =~ "-256color" || has('unix')
