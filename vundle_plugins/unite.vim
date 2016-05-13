@@ -13,14 +13,15 @@ xmap <Leader>f [unite]
 imap <Leader>f <C-\><C-N>[unite]
 imap <Leader>c <Plug>(neocomplcache_start_unite_complete)
 
-nnoremap [unite]S :<C-U>Unite source<CR>
+nnoremap <silent> [unite]S :<C-U>Unite source<CR>
 nnoremap <silent> [unite]f :<C-U>UniteWithBufferDir -buffer-name=files file<CR>
 nnoremap <silent> [unite]F :<C-U>UniteWithBufferDir -buffer-name=files file_rec<CR>
 nnoremap <silent> [unite]r :<C-U>Unite -profile-name=mru file_mru<CR>
 nnoremap <silent> [unite]d :<C-U>Unite -profile-name=mru directory_mru<CR>
 nnoremap <silent> [unite]p :<C-U>Unite -buffer-name=registers -start-insert register<CR>
-xnoremap <silent> [unite]p "_d:<C-U>Unite -buffer-name=register register<CR>
-nnoremap <silent> [unite]b :<C-U>Unite bookmark<CR>
+xnoremap <silent> [unite]p "_d:<C-U>Unite -buffer-name=register <CR>
+" nnoremap <silent> [unite]b :<C-U>Unite bookmark<CR>
+nnoremap <silent> [unite]b :<C-U>Unite buffer<CR>
 nnoremap <silent> [unite]t :<C-U>Unite -start-insert tab<CR>
 nnoremap <silent> [unite]j :<C-U>Unite jump<CR>
 nnoremap <silent> [unite]c :<C-U>Unite change<CR>
