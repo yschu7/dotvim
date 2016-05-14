@@ -1115,7 +1115,7 @@ in insert mode, type ff<SPACE> or <ESC>
 ### Folding                                                 *Folding*
 
 ```
-:set foldmethod= or fdm=
+:set foldmethod=manual or fdm=manual
 indent    Use spaces or tabs to find foldable blocks
 syntax    Fold on language features(methods, classes)
 marker    Fold on textual marks
@@ -1123,23 +1123,31 @@ diff      Fold unchanged text
 expr      Custom, code-driven folding
 manual    Select ranges to fold
 
-                  zk
-                  UP
-zM        zc    <Fold>  za      zo    zR
-All(Most) Close   zj    Toggle  Open  All(Reduce)
-                  Down
+                              zk
+                              Up
+zM   zm    zC         zc    <Fold>  zo    zO         zr      zR
+Max  More  Recursive  Close   zj    Open  Recursive  Reduce  Zero
+                             Down
 
-zi    Toggle All
+o/O   開啓當前的fold(O:遞迴)
+c/C   關閉當前的fold(C:遞迴)
+r/R   讓foldlevel減一(R:減爲零，unfold everything)
+m/M   讓foldlevel加一(M:加到最大，fold everything)
+
+za    Toggle當前的fold
+zi    Toggle value of 'foldenable' (invert)
 zx    Close All except current cursor
 
 zk, zj 為依據程式摺疊的情況來往上、往下移動游標
 
 :set foldcolumn=1  fdc: display fold symbol at beginning of the line
 
+:set foldlevelstart=1  fdls: set foldlevel=1 when editing a buffer
+
 autocmd FileType ruby setlocal foldmethod=syntax
 autocmd FileType css setlocal foldmethod=indent sw=2 ts=2
 
-:set foldmarker   fmr: to get or set the fold marker
+:set foldmarker   fmr: to get or set the fold marker 預設值{{{,}}}
 ```
 <!--- }}} -->
 
@@ -1220,15 +1228,16 @@ p 與 P      (將暫存器內容放到游標所在之後/前，若內容為整�
 y, yy 與 Y  (複製/複製一整列/複製到列尾)
 :nmap Y y$  原來的Y命令就是yy，以此改變與C,D行為相同
 
-Yank registers 複製到暫存器
+Yank registers 複製資料到暫存器
 "ayy        (將當前列複製到暫存器a)
     "a      (use register a，使用暫存器命令"，後可接暫存器名稱)
     yy      (yank current line)
 "ap         (paste from register a)
 
 ""          (The unnamed register, contains the last deleted text)
+            "" 預設暫存器"會存放最後一次刪除的資料
 "0p         (paste from zero register, contains of the last yank text)
-            "0暫存器0會存放最後一次Yank的資料
+            "0 暫存器0會存放最後一次Yank的資料
 :registers  (show contents of all registers, or use :display or :dis)
 "+          (System clipboard, "* on Mac/Win/Liunx; Ctrl-r * in Edit mode)
 
@@ -1236,6 +1245,7 @@ command-g   (search again with contents of search clipboard, Mac)
 
 expression register =
 <C-r>=      (Do back-of-the-envelope calculations in place:在insert mode下計算)
+            在不離開insert mode狀態下，計算一個算數運算結果，插入內容，繼續編輯
 
 Repeat command (@命令把暫存器的內容當成命令執行)
 @:
@@ -1771,6 +1781,21 @@ visual mode … cp : select with visual mode then copy to system clipboard
 * Enter：將檔案開啓
 * Ctrl-j：進入normal mode，向下10列
 * Ctrl-k：進入normal mode，向上10列
+```
+<!--- }}} -->
+
+<!--- base16.vim {{{ -->
+###[Base16.vim](https://github.com/chriskempson/base16-vim)
+```
+~/.vim/vundle_plugins/Base16.vim
+
+* iTerm2配合的[themes](https://github.com/chriskempson/base16-iterm2)
+
+* <leader> ic 選擇主題
+* :colorscheme base16-<TAB>
+* :set cursorline or nocursorline
+* :set bg=dark or bg=light
+
 ```
 <!--- }}} -->
 

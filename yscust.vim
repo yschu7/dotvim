@@ -1,6 +1,7 @@
 " =====================================================
 " Vim configuration.
 " To work with mutewinter dotvim environment
+" =====================================================
 " ~/.vim/config.vim       Regular Vim Configuration
 " =====================================================
 " Basic Settings  {{{
@@ -13,13 +14,9 @@ set visualbell               " No beeping.
 set nobackup                 " Don't make a backup before overwriting a file.
 set nowritebackup            " And again.
 
-set wrap                     " Turn on line wrapping.
-" Useful status information at bottom of screen
-"set statusline=[%n]\ %<%.99f\ %h%w%m%r%y[%{&ff},%{&fileencoding}][%b][0x%B]\ %=%-16(\ %l/%L[%p%%],%c\ %)
-set cursorline               " nocursorline (cul/nocul)
-set fencs=utf-8,big5,gbk,latin1
-" Only highlight the exceeding character at the margin (set colorcolumn=80)
+" Only highlight the exceeding character at the margin (colorcolumn=80)
 highlight ColorColumn ctermfg=magenta
+
 " }}}
 
 " ==================================

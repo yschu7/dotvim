@@ -35,18 +35,26 @@ set path=~/ruby/**,.,~/.rvm/rubies/default/lib/ruby/**
 " ---------------
 " UI
 " ---------------
-set ruler          " Ruler on
-set number         " Line numbers on
-" set relativenumber " Relative Number on
-set nowrap         " Line wrapping off
-set laststatus=2   " Always show the statusline
-set cmdheight=2    " Make the command area two lines high
+set ruler            " Ruler on
+set number           " Line numbers on
+" set relativenumber   " Relative Number on
+set wrap             " Line wrapping on
+set linebreak        " not break in the middle of the word
+let &showbreak='> '  " symbol to shwo where the linebreak is
+
+set cursorline       " nocursorline (cul/nocul)
+set laststatus=2     " Always show the statusline
+set cmdheight=2      " Make the command area two lines high
 set encoding=utf-8
-set noshowmode     " Don't show the mode since Powerline shows it
-set title          " Set the title of the window in the terminal to the file
+set fencs=utf-8,big5,gbk,latin1
+
+set noshowmode       " Don't show the mode since Powerline shows it
+set title            " Set the title of the window in the terminal to the file
+
 if exists('+colorcolumn')
   set colorcolumn=80 " Color the 80th column differently as a wrapping guide.
 endif
+
 " Disable tooltips for hovering keywords in Vim
 if exists('+ballooneval')
   " This doesn't seem to stop tooltips for Ruby files
