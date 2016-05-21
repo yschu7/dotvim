@@ -17,6 +17,8 @@ set nowritebackup            " And again.
 " Only highlight the exceeding character at the margin (colorcolumn=80)
 highlight ColorColumn ctermfg=magenta
 
+" https://medium.com/@ericclifford/neovim-item2-truecolor-awesome-70b975516849#.ea3digdv6
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 " }}}
 
 " ==================================
