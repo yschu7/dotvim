@@ -31,6 +31,7 @@ SearchReplace	Vim-notes.txt	/*SearchReplace*
 SetShowReset	Vim-notes.txt	/*SetShowReset*
 SpecialG	Vim-notes.txt	/*SpecialG*
 Substitute	Vim-notes.txt	/*Substitute*
+TabPage	Vim-notes.txt	/*TabPage*
 TextObjects	Vim-notes.txt	/*TextObjects*
 Vim-notes.txt	Vim-notes.txt	/*Vim-notes.txt*
 VimNotes	Vim-notes.txt	/*VimNotes*
