@@ -1855,6 +1855,18 @@ visual mode … cp : select with visual mode then copy to system clipboard
 ```
 <!--- }}} -->
 
+<!--- taglist.vim {{{ -->
+###[taglist.vim](https://github.com/yschu7/taglist.vim)
+```
+~/.vim/vundle_plugins/taglist.vim
+
+* 由vimscripts:[taglist.vim](http://vim.sourceforge.net/scripts/script.php?script_id=273)
+
+* F6: Tag list toggle
+
+```
+<!--- }}} -->
+
 <!--- Misc {{{ -->
 Misc                                                        *Misc*
 ====
@@ -1869,6 +1881,7 @@ Misc                                                        *Misc*
 * F2: Close current window
 * F3: Set paste & insert one line below
 * F4: Spell toggle
+* F6: Tag list toggle
 * <leader> /  : Clear search highlight, 或<Ctrl> n
 * <leader> m  : open in Markd
 * <leader> o  : 在瀏覽器內開啓目前遊標所在的網址
