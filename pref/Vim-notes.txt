@@ -268,7 +268,7 @@ Configuration                                               *Configuration*
 * ~/.gvimrc   Graphic-only settings (font, windows size)
 * ~/.vim/     Plugins, language-specific options, color schemes
 
-### 設定：
+### 設定：（老方法）
 * 所有檔案放在$HOME/bin/dotvim目錄內。
 * 設定檔連結到存放目錄的相對檔案、目錄：
 
@@ -279,6 +279,7 @@ Configuration                                               *Configuration*
 > ln -nfs ~/bin/dotvim/gvimrc .gvimrc
 ```
 
+### 設定：（新方法）
 * 採用Vundle方式管理Plugins，並使用以下的設定爲基礎
 [The Vim Configuration of Champions] (https://github.com/mutewinter/dot_vim)
 
@@ -310,9 +311,12 @@ Vim大部分長指令都有縮寫，例如softtabstop縮寫爲sts
 :h +feature-list    顯示VIM所有包含的功能特性
 :ver                顯示VIM版本詳細訊息，包含編譯、連結方式
 
-ModeLines - Include a comment with flile-specific configuration
+ModeLines - Include a comment with file-specific configuration
             must be within the first/last 5 lines of the file
 /* vim: set ai tw=75: */
+            使用comment的型式，將特定檔案的設定參數寫入其中。
+            預設在檔案的最前或最後5列，其設定的參數才有效果。
+:h modeline
 ```
 <!--- }}} -->
 
@@ -332,6 +336,7 @@ ModeLines - Include a comment with flile-specific configuration
 :help deleting :help rtp (or runtimepath)
 :help tutor (30 mins turorial : vimtutor or vimtutor.bat)
 
+在輔助文件間的跳動：
 Ctrl-]  (jump to tag)       hyperlink |:help|
 Ctrl-T  (pop tag) or Ctrl-O
 Ctrl-[  same as Ctrl-T
@@ -1804,7 +1809,7 @@ visual mode … cp : select with visual mode then copy to system clipboard
 * <Leader> fr : file_mru
 * <Leader> fd : directory_mru
 * <Leader> fp : registers
-* <Leader> fb : bookmark
+* <Leader> fb : buffer
 
 操作指令：
 * q : 離開（normal mode）
@@ -1831,6 +1836,21 @@ visual mode … cp : select with visual mode then copy to system clipboard
 * :colorscheme base16-<TAB>
 * :set cursorline or nocursorline
 * :set bg=dark or bg=light
+
+```
+<!--- }}} -->
+
+<!--- FIGlet.vim {{{ -->
+###[FIGlet.vim](https://github.com/yschu7/FIGlet.vim)
+```
+~/.vim/vundle_plugins/FIGlet.vim
+
+* 由vimscripts:[FIGlet.vim](http://www.vim.org/scripts/script.php?script_id=3359)
+
+* 使用範例及說明在程式FIGlet.vim中
+* 顯示可用字型名稱 :FIGletFontDemo
+* 選擇範圍後，執行轉換 :FIGlet 或 使用g@
+* 選擇字型(3-d) :FIGlet -f 3-d
 
 ```
 <!--- }}} -->
