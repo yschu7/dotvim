@@ -115,6 +115,8 @@ augroup YSAutoCommands
   autocmd FileType asciidoc inoremap <buffer><F5> <ESC>:up!<CR>:call AsciiCompileAndOpen()<CR>
   autocmd FileType java nnoremap <buffer><F5> <ESC>:up!<CR>:call JavaCompile()<CR>
   autocmd FileType java inoremap <buffer><F5> <ESC>:up!<CR>:call JavaCompile()<CR>
+  autocmd FileType markdown nnoremap <buffer><F5> <ESC>:up!<CR>:MarkedOpen!<CR>
+  autocmd FileType markdown inoremap <buffer><F5> <ESC>:up!<CR>:MarkedOpen!<CR>
 
   " [Buffer-Local](http://learnvimscriptthehardway.stevelosh.com/chapters/11.html)
   " tmux run script (Split screen to show result)
