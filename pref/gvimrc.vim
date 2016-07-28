@@ -3,15 +3,16 @@
 " symlink to ~/.gvimrc or ~/_gvimrc.
 " =====================================================
 if has('mac')                     " Font family and font size.
-  "set guifont=Monaco:h18
-  "set guifont=YaHei\ Consolas\ Hybrid:h18
-  set guifont=Sauce\ Code\ Powerline\ Light:h18
-  :nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr>
+  " set guifont=Sauce\ Code\ Powerline\ Light:h18
+  " set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Plus\ Nerd\ File\ Types\ Mono:h16
+  set guifont=Inconsolata\ for\ Powerline\ Nerd\ Font\ Plus\ Font\ Awesome\ Mono:h20
+  " :nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr>
 elseif has('win32')
-  set guifont=Monaco:h12
+  " set guifont=Monaco:h12
+  set guifont=Inconsolata\ for\ Powerline\ Nerd\ Font\ Plus\ Font\ Awesome\ Mono:h12
 else
-  "set guifont=YaHei\ Consolas\ Hybrid\ 13
-  set guifont=Inconsolata-dz\ for\ Powerline\ Medium\ 12
+  " set guifont=Inconsolata-dz\ for\ Powerline\ Medium\ 12
+  set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Plus\ Nerd\ File\ Types\ Mono\ 12
 endif
 
 set antialias                    " MacVim: smooth fonts.
