@@ -1,7 +1,6 @@
 " =====================================================
 " Vim configuration.
-" To work with mutewinter dotvim environment
-" =====================================================
+" -----------------------------------------------------
 " ~/.vim/config.vim       Regular Vim Configuration
 " =====================================================
 " Basic Settings  {{{
@@ -88,9 +87,9 @@ augroup YSAutoCommands
     execute "! rustc " . expand('%:t') . " && ./" . expand('%:r')
   endfun
 
-  fun! JavaCompile()
+  fun! JavaCompileAndRun()
     silent !clear
-    execute "! javac " . expand('%:t')
+    execute "! javac " . expand('%:t') . " && java " . expand('%:r')
   endfun
 
   fun! AsciiCompileAndOpen()
@@ -115,8 +114,8 @@ augroup YSAutoCommands
   autocmd FileType rust inoremap <buffer><F5> <ESC>:up!<CR>:call RustCompileAndRun()<CR>
   autocmd FileType asciidoc nnoremap <buffer><F5> <ESC>:up!<CR>:call AsciiCompileAndOpen()<CR>
   autocmd FileType asciidoc inoremap <buffer><F5> <ESC>:up!<CR>:call AsciiCompileAndOpen()<CR>
-  autocmd FileType java nnoremap <buffer><F5> <ESC>:up!<CR>:call JavaCompile()<CR>
-  autocmd FileType java inoremap <buffer><F5> <ESC>:up!<CR>:call JavaCompile()<CR>
+  autocmd FileType java nnoremap <buffer><F5> <ESC>:up!<CR>:call JavaCompileAndRun()<CR>
+  autocmd FileType java inoremap <buffer><F5> <ESC>:up!<CR>:call JavaCompileAndRun()<CR>
   autocmd FileType markdown nnoremap <buffer><F5> <ESC>:up!<CR>:MarkedOpen!<CR>
   autocmd FileType markdown inoremap <buffer><F5> <ESC>:up!<CR>:MarkedOpen!<CR>
 
