@@ -3,7 +3,7 @@ Ack	Vim-notes.txt	/*Ack*
 AdvConfig	Vim-notes.txt	/*AdvConfig*
 AutoCommands	Vim-notes.txt	/*AutoCommands*
 BasicMisc	Vim-notes.txt	/*BasicMisc*
-BasicMovement	Vim-notes.txt	/*BasicMovement*
+BasicMotion	Vim-notes.txt	/*BasicMotion*
 Buffer	Vim-notes.txt	/*Buffer*
 CheatSheet	Vim-notes.txt	/*CheatSheet*
 CommandArguments	Vim-notes.txt	/*CommandArguments*
@@ -20,8 +20,8 @@ Macro	Vim-notes.txt	/*Macro*
 Marks	Vim-notes.txt	/*Marks*
 Misc	Vim-notes.txt	/*Misc*
 MiscCont	Vim-notes.txt	/*MiscCont*
-Movement	Vim-notes.txt	/*Movement*
-MovementCont	Vim-notes.txt	/*MovementCont*
+Motion	Vim-notes.txt	/*Motion*
+MotionCont	Vim-notes.txt	/*MotionCont*
 Plugins	Vim-notes.txt	/*Plugins*
 Range	Vim-notes.txt	/*Range*
 Regex	Vim-notes.txt	/*Regex*

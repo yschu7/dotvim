@@ -73,7 +73,7 @@ nnoremap <silent> gl :WriteBufferIfNecessary<CR>:wincmd l<CR>
 "   -----------------
 "      | g1 | g2 | g3
 "   -----------------
-"     <--  gs  -->
+"     <--  gss -->
 "   -----------------
 "           ^
 "      gvv  |
@@ -83,7 +83,7 @@ nnoremap <silent> g1 :WriteBufferIfNecessary<CR>:wincmd v<CR>
 nnoremap <silent> g2 :WriteBufferIfNecessary<CR>:wincmd v<bar>:wincmd v<CR>
 nnoremap <silent> g3 :WriteBufferIfNecessary<CR>:wincmd v<bar>:wincmd v<bar>
       \:wincmd v<CR>
-nnoremap <silent> gs :WriteBufferIfNecessary<CR>:wincmd s<CR>
+nnoremap <silent> gss :WriteBufferIfNecessary<CR>:wincmd s<CR>
 nnoremap <silent> gvv :WriteBufferIfNecessary<CR>:wincmd v<CR>
 
 " Split window vertically or horizontally *and* switch to the new split!

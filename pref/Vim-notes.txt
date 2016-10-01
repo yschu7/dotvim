@@ -1,4 +1,4 @@
-*Vim-notes.txt*        Y.S. Chu's Vim Notes v 2.5.3
+*Vim-notes.txt*        Y.S. Chu's Vim Notes v 2.6
 ```
       __           _                 __      _
 /\_/\/ _\   /\   /(_)_ __ ___     /\ \ \___ | |_ ___  ___
@@ -10,7 +10,7 @@
 Contents                                                    *VimNotes*
 
     01. Cheat Sheet                 |CheatSheet|
-    02. Basic Movement              |BasicMovement|
+    02. Basic Motion                |BasicMotion|
     03. File Operations             |FileOperations|
     04. Basic Misc                  |BasicMisc|
     05. Configuration               |Configuration|
@@ -20,11 +20,11 @@ Contents                                                    *VimNotes*
     09. Window                      |Window|
     10. Buffer                      |Buffer|
     11. Tab Page                    |TabPage|
-    12. Movement                    |Movement|
+    12. Motion                      |Motion|
     13. Beginning with G            |SpecialG|
     14. Marks                       |Marks|
     15. Editing Text                |EditingText|
-    16. Movement Cont.              |MovementCont|
+    16. Motion Cont.                |MotionCont|
     17. Misc Cont.                  |MiscCont|
     18. Text Objects                |TextObjects|
     19. Visual Mode                 |VisualMode|
@@ -98,8 +98,8 @@ Cheat Sheet                                                 *CheatSheet*
 
 <!--- }}} -->
 
-<!--- Basic Movement {{{ -->
-### Basic Movement                                          *BasicMovement*
+<!--- Basic Motion {{{ -->
+### Basic Motion                                          *BasicMotion*
 
 ```
     k             yy  Yank line (copy)
@@ -499,8 +499,8 @@ gT      往上一個tab page移動
 ```
 <!--- }}} -->
 
-<!--- Movement {{{ -->
-### Movement                                                *Movement*
+<!--- Motion {{{ -->
+### Motion                                                *Motion*
 
 +  word(小寫指令)遇到空白及其他的標點符號(, : . -)都會視為一個單字的結束。
    注意：底線(_)視為單字(word)的一部分。
@@ -701,8 +701,8 @@ D   (delete to the end of line)
 ```
 <!--- }}} -->
 
-<!--- Movement Cont. {{{ -->
-+  移動                                                     *MovementCont*
+<!--- Motion Cont. {{{ -->
++  移動                                                     *MotionCont*
 
 ```
       {                (         <move>        )             }
@@ -787,7 +787,12 @@ Ctrl-a : 游標所在數字減一
 Text Objects                                                *TextObjects*
 ============
 
+[Learning Vim as Language](http://benmccormick.org/2014/07/02/learning-vim-in-2014-vim-as-language/)
+
 ```
+Vim當成語言，它的語法可以看成：動詞 + 名稱
+動詞就是operator，而名詞可以爲Text Object，或者是Motion
+
     v               i               t
     d               a               s
     y               i               w
@@ -802,10 +807,17 @@ gU)uppercase                    t)ag
 gu)lowercase                    "'<[{()}]>
                                 b - shortcut for ()
                                 B - shortcut for {}
-Extensions:
+```
+[Extensions](https://github.com/kana/vim-textobj-user/wiki)
+```
 gc)omment                       r)ruby block            gcar
 cs)change surround tag          "'<[{()}]> with tag     cs'"
 ys)insert surround tag                                  ysiw"
+cp)copy to system clipboard                             cpip
+gs)sort                                                 gsip
+                                e)ntire content         gsae
+                                i)ndent                 gcii
+                                l)ine                   yil
 
 <h1>Sample code</h1>
 step1. vit or vat : select sample code within tag, or include tag
@@ -1078,6 +1090,16 @@ step.4  <Enter>   Execute the search
 放入內容時，使用小寫字母原來內容被會覆蓋，而大寫字母則會以附加方式處理。
 取用內容時，大小寫沒有差別。
 兩種方式取用在暫存器的內容：<Ctrl-r>+暫存器名稱，或是以"(暫存器名稱)p。
+```
+
+[Replace a word with yanked text](http://vim.wikia.com/wiki/Replace_a_word_with_yanked_text)
+```
+以複製的文字內容取代當前的目標文字 (Ctrl-r範例)
+yiw         Yank inner word (copy word under cursor, say "first").
+...         Move the cursor to another word (say "second").
+ciw<C-r>0   Change "second", replacing it with "first" (<C-r> is Ctrl-R).
+...         Move the cursor to another word (say "third").
+.           Change "third", replacing it with "first".
 ```
 <!--- }}} -->
 
@@ -1477,27 +1499,39 @@ v.&.S  Add a tag around text, 使用V/v/Ctrl-v選擇範圍後，S改變
        可以加入的可能是{,(,[,",',<tag>,或其他的符號
 
 ys     Add surrounding tag，後面爲text-object，最後爲tag。
+ysiw   在游標所在的單字上(inner word)，以輸入的<tag>或符號括起來
+ysiw"  將遊標所在的單字(iw)，以雙引號括起來。
+
 yS     同ys，但是開始、結束tag在不同的列，適合HTML的寫法。
 yss    修改游標所在列(sentence)，將內容以輸入的<tag>或符號括起來
-ysiw   在游標所在的單字上(inner word)，以輸入的<tag>或符號括起來
 
-ysiw#  將遊標所在的單字var變成#{var}
+ysiw#  將遊標所在的單字var變成#{var}，for ruby特別好用。
 <leader> y# 設爲快速鍵(ysiw#)
 
 :h surround
 ```
 <!--- }}} -->
 
-<!--- tslime {{{ -->
-### tslime (使用vimux取代)
+<!--- Repeat {{{ -->
+### [Repeat](https://github.com/tpope/vim-repeat)
 
 ```
-<leader> tr 執行目前編輯的程式（第一次會問pane#）
-visual mode選擇文字後，<ctrl-c><ctrl-c>傳送 (eg.irb)
-<ctrl-c> v 改變要傳送的pane# (tmux)
-<leader> y yank內容到Mac的clipboard
+~/.vim/vundle_plugins/vim-repeat.vim
+擴充.指令的重複功能，讓其他的plugins也可以使用.重複執行。
 
-:h slime
+```
+<!--- }}} -->
+
+<!--- Sort-Motion {{{ -->
+### [Sort-Motion](https://github.com/christoomey/vim-sort-motion)
+
+```
+~/.vim/vundle_plugins/vim-sort-motion.vim
+排序，使用gs指令來對其後的Motion做排序。
+
+gs5j    往下5列排序（當前列+5）
+gsip    對當前所在的段（paragraph）做排序
+
 ```
 <!--- }}} -->
 
@@ -1562,14 +1596,7 @@ control - b 有些語言對單列及多列的註解方式不同，如：ruby, cp
 ```
 <!--- }}} -->
 
-<!--- Ack & ag {{{ -->
-### Ack - 可取代grep, 把尋找的結果放在QuickFix視窗
-
-```
-:Ack pattern [directory]
-:h ack
-```
-
+<!--- Ag {{{ -->
 ### [Ag](https://github.com/rking/ag.vim)
 
 ```
@@ -1750,6 +1777,22 @@ div#header>ul#navigation>li.item$*5>a
 div#content>div.section
 #content>.section
 p>{Click }+a{here}+{ to continue}
+```
+<!--- }}} -->
+
+<!--- vim-textobj-user {{{ -->
+###[vim-textobj-user](https://github.com/kana/vim-textobj-user)
+
+```
+~/.vim/vundle_plugins/vim-textobj-user.vim
+~/.vim/vundle_plugins/vim-textobj-line.vim
+~/.vim/vundle_plugins/vim-textobj-indent.vim
+~/.vim/vundle_plugins/vim-textobj-entire.vim
+
+yil  : 複製整列（不含前後空白）
+gcii : 將整個indent block做註解(gc)
+gsie : 全部排序(gs)，不含前後空白列
+cpae : 複製(cp)全部內容到system clipboard
 ```
 <!--- }}} -->
 
