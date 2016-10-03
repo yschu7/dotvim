@@ -69,26 +69,26 @@ nnoremap <silent> gj :WriteBufferIfNecessary<CR>:wincmd j<CR>
 nnoremap <silent> gk :WriteBufferIfNecessary<CR>:wincmd k<CR>
 nnoremap <silent> gl :WriteBufferIfNecessary<CR>:wincmd l<CR>
 
-"     Window Splits
+"   Splits Horizontal
 "   -----------------
-"      | g1 | g2 | g3
+"        | g1 | g2
+"        | -> | ->
 "   -----------------
-"     <--  gss -->
+"   Splits Vertical
 "   -----------------
-"           ^
-"      gvv  |
-"           v
+"   ----------- | ---
+"          g3   v
+"   ----------- | ---
+"          g4   v
 "   -----------------
-nnoremap <silent> g1 :WriteBufferIfNecessary<CR>:wincmd v<CR>
-nnoremap <silent> g2 :WriteBufferIfNecessary<CR>:wincmd v<bar>:wincmd v<CR>
-nnoremap <silent> g3 :WriteBufferIfNecessary<CR>:wincmd v<bar>:wincmd v<bar>
-      \:wincmd v<CR>
-nnoremap <silent> gss :WriteBufferIfNecessary<CR>:wincmd s<CR>
-nnoremap <silent> gvv :WriteBufferIfNecessary<CR>:wincmd v<CR>
+nnoremap <silent> g1 :WriteBufferIfNecessary<CR>:wincmd s<CR>
+nnoremap <silent> g2 :WriteBufferIfNecessary<CR>:wincmd s<bar>:wincmd s<CR>
+nnoremap <silent> g3 :WriteBufferIfNecessary<CR>:wincmd v<CR>
+nnoremap <silent> g4 :WriteBufferIfNecessary<CR>:wincmd v<bar>:wincmd v<CR>
 
 " Split window vertically or horizontally *and* switch to the new split!
-nnoremap <silent> <leader>sp  :split<Bar>:wincmd j<CR>
-nnoremap <silent> <leader>vsp :vsplit<Bar>:wincmd l<CR>
+" nnoremap <silent> <leader>sp  :split<Bar>:wincmd j<CR>
+" nnoremap <silent> <leader>vsp :vsplit<Bar>:wincmd l<CR>
 
 " Previous Window
 nnoremap <silent> gp :wincmd p<CR>
