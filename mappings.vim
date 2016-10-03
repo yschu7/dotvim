@@ -232,9 +232,9 @@ nnoremap <leader>jts <Esc>:%!underscore print --strict<CR><Esc>:set filetype=jso
 
 cnoremap w' w<CR>
 
-" Disable the ever-annoying Ex mode shortcut key. Type visual my ass. Instead,
-" make Q repeat the last macro instead. *hat tip* http://vimbits.com/bits/263
-nnoremap Q @@
+" It takes current line as input and execute the command and reads the output
+" into the buffer. $SHELL is your default shell, you can change it..
+nnoremap Q !!$SHELL <cr>
 
 " Removes doc lookup mapping because it's easy to fat finger and never useful.
 nnoremap K k

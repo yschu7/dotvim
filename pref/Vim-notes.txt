@@ -135,8 +135,10 @@ gg      Go to the top of the file
 :x      Exit (same as :wq or ZZ)
 
 :w !sudo tee %  用於當編輯的檔案因權限問題無法正常寫入時，改用sudo tee方式寫入。
-:w filename     Write to a file (但是當前的buffer名稱並未改變，與saveas不同)
-:wq! filename   Write to a file and force quit (通常用於寫到新檔案)
+:w newfile      Write to a file (但是當前的buffer名稱並未改變，與saveas不同)
+:wq! newfile    Write to a file and force quit (通常用於寫到新檔案)
+:5,10w nfile    將5至10列內容寫入nfile
+:10,$w >> nfile 將10至最後一列內容附加到nfile
 
 :e filename     Edit a file (:edit open a new buffer)
 :e #            Edit alternate file (:echo expand('#'), 前一個編輯的檔案)
@@ -154,6 +156,10 @@ gg      Go to the top of the file
 :! ls -l        list current directory, and press Enter to return
 
 :r filename     Read a file into (after) current position
+:$r file        Read in at the end of the file
+:0r file        Read in at the begining of the file
+:/patn/r file   Read in at the after pattern of the file
+
 :r! which ruby  Insert the output of the external command
 :r! date        Insert date time after current line
 :r!seq 1 3 50   Gnereate numbers: 1, 4, 7, 10...49
@@ -972,6 +978,7 @@ g   Replace all occurrences in the line
 若沒有flags則最後的/可以省略
 
 :s/abc/def/g20  (尋找與取代20列內的abc為def,最後的g20為指定範圍)
+:s/John/& Doe   (將John變更爲John Doe, &代表前面符合的pattern內容)
 
 將文件開頭插入當前列數。其中的\=命令為evaluate後面的函數。
 第1個命令g/^/找出所有的第1列，第2個命令s//..尋找目標不變(同前命令g)。
@@ -1027,6 +1034,11 @@ normal {command}  execute extended sequence
 :g/abc/t.|s/./=/g     (將符合的列拷貝一列到其下方，並將全列內容改為=)
 :g/abc/t.|normal gUU  (將符合的列拷貝一列到其下方，並將全列內容改為大寫)
                 (可以使用|符號隔開命令，g...|s...|normal ...)
+
+:%t$    將buffer內容(%)複製(t)一份到最後一列($)之後
+:3,5m10 將3至5列移動(m)到第10列之後
+:3,5t10 將3至5列複製(t,同co)到第10列之後
+:help co
 
 :g預設的範圍是全部的buffer，但可以自行設定
 :.,+10g/foo/d   (delete matches from cursor through next 10 lines)
