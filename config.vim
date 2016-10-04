@@ -19,13 +19,21 @@ endif
 " -----------------------------
 " File Locations
 " -----------------------------
-set backupdir=~/.vim/.backup// " Double // causes backups to use full file path
-set directory=~/.vim/.tmp//
-set spellfile=~/.vim/spell/custom.en.utf-8.add
-" Persistent Undo
-if has('persistent_undo')
-  set undofile
-  set undodir=~/.vim/.undo
+if exists('$SUDO_USER')
+  set nobackup          " don't create root-owned files
+  set nowritebackup
+  set noswapfile
+  set noundofile
+  set viminfo=
+else
+  set backupdir=~/.vim/.backup// " Double // causes backups to use full file path
+  set directory=~/.vim/.tmp//
+  set spellfile=~/.vim/spell/custom.en.utf-8.add
+  " Persistent Undo
+  if has('persistent_undo')
+    set undofile
+    set undodir=~/.vim/.undo
+  endif
 endif
 
 " set path for searching cmd like: gf, <c-w>f, <c-w>gf
@@ -37,10 +45,16 @@ set path=~/ruby/**,.,~/.rvm/rubies/default/lib/ruby/**
 " ---------------
 set ruler            " Ruler on
 set number           " Line numbers on
-" set relativenumber   " Relative Number on
+set relativenumber   " Relative Number on
 set wrap             " Line wrapping on
 set linebreak        " not break in the middle of the word
-let &showbreak='> '  " symbol to shwo where the linebreak is
+let &showbreak='⤷ '  " symbol to shwo where the linebreak is (U+2937)
+set breakindent      " indent wrapped lines to match start
+if exists('&breakindentopt')
+  set breakindentopt=shift:2   " emphasize broken lines by indenting them
+endif
+" set fillchars=vert:┃         " BOX DRAWINGS HEAVY VERTICAL (U+2503, UTF-8: E2 94 83))
+set fillchars-=vert:\| |       " replace with a space
 
 set cursorline       " nocursorline (cul/nocul)
 set laststatus=2     " Always show the statusline
@@ -80,7 +94,7 @@ set autowrite          " Writes on make/shell commands
 set ttimeout
 set ttimeoutlen=100    " Time to wait for a command (after leader for example).
 set nofoldenable       " Disable folding entirely.
-set foldlevelstart=99  " I really don't like folds.
+set foldlevelstart=99  " Start unfolded
 set formatoptions=crql
 set iskeyword+=\$,-   " Add extra characters that are valid parts of variables
 set nostartofline      " Don't go to the start of the line after some commands
@@ -110,7 +124,6 @@ set hlsearch   " Highlight search results
 set wildignore+=*.o,*.obj,*.exe,*.so,*.dll,*.pyc,.svn,.hg,.bzr,.git,
   \.sass-cache,*.class,*.scssc,*.cssc,sprockets%*,*.lessc,*/node_modules/*,
   \rake-pipeline-*
-
 
 set matchpairs+=<:>
 " https://github.com/lilydjwg/dotvim/commit/880fc3b
