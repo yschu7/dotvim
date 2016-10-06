@@ -38,7 +38,10 @@ endif
 
 " set path for searching cmd like: gf, <c-w>f, <c-w>gf
 " use :set path< to copy this global value to local buffers
-set path=~/ruby/**,.,~/.rvm/rubies/default/lib/ruby/**
+set path=.
+" Search down into subfolders
+" Provides tab-completion for all file-related tasks
+set path+=**
 
 " ---------------
 " UI

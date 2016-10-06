@@ -167,8 +167,10 @@ gg      Go to the top of the file
 :cd path  Change the working directory, files can be opened with relative path
           Use TAB to auto-complete directory name, UP/DOWN commands history
 
-:pwd    Print working directory
-:e .    Navigate the current directory
+:pwd      Print working directory
+:e .      Navigate the current directory
+
+:find test1.py  Find file 'test1.py' in path, then edit it. 
 ```
 <!--- }}} -->
 
@@ -353,12 +355,16 @@ ZZ, :bd (leave help system)
 
 ```
 What                   Prefix          Example
-Normal-mode commands   (nothing)       :help x, :help gu
-Control character      CTRL-           :help CTRL-u
+Normal-mode commands   (nothing)       :help x 
+                                       :help gu
+                                       :help ^n         (Ctrl-n)
+Control character      CTRL-           :help CTRL-n     (Ctrl-n)
 Visual-mode commands   v               :help v_u
 Insert-mode commands   i               :h i_<Esc>
+                                       :h i_^n
 ex-mode commands       :               :h :quit
 Command-line editing   c               :h c_<Del>
+                                       :h c_^n
 Vim command arguments  -               :h -r
 Options                '(both ends)    :h 'textwidth'
 ```
