@@ -118,8 +118,9 @@ cw      Change word            3cw   Change 3 words
 
 12G     Go to line 12
 12gg    Go to line 12
-G       Go to the end of the file
-gg      Go to the top of the file
+25%     Go to the 25% of the buffer
+G       Go to the end of the buffer
+gg      Go to the top of the buffer
 ```
 <!--- }}} -->
 
@@ -170,7 +171,7 @@ gg      Go to the top of the file
 :pwd      Print working directory
 :e .      Navigate the current directory
 
-:find test1.py  Find file 'test1.py' in path, then edit it. 
+:find test1.py  Find file 'test1.py' in path, then edit it.
 ```
 <!--- }}} -->
 
@@ -224,7 +225,7 @@ Ctrl-E  duplicates what's in the same column on the following line
 Ctrl-A  inserts again whatever the most-recent inserted text was
 Ctrl-R= evaluates and expression register(=) and inserts the result
         除了使用"=暫存器之外，也可使用其他任何暫存器(插入該暫存器內容)
-Ctrl-T  inserts a tab at the start of the line 
+Ctrl-T  inserts a tab at the start of the line
         (without move the inserting point)
 Ctrl-D  deletes a tab at the start of the line
         (without move the inserting point)
@@ -355,7 +356,7 @@ ZZ, :bd (leave help system)
 
 ```
 What                   Prefix          Example
-Normal-mode commands   (nothing)       :help x 
+Normal-mode commands   (nothing)       :help x
                                        :help gu
                                        :help ^n         (Ctrl-n)
 Control character      CTRL-           :help CTRL-n     (Ctrl-n)
@@ -1771,9 +1772,9 @@ for the {pattern}.   遞迴搜尋符合樣式(若未指定目錄，預設爲當�
 >  child element
 +  sibling element
 $  number
-$$ leading zero 
+$$ leading zero
 
-Examples: 
+Examples:
 開啓html檔案，複製範例，將遊標移動每列最後一個字元，按Ctrl-Y觀看結果
 
 div
@@ -1951,6 +1952,24 @@ Misc                                                        *Misc*
 ```
 :execute "helptags " . expand("%:p:h")   在目前編輯檔案所在目錄下產生tags檔案
                             % - current file, p - path, h - header, t - tail
+
+* Insert mode:
+    * ctrl + r : Insert text from a register
+    * ctrl + a : Insert the last inserted text
+    * Completion:
+        * ctrl + p : search backward for matching word compltion
+        * ctrl + n : search forward
+        * ctrl + x ctrl + ] : Tag completion
+        * ctlr + x ctrl + F : Filename completion
+        * ctrl + x ctrl + p : Context-aware word completion
+        * ctrl + x ctrl + n
+        * ctrl + x ctrl + L : Context-aware line completion
+        * ctrl + x ctrl + o : Language-aware completion
+
+    :help ins-completion
+    :help 'complete'
+
+* Ref:[Let Vim do the typing](http://georgebrock.github.io/talks/vim-completion)
 
 * Customize Mapping: ~/.vim/mappings.vim 主要定義key mapping的檔案
 
