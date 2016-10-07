@@ -140,8 +140,22 @@ augroup END
 " F1 Help
 noremap <F1> <Esc>:help<CR>
 
-" F2 Close window
-noremap <silent> <F2> :close<CR>
+" Cycle through relativenumber + number, number (only), and no numbering.
+function! Cycle_numbering() abort
+  if exists('+relativenumber')
+    execute {
+          \ '00': 'set relativenumber   | set number',
+          \ '01': 'set norelativenumber | set number',
+          \ '10': 'set norelativenumber | set nonumber',
+          \ '11': 'set norelativenumber | set number' }[&number . &relativenumber]
+  else
+    " No relative numbering, just toggle numbers on and off.
+    set number!<CR>
+  endif
+endfunction
+
+nnoremap <silent> <F2> :call Cycle_numbering()<CR>
+inoremap <silent> <F2> <Esc>:call Cycle_numbering()<CR>a
 
 " F3 Toggle paste mode
 "nnoremap <silent> <F3> :set paste!<CR>

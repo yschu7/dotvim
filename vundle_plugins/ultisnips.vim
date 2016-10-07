@@ -6,6 +6,3 @@ endif
 
 let g:UltiSnipsSnippetsDir="~/.vim/MyUltiSnips"
 let g:UltiSnipsSnippetDirectories=["MyUltiSnips"]
-let g:UltiSnipsExpandTrigger="<c-j>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"

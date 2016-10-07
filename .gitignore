@@ -6,7 +6,6 @@
 /.tmp
 /.backup
 /.unite
-/spell
 /vundle_plugins/custom
 /shada/*
 *.swp
