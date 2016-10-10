@@ -1,4 +1,4 @@
-*Vim-notes.txt*        Y.S. Chu's Vim Notes v 2.6.1
+*Vim-notes.txt*        Y.S. Chu's Vim Notes v 2.6.3
 ```
       __           _                 __      _
 /\_/\/ _\   /\   /(_)_ __ ___     /\ \ \___ | |_ ___  ___
@@ -73,25 +73,29 @@ Cheat Sheet                                                 *CheatSheet*
 
 * 使用Git同步檔案：
     1. 修改完成後
-        + $ git add .
-        + $ git commit -m 'Commit notes...'
-        + $ git push -u origin master
+        ```
+        $ git add .
+        $ git commit -m 'Commit notes...'
+        $ git push -u origin master
+        ```
     2. 在其他電腦的同步
-        + $ git pull origin
+        `$ git pull origin`
     3. 修改後，放棄
-        + 已經使用git add (stage)的檔案：git reset
-        + 還原所有未commit的檔案：git checkout . (要在root repo目錄下)
-        + 還原單一目錄、檔案：git checkout [dir|file]
+        + 已經使用git add (stage)的檔案：`git reset`
+        + 還原所有未commit的檔案：`git checkout .` (要在root repo目錄下)
+        + 還原單一目錄、檔案：`git checkout [dir|file]`
 
 * vim plugin的安裝與維護：
     1. vim plugins初次安裝步驟
-        + git clone git@github.com:yschu7/dotvim.git ~/.vim
-        + cd .vim
-        + git clone http://github.com/gmarik/vundle.git bundle/vundle
-        + vim +PluginInstall +qall
+        ```
+        $ git clone git@github.com:yschu7/dotvim.git ~/.vim
+        $ cd .vim
+        $ git clone http://github.com/gmarik/vundle.git bundle/vundle
+        $ vim +PluginInstall +qall
+        ```
     2. 更新plugins
         單獨更新某一Plugin
-        + vim '+PluginUpdate vim-airline' +qall
+        + `vim '+PluginUpdate vim-airline' +qall`
         + 在vim中按快捷鍵：
           * <leader> pi : plugin install
           * <leader> pu : plugin update
@@ -128,12 +132,12 @@ gg      Go to the top of the buffer
 ### File Operations                                         *FileOperations*
 
 ```
-:w      Write file (save)
-:w!     Overwrite without confirmation
-:q      Quit
-:q!     Quit (discard all changes) or ZQ
-:wq!    Write & Quit
-:x      Exit (same as :wq or ZZ)
+:w              Write file (save)
+:w!             Overwrite without confirmation
+:q              Quit
+:q!             Quit (discard all changes) or ZQ
+:wq!            Write & Quit
+:x              Exit (same as :wq or ZZ)
 
 :w !sudo tee %  用於當編輯的檔案因權限問題無法正常寫入時，改用sudo tee方式寫入。
 :w newfile      Write to a file (但是當前的buffer名稱並未改變，與saveas不同)
@@ -153,7 +157,7 @@ gg      Go to the top of the buffer
 :sav filename   SaveAs filename (並將當前的buffer名稱改爲filename)
 :up             Update, like :w, but only write when buffer has been modified
 
-:! ext command  To issue an external command
+:! ext_command  執行一個外部命令
 :! ls -l        list current directory, and press Enter to return
 
 :r filename     Read a file into (after) current position
@@ -165,13 +169,13 @@ gg      Go to the top of the buffer
 :r! date        Insert date time after current line
 :r!seq 1 3 50   Gnereate numbers: 1, 4, 7, 10...49
 
+:pwd            Print working directory
+:e .            Navigate the current directory
+
+:find test1.py  尋找在路徑中(path設定)的檔案，找到後開啓
+
 :cd path  Change the working directory, files can be opened with relative path
           Use TAB to auto-complete directory name, UP/DOWN commands history
-
-:pwd      Print working directory
-:e .      Navigate the current directory
-
-:find test1.py  Find file 'test1.py' in path, then edit it.
 ```
 <!--- }}} -->
 
@@ -180,8 +184,8 @@ gg      Go to the top of the buffer
 
 ```
 V       Enter Visual mode (select lines)
-y       Yank (copy) selected text
 v       Characterwise Visual mode (select characters)
+y       Yank (copy) selected text
 d       Delete (cut)
 c       Change (cut, then activate Insert mode)
 Vjjjd   Select and Delete
@@ -197,7 +201,9 @@ $vi -N example.conf
 :set syntax=apache
 :set hidden
 
-/search_pattern n Search again    N Search backwards
+/search_pattern
+n Search again
+N Search backwards
 
 :%s/search/replace/gc   Search & Replace    c confirmation
 
@@ -214,9 +220,9 @@ Branched undo (branching undo history - timeline)
 :earlier 10m    buffer回到稍早10分鐘前
 :later 10s      buffer往前10秒
 
-Transform vim into hex editor: xxd is an external command
-<ESC> :%!xxd      (hex mdoe)
-<ESC> :%!xxd -r   (ascii mode)
+Transform vim into hex editor: xxd 是一個外部命令
+:%!xxd      (hex mdoe)
+:%!xxd -r   (ascii mode)
 
 Control you insertions (under insert mode)
 可以在insert mode之下執行的命令鍵
@@ -267,6 +273,13 @@ noremap <down> <nop>
 :set showmode
 設定command mode下使用autocomplete時(按<TAB>)，以menu方式提示可能的單字的選項
 :set wildmenu
+
+爲編輯檔案內容加密
+:set cm=blowfish2   (設定加密演算法，預設爲zip)
+:X                  (輸入加密密碼)
+:w                  (儲存加密內容)
+
+:help cryptmethod
 ```
 <!--- }}} -->
 
@@ -290,7 +303,7 @@ Configuration                                               *Configuration*
 
 ### 設定：（新方法）
 * 採用Vundle方式管理Plugins，並使用以下的設定爲基礎
-[The Vim Configuration of Champions] (https://github.com/mutewinter/dot_vim)
+[The Vim Configuration of Champions](https://github.com/mutewinter/dot_vim)
 
 <!--- }}} -->
 
@@ -298,12 +311,14 @@ Configuration                                               *Configuration*
 ### 設定、顯示、重設（SET,SHOW,RESET）                      *SetShowReset*
 
 ```
+有些選項設定值爲on、off，例如：
 :set list           Turn a boolean value on (顯示TAB,EOL)
 :set nolist         Turn a boolean value off
 :set list?          Show current value
 :set list&          Reset to default value
 :set list!          Toggle value (list <-> nolist)
 
+有些選項則爲設定值如：數字、字串
 :set softtabstop=2  Set a value
 :set softtabstop    Show a value
 :set softtabstop?   Show a value(same as above, two ways)
@@ -311,9 +326,11 @@ Configuration                                               *Configuration*
 
 Vim大部分長指令都有縮寫，例如softtabstop縮寫爲sts
 
-:verbose set wildmode?   查看wildmode的最後設定者
-:options            Show all the options, navigate with Enter and :q
-:set                Show options that are different than default value
+:verbose set wildmode?   查看wildmode的最後設定者。
+                         如果不是預設值時，可以顯示設定它的檔案。
+
+:set                顯示選項的設定值與其系統預設值不同者。
+:options            開啓window顯示所有選項，按Enter瀏覽、:q結束。
 
 :echo &rtp          顯示option(rtp)的目前設定值，類似:set rtp? (runtimepath)
 :echo has('ruby')   顯示VIM是否有包含某個功能特性
@@ -338,6 +355,7 @@ ModeLines - Include a comment with file-specific configuration
 :h <topic><TAB>     press <TAB> for autocompletion
 
 :helpgrep or helpg [pattern]
+結果顯示於QuickFix視窗，使用以下命令操作：
 :cnext(cn), :cprev(cp)
 :cnfile(cnf), :cpfile(cpf)
 
@@ -346,16 +364,19 @@ ModeLines - Include a comment with file-specific configuration
 :help tutor (30 mins turorial : vimtutor or vimtutor.bat)
 
 在輔助文件間的跳動：
-Ctrl-]  (jump to tag)       hyperlink |:help|
+Ctrl-]  (jump to tag)       hyperlink |help subject|
 Ctrl-T  (pop tag) or Ctrl-O
 Ctrl-[  same as Ctrl-T
-ZZ, :bd (leave help system)
+ZZ, gz, :bd (leave help system)
 ```
 
 ### Help Prefix
 
 ```
+輔助命令的各種寫法範例：
+
 What                   Prefix          Example
+------------------------------------------------------
 Normal-mode commands   (nothing)       :help x
                                        :help gu
                                        :help ^n         (Ctrl-n)
@@ -375,10 +396,8 @@ Options                '(both ends)    :h 'textwidth'
 ### Files                                                   *Files*
 
 ```
-:set autochdir    Automatically use the current file's directory as the
-                  working directory (把編輯檔案所在目錄自動當成工作目錄)
-:set wildmode=list:longest    Activate TAB autocompletion for file path
-                              啓動編輯檔名時可以按TAB鍵自動完成
+:set autochdir             把編輯檔案所在目錄自動當成工作目錄。
+:set wildmode=list:longest 啓動對檔名路徑輸入時，可以按TAB鍵自動完成。
 :e <path with TAB>
 :e path           Directory Listing
                   i   Thin,long,wide or tree listings
@@ -395,8 +414,8 @@ Options                '(both ends)    :h 'textwidth'
 gf                Jump to file under cursor (goto file)
 
 檔案處理相關可以用的Plugins
-Visual  : NERDTree, Project (included within rails.vim)
-Text    : FuzzyFinder, CtrlP, Unite
+Visual  : |NERDTree|, Project (included within rails.vim)
+Text    : FuzzyFinder, CtrlP, |Unite|
 
 ```
 <!--- }}} -->
@@ -1656,7 +1675,7 @@ for the {pattern}.   遞迴搜尋符合樣式(若未指定目錄，預設爲當�
 <!--- }}} -->
 
 <!--- NERDTree {{{ -->
-### [NERDTree](https://github.com/scrooloose/nerdtree)
+### [NERDTree](https://github.com/scrooloose/nerdtree)          *NERDTree*
 
 ```
 ~/.vim/vundle_plugins/nerdtree.vim
@@ -1860,7 +1879,7 @@ visual mode … cp : select with visual mode then copy to system clipboard
 <!--- }}} -->
 
 <!--- unite.vim {{{ -->
-###[unite.vim](https://github.com/Shougo/unite.vim)
+###[unite.vim](https://github.com/Shougo/unite.vim)             *Unite*
 ```
 ~/.vim/vundle_plugins/unite.vim
 

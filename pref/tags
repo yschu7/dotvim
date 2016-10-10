@@ -22,6 +22,7 @@ Misc	Vim-notes.txt	/*Misc*
 MiscCont	Vim-notes.txt	/*MiscCont*
 Motion	Vim-notes.txt	/*Motion*
 MotionCont	Vim-notes.txt	/*MotionCont*
+NERDTree	Vim-notes.txt	/*NERDTree*
 Plugins	Vim-notes.txt	/*Plugins*
 Range	Vim-notes.txt	/*Range*
 Regex	Vim-notes.txt	/*Regex*
@@ -33,6 +34,7 @@ SpecialG	Vim-notes.txt	/*SpecialG*
 Substitute	Vim-notes.txt	/*Substitute*
 TabPage	Vim-notes.txt	/*TabPage*
 TextObjects	Vim-notes.txt	/*TextObjects*
+Unite	Vim-notes.txt	/*Unite*
 Vim-notes.txt	Vim-notes.txt	/*Vim-notes.txt*
 VimNotes	Vim-notes.txt	/*VimNotes*
 VisualMode	Vim-notes.txt	/*VisualMode*
