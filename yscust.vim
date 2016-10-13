@@ -179,6 +179,12 @@ inoremap <F4> <Esc>:call ToggleSpell()<CR>a
 nnoremap <F5> <ESC>:up!<CR>:! ./%<CR>
 inoremap <F5> <ESC>:up!<CR>:! ./%<CR>
 
+" F6 : Taglist toggle
+nnoremap <silent><F6> :TlistToggle<CR>
+
+" F7 : Undo graph toggle
+nnoremap <silent><F7> :GundoToggle<CR>
+
 " F9 : SetColor (~/.vim/pref/setcolors.vim)
 " F9 (next), <Shift>-F9 (prev), <Alt>-F9 (random)
 noremap <silent> <leader>sc :SetColor all<CR>

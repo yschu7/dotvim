@@ -4,4 +4,4 @@ if exists('g:vundle_installing_plugins')
   finish
 endif
 
-nnoremap <silent><F6> :TlistToggle<CR>
+"nnoremap <silent><F6> :TlistToggle<CR>

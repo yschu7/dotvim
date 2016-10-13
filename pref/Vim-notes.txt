@@ -1,4 +1,4 @@
-*Vim-notes.txt*        Y.S. Chu's Vim Notes v 2.6.3
+*Vim-notes.txt*        Y.S. Chu's Vim Notes v 2.6.4
 ```
       __           _                 __      _
 /\_/\/ _\   /\   /(_)_ __ ___     /\ \ \___ | |_ ___  ___
@@ -422,6 +422,9 @@ Text    : FuzzyFinder, CtrlP, |Unite|
 
 <!--- Window {{{ -->
 ### Window :  A rectangular view of a buffer.               *Window*
+
+* 視窗是一個buffer的某部分的的視野。在vim中可以使用不同視窗，同時編輯一個檔案。
+
 * Ctrl-w s    Split window horizontally (:split or :sp)
 * Ctrl-w v    Split window vertically (:vsplit or :vsp)
 * Ctrl-w c    Close window (:close)
@@ -508,6 +511,8 @@ h       Buffer is hidden (loaded but not visible)
 
 <!--- Tab Page {{{ -->
 ### Tab Page : A tab page holds one or more windows         *TabPage*
+
+* Tab Page是一個或多個視窗的組合(排列arrangement)。
 
 * $ vim -p t*.rb : 將所有以t開頭的ruby檔案以tab page方式開啓
 
@@ -1283,11 +1288,18 @@ Ctrl-x Ctrl-l  whole line completion(整列模式)
                就像是把filter外部程式作為Vim的pipe對象，不過若沒有指定
                範圍，filter的輸出會直接顯示，不傳回Vim。
                但可以使用r命令將filter的輸出讀入(:r!ls)，
-               或使用:.!date (!!date)，事實上它有指定範圍是當前列。
+               或使用(:.!date)，事實上它有指定範圍是當前列。
    ----->
-Vim | filter | Vim  (將資料傳入過濾器處理後，再接回來。)
+Vim | filter | Vim    將資料傳入過濾器處理後，再接回來。
           ----->
-:1,$!nl -w3 -nrz -ba  寫入行號：寬度3、前補零、全部編號（空白列也要）
+:1,$!nl -w3 -nrz -ba  寫入行號：寬度3、前補零、全部編號（空白列也要）。
+
+:.!ls /path/to/file   使用ls搭配自動完成功能，將目錄/檔案寫到當前列。
+
+:%!json_reformat      將目前的檔案透過json_reformat程式重新編排。
+
+:5,18!sort -rnu       指定範圍列5-18，作為sort的輸入，及其排序後的輸出。
+                      除了手動指定範圍外，也可以用Visual mode的方式指定。
 
 四種指定整個buffer內容範圍的方法
 Four ways to run the uniq filter on an entire buffer.
@@ -1295,11 +1307,6 @@ ggVG!uniq
 gg!Guniq
 :1,$!uniq
 :%!uniq
-
-:5,18!sort  (指定範圍列5-18，作為sort的輸入，及其排序後的輸出)
-除了手動指定範圍外，也可以用Visual mode的方式指定。
-The range can be established with visual mode or by specifying a
-range in command-line mode.
 
 Beautiful code
 ggVG=       (use shiftwidth to adjust the level of indentation)
@@ -1979,6 +1986,18 @@ visual mode … cp : select with visual mode then copy to system clipboard
 ```
 <!--- }}} -->
 
+<!--- Gundo.vim {{{ -->
+###[Gundo.vim](https://github.com/sjl/gundo.vim/)
+```
+~/.vim/vundle_plugins/Gundo.vim
+
+* [Gundo](http://sjl.bitbucket.org/gundo.vim/)
+
+* F7: Undo graph toggle
+
+```
+<!--- }}} -->
+
 <!--- Misc {{{ -->
 Misc                                                        *Misc*
 ====
@@ -1990,6 +2009,9 @@ Misc                                                        *Misc*
 * Insert mode:
     * ctrl + r : Insert text from a register
     * ctrl + a : Insert the last inserted text
+    * ctrl + t : Indent
+    * ctrl + d : Dedent
+    * ctrl + w : Delete word
     * Completion:
         * ctrl + p : search backward for matching word compltion
         * ctrl + n : search forward
