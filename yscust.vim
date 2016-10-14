@@ -138,7 +138,7 @@ augroup END
 "  Function Keys  {{{
 " ===================
 " F1 Help
-noremap <F1> <Esc>:help<CR>
+noremap <silent><F1> <Esc>:help<CR>
 
 " Cycle through relativenumber + number, number (only), and no numbering.
 function! Cycle_numbering() abort
@@ -154,12 +154,12 @@ function! Cycle_numbering() abort
   endif
 endfunction
 
-nnoremap <silent> <F2> :call Cycle_numbering()<CR>
-inoremap <silent> <F2> <Esc>:call Cycle_numbering()<CR>a
+nnoremap <silent><F2> :call Cycle_numbering()<CR>
+inoremap <silent><F2> <Esc>:call Cycle_numbering()<CR>a
 
 " F3 Toggle paste mode
 "nnoremap <silent> <F3> :set paste!<CR>
-noremap <silent> <F3> :set paste<CR>o
+noremap <silent><F3> :set paste<CR>o
 
 " Spell check
 function! ToggleSpell()
@@ -172,8 +172,8 @@ function! ToggleSpell()
     endif
 endfunction
 
-nnoremap <F4> :call ToggleSpell()<CR>
-inoremap <F4> <Esc>:call ToggleSpell()<CR>a
+nnoremap <silent><F4> :call ToggleSpell()<CR>
+inoremap <silent><F4> <Esc>:call ToggleSpell()<CR>a
 
 " F5 : run script
 nnoremap <F5> <ESC>:up!<CR>:! ./%<CR>
@@ -187,11 +187,11 @@ nnoremap <silent><F7> :GundoToggle<CR>
 
 " F9 : SetColor (~/.vim/pref/setcolors.vim)
 " F9 (next), <Shift>-F9 (prev), <Alt>-F9 (random)
-noremap <silent> <leader>sc :SetColor all<CR>
+noremap <silent><leader>sc :SetColor all<CR>
 " ChgColor: Change Colorscheme
-noremap <silent> <leader>ic :ChgColor<CR>
+noremap <silent><leader>ic :ChgColor<CR>
 " ChgAirColor: Change Airpline Colorscheme
-noremap <silent> <leader>ia :ChgAirColor<CR>
+noremap <silent><leader>ia :ChgAirColor<CR>
 " }}}
 
 " ============================
