@@ -1951,7 +1951,7 @@ visual mode … cp : select with visual mode then copy to system clipboard
 
 * 由vimscripts:[taglist.vim](http://vim.sourceforge.net/scripts/script.php?script_id=273)
 
-* F6: Tag list toggle
+* F7: Tag list toggle
 
 ```
 <!--- }}} -->
@@ -1993,7 +1993,19 @@ visual mode … cp : select with visual mode then copy to system clipboard
 
 * [Gundo](http://sjl.bitbucket.org/gundo.vim/)
 
-* F7: Undo graph toggle
+* F8: Undo graph toggle
+
+```
+<!--- }}} -->
+
+<!--- dispatch.vim {{{ -->
+###[dispatch.vim](https://github.com/tpope/vim-dispatch)
+```
+asynchronous build and test dispatcher
+
+~/.vim/vundle_plugins/vim-dispatch.vim
+
+* F6: Dispatch
 
 ```
 <!--- }}} -->
@@ -2030,10 +2042,15 @@ Misc                                                        *Misc*
 * Customize Mapping: ~/.vim/mappings.vim 主要定義key mapping的檔案
 
 * F1: Help
-* F2: Close current window
-* F3: Set paste & insert one line below
-* F4: Spell toggle
-* F6: Tag list toggle
+* F2: Line number toggle
+* F3: Spell toggle
+* F4: Paste with paste mode
+* F5: Run
+* F6: Dispatch (make)
+* F7: Tag list toggle
+* F8: Undo graph toggle
+* F9: Change colorscheme
+
 * <leader> /  : Clear search highlight, 或<Ctrl> n
 * <leader> m  : open in Markd
 * <leader> o  : 在瀏覽器內開啓目前遊標所在的網址

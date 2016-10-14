@@ -126,7 +126,7 @@ set incsearch  " Incremental search
 set hlsearch   " Highlight search results
 set wildignore+=*.o,*.obj,*.exe,*.so,*.dll,*.pyc,.svn,.hg,.bzr,.git,
   \.sass-cache,*.class,*.scssc,*.cssc,sprockets%*,*.lessc,*/node_modules/*,
-  \rake-pipeline-*
+  \rake-pipeline-*,vendor/gems/*
 
 set matchpairs+=<:>
 " https://github.com/lilydjwg/dotvim/commit/880fc3b

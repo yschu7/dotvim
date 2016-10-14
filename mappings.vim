@@ -160,6 +160,8 @@ nnoremap <silent> <BS> :nohlsearch<CR>
 " list and select buffer
 nnoremap <silent> <leader>l :ls<CR>:b
 nnoremap <silent> <leader>d :bd<CR>
+nnoremap <silent> <leader>n :bn<CR>
+nnoremap <silent> <leader>p :bp<CR>
 " nnoremap <leader>w :w<CR>
 
 " Actions after helpgrep
@@ -178,8 +180,6 @@ noremap <silent> <leader>V :source $MYVIMRC<CR>:filetype detect<CR>:exe ":echo '
 
 " ,h brings up my Vim-notes.txt
 noremap <leader>h :sp ~/.vim/pref/Vim-notes.md<CR><C-W>_
-" ,vs brings up my vimrc: yscust.vim
-noremap <leader>vs :sp ~/.vim/yscust.vim<CR><C-W>_
 
 " for when we forget to use sudo to open/edit a file
 cnoremap w!! w !sudo tee % >/dev/null

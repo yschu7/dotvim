@@ -64,11 +64,10 @@ augroup YSAutoCommands
   autocmd FileType ruby   setlocal foldmethod=syntax
   autocmd FileType vim    setlocal foldmethod=marker
   autocmd FileType css    setlocal foldmethod=indent shiftwidth=2 tabstop=2 softtabstop=2
-  autocmd FileType python setlocal foldmethod=indent shiftwidth=4 tabstop=4 softtabstop=4
-  autocmd FileType swift  setlocal foldmethod=indent shiftwidth=4 tabstop=4 softtabstop=4
-  autocmd FileType java   setlocal foldmethod=indent shiftwidth=4 tabstop=4 softtabstop=4
 
-  au FileType markdown setlocal foldmethod=marker tabstop=4 shiftwidth=4 softtabstop=4 nospell
+  au FileType python,swift,java setlocal fdm=indent sw=4 ts=4 sts=4
+
+  au FileType markdown setlocal fdm=marker ts=4 sw=4 sts=4 nospell
 
   au FileType ruby,python,java,swift,javascript,php,rust,sh,vim,go setlocal matchpairs-=<:>
   au FileType c,cpp,plsql,coffee setlocal matchpairs-=<:>
@@ -131,6 +130,13 @@ augroup YSAutoCommands
 
   " Leave paste mode on exit
   au InsertLeave * set nopaste
+
+  " F6 : Dispatch configuration
+  autocmd FileType java   let b:dispatch = 'javac %'
+  autocmd FileType rust   let b:dispatch = 'rustc %'
+  autocmd FileType ruby   let b:dispatch = 'ruby %'
+  autocmd FileType python let b:dispatch = 'python3 %'
+
 augroup END
 " }}}
 
@@ -157,11 +163,7 @@ endfunction
 nnoremap <silent> <F2> :call Cycle_numbering()<CR>
 inoremap <silent> <F2> <Esc>:call Cycle_numbering()<CR>a
 
-" F3 Toggle paste mode
-"nnoremap <silent> <F3> :set paste!<CR>
-noremap <silent> <F3> :set paste<CR>o
-
-" Spell check
+" F3 : Spell check
 function! ToggleSpell()
     if !exists("b:spell")
         setlocal spell spelllang=en_us
@@ -172,18 +174,36 @@ function! ToggleSpell()
     endif
 endfunction
 
-nnoremap <F4> :call ToggleSpell()<CR>
-inoremap <F4> <Esc>:call ToggleSpell()<CR>a
+nnoremap <F3> :call ToggleSpell()<CR>
+inoremap <F3> <Esc>:call ToggleSpell()<CR>a
+
+" F4 : Paste with paste mode
+function! PasteWithPasteMode()
+  if &paste
+    normal p
+  else
+    " Enable paste mode and paste the text, then disable paste mode.
+    set paste
+    normal p
+    set nopaste
+  endif
+endfunction
+
+command! PasteWithPasteMode call PasteWithPasteMode()
+nnoremap <silent> <F4> :PasteWithPasteMode<CR>
 
 " F5 : run script
 nnoremap <F5> <ESC>:up!<CR>:! ./%<CR>
 inoremap <F5> <ESC>:up!<CR>:! ./%<CR>
 
-" F6 : Taglist toggle
-nnoremap <silent><F6> :TlistToggle<CR>
+" F6 : [Dispatch](https://github.com/tpope/vim-dispatch)
+nnoremap <F6> :Dispatch<CR>
 
-" F7 : Undo graph toggle
-nnoremap <silent><F7> :GundoToggle<CR>
+" F7 : Taglist toggle
+nnoremap <silent><F7> :TlistToggle<CR>
+
+" F8 : Undo graph toggle
+nnoremap <silent><F8> :GundoToggle<CR>
 
 " F9 : SetColor (~/.vim/pref/setcolors.vim)
 " F9 (next), <Shift>-F9 (prev), <Alt>-F9 (random)
