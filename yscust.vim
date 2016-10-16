@@ -199,6 +199,12 @@ inoremap <F5> <ESC>:up!<CR>:! ./%<CR>
 " F6 : [Dispatch](https://github.com/tpope/vim-dispatch)
 nnoremap <F6> :Dispatch<CR>
 
+if has('nvim')
+  let test#strategy = "neovim"
+else
+  let test#strategy = "dispatch"
+endif
+
 " F7 : Taglist toggle
 nnoremap <silent><F7> :TlistToggle<CR>
 

@@ -232,10 +232,6 @@ nnoremap <leader>jts <Esc>:%!underscore print --strict<CR><Esc>:set filetype=jso
 
 cnoremap w' w<CR>
 
-" It takes current line as input and execute the command and reads the output
-" into the buffer. $SHELL is your default shell, you can change it..
-nnoremap Q !!$SHELL <cr>
-
 " Removes doc lookup mapping because it's easy to fat finger and never useful.
 nnoremap K k
 vnoremap K k
@@ -245,6 +241,11 @@ inoreabbrev ddate <C-R>=strftime("%Y-%m-%d")<CR>
 
 noreabbrev teh the
 noreabbrev Wq wq
+
+" It takes current line as input and execute the command and reads the output
+" into the buffer. $SHELL is your default shell, you can change it..
+" yyp - copy the original command line
+nnoremap Q yyp<esc>!!$SHELL <cr>
 
 " copy current file name (relative/absolute) to system clipboard
 " from http://stackoverflow.com/a/17096082/22423
