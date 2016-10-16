@@ -163,7 +163,7 @@ endfunction
 nnoremap <silent><F2> :call Cycle_numbering()<CR>
 inoremap <silent><F2> <Esc>:call Cycle_numbering()<CR>a
 
-" F3 Toggle paste mode
+" F3 Toggle Spell check
 
 " Spell check
 function! ToggleSpell()
