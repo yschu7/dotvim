@@ -144,7 +144,7 @@ augroup END
 "  Function Keys  {{{
 " ===================
 " F1 Help
-noremap <F1> <Esc>:help<CR>
+noremap <silent><F1> <Esc>:help<CR>
 
 " Cycle through relativenumber + number, number (only), and no numbering.
 function! Cycle_numbering() abort
@@ -160,10 +160,12 @@ function! Cycle_numbering() abort
   endif
 endfunction
 
-nnoremap <silent> <F2> :call Cycle_numbering()<CR>
-inoremap <silent> <F2> <Esc>:call Cycle_numbering()<CR>a
+nnoremap <silent><F2> :call Cycle_numbering()<CR>
+inoremap <silent><F2> <Esc>:call Cycle_numbering()<CR>a
 
-" F3 : Spell check
+" F3 Toggle paste mode
+
+" Spell check
 function! ToggleSpell()
     if !exists("b:spell")
         setlocal spell spelllang=en_us
@@ -213,11 +215,11 @@ nnoremap <silent><F8> :GundoToggle<CR>
 
 " F9 : SetColor (~/.vim/pref/setcolors.vim)
 " F9 (next), <Shift>-F9 (prev), <Alt>-F9 (random)
-noremap <silent> <leader>sc :SetColor all<CR>
+noremap <silent><leader>sc :SetColor all<CR>
 " ChgColor: Change Colorscheme
-noremap <silent> <leader>ic :ChgColor<CR>
+noremap <silent><leader>ic :ChgColor<CR>
 " ChgAirColor: Change Airpline Colorscheme
-noremap <silent> <leader>ia :ChgAirColor<CR>
+noremap <silent><leader>ia :ChgAirColor<CR>
 " }}}
 
 " ============================
