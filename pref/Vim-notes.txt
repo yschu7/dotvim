@@ -967,6 +967,17 @@ nnoremap <silent> <BS> :nohlsearch<CR>
 
 ```
 /<Up> or <Down> for search history
+
+:history         列出所有的歷史命令。
+:history -25,    列出最近前25列的歷史命令。
+:history 25,     列出從第25列開始到最後的歷史命令。
+:history 20, 30  列出第20列到第30列的歷史命令。
+
+將歷史命令儲存成檔案：
+:redir @a>       輸出重導向暫存器a。
+:history -20,    列出最近20列歷史命令。
+:redir END       結束輸出重導向。
+"ap              插入暫存器a的內容。
 ```
 
 ### Changing Direction
@@ -1310,6 +1321,8 @@ gg!Guniq
 
 Beautiful code
 ggVG=       (use shiftwidth to adjust the level of indentation)
+gg=G        效果同上，gg到檔頭，=縮排，G到檔尾。
+=10j        縮排下面10列。
 
 Text alignment
 使用Visual mode選擇範圍後，再以ce, ri, le來置中，靠右，靠左
@@ -1320,6 +1333,8 @@ V:le        (le: left alignment)
 :.,+3ri 60  (ri 60: right align on 60 characters wide)
 
 gq          (Reflow paragraph to 80 characters wide,依照tw設定重排)
+gggqG       重排整個檔案。
+
 :set paste  (Disable automatic indentation)
 ```
 <!--- }}} -->

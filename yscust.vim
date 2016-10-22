@@ -137,6 +137,9 @@ augroup YSAutoCommands
   autocmd FileType ruby   let b:dispatch = 'ruby %'
   autocmd FileType python let b:dispatch = 'python3 %'
 
+  " Set path
+  autocmd BufEnter *.rb set path+=~/ruby/**
+  autocmd BufEnter *.py set path+=~/python/**
 augroup END
 " }}}
 
