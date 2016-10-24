@@ -136,6 +136,7 @@ augroup YSAutoCommands
   autocmd FileType rust   let b:dispatch = 'rustc %'
   autocmd FileType ruby   let b:dispatch = 'ruby %'
   autocmd FileType python let b:dispatch = 'python3 %'
+  autocmd FileType cpp    let b:dispatch = 'g++ % -o %<'
 
   " Set path
   autocmd BufEnter *.rb set path+=~/ruby/**

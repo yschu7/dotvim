@@ -2099,6 +2099,18 @@ Misc                                                        *Misc*
     * :bufdo 與argdo不同的是對所有的buffer動作，它可能是arg list的超集合
              新增加或修改的檔案，只在buffer list中，而不會在arg list內
     * :ls    顯示目前的buffer list
+
+* filename-modifiers
+    * %:p   - File name of current buffer with full path
+    * %:p:h - Directory of current buffer
+    * %:t   - File name of current buffer without path
+    * %:t:r - File name of current buffer without extension
+    * %:e   - File extension of current buffer
+    * %     - File name relative to current directory
+    * %<    - same as %:t:r
+
+    :echo expand("%:p")
+    :help %<
 ```
 
 ###[homebrew-neovim](https://github.com/neovim/homebrew-neovim/blob/master/README.md)
