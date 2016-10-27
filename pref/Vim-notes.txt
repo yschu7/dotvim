@@ -2053,6 +2053,7 @@ For examples:
 :B s/pattern/output/
 :B left
 :B right
+:B sort
 
 :help vis
 ```
@@ -2064,6 +2065,9 @@ For examples:
 Vim global plugin for dragging virtual blocks
 
 ~/.vim/pref/dragvisuals.vim
+
+使用方向鍵（上下左右）對選擇的區域，移動其內容。
+使用 D 來複製一個選擇的區域，方向鍵移動其內容。
 ```
 <!--- }}} -->
 
@@ -2073,6 +2077,10 @@ Vim global plugin for dragging virtual blocks
 Vim global plugin for math on visual regions
 
 ~/.vim/pref/vmath.vim
+
+使用++對整個buffer或選擇的區域中的數字運算：sum, avg, min, max
+結果存放在對應的暫存器中：s, a, n, x
+使用"sp, "ap, "np, "xp 取得結果
 ```
 <!--- }}} -->
 
