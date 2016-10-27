@@ -1,4 +1,4 @@
-*Vim-notes.txt*        Y.S. Chu's Vim Notes v 2.6.5
+*Vim-notes.txt*        Y.S. Chu's Vim Notes v 2.7
 ```
       __           _                 __      _
 /\_/\/ _\   /\   /(_)_ __ ___     /\ \ \___ | |_ ___  ___
@@ -956,6 +956,9 @@ nnoremap <silent> <BS> :nohlsearch<CR>
 
 :incsearch or :is  選項：輸入尋找字串時，會同時開始搜尋，游標也會跟著移動，
                          可以看到即時的結果，並據此修改搜尋條件。
+<Ctrl-G>：遊標到下一個匹配字串
+<Ctrl-T>：遊標到上一個匹配字串
+
 :ignorecase or :ic 選項：尋找時忽略大小寫。
 :smartcase or :scs 選項：當字串含有大寫字母時，忽略:ic設定。
                          但若只有小寫字母，則與:ic設定相同。
@@ -2032,7 +2035,44 @@ Run your tests at the speed of thought
 
 ~/.vim/vundle_plugins/vim-test.vim
 
+```
+<!--- }}} -->
 
+<!--- vis.vim {{{ -->
+###[vis.vim](http://www.drchip.org/astronaut/vim/index.html#VIS)
+```
+Visual Block Commands
+~/.vim/plugin/visPlugin.vim
+
+Use V, v, or ctrl-v to visually mark some region.  Then use
+:B cmd     (this command will appear as:   :'<,'>B cmd)
+
+The command will then be applied to just the visually selected region.
+For examples: 
+
+:B s/pattern/output/
+:B left
+:B right
+
+:help vis
+```
+<!--- }}} -->
+
+<!--- dragvisuals.vim {{{ -->
+###[dragvisuals.vim]
+```
+Vim global plugin for dragging virtual blocks
+
+~/.vim/pref/dragvisuals.vim
+```
+<!--- }}} -->
+
+<!--- vmath.vim {{{ -->
+###[vmath.vim]
+```
+Vim global plugin for math on visual regions
+
+~/.vim/pref/vmath.vim
 ```
 <!--- }}} -->
 

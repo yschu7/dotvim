@@ -226,6 +226,24 @@ nnoremap <leader>fef mx=ggG='x
 nnoremap <leader>jt <Esc>:%!underscore print<CR><Esc>:set filetype=json<CR>
 nnoremap <leader>jts <Esc>:%!underscore print --strict<CR><Esc>:set filetype=json<CR>
 
+" Swap v and CTRL-V, because Block mode is more useful that Visual mode
+nnoremap    v   <C-V>
+nnoremap <C-V>     v
+
+vnoremap    v   <C-V>
+vnoremap <C-V>     v
+
+" vmath.vim
+vmap <expr> ++  VMATH_YankAndAnalyse()
+nmap        ++  vip++
+
+" dragvisuals.vim
+vmap <expr> <LEFT>   DVB_Drag('left')
+vmap <expr> <RIGHT>  DVB_Drag('right')
+vmap <expr> <DOWN>   DVB_Drag('down')
+vmap <expr> <UP>     DVB_Drag('up')
+vmap <expr> D        DVB_Duplicate()
+
 " ---------------
 " Typo Fixes
 " ---------------

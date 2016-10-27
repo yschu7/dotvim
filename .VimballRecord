@@ -1,0 +1,2 @@
+cecutil.vba: call delete('/Users/yschu/.vim/plugin/cecutil.vim')|call delete('/Users/yschu/.vim/doc/cecutil.txt')
+vis.vba: call delete('/Users/yschu/.vim/plugin/visPlugin.vim')|call delete('/Users/yschu/.vim/autoload/vis.vim')|call delete('/Users/yschu/.vim/plugin/cecutil.vim')|call delete('/Users/yschu/.vim/doc/vis.txt')
