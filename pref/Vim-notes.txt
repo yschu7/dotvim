@@ -1,4 +1,4 @@
-*Vim-notes.txt*        Y.S. Chu's Vim Notes v 2.7
+*Vim-notes.txt*        Y.S. Chu's Vim Notes v 2.7.1
 ```
       __           _                 __      _
 /\_/\/ _\   /\   /(_)_ __ ___     /\ \ \___ | |_ ___  ___
@@ -1400,6 +1400,11 @@ qadWWPjq
   q         (Quit recoding)
 @a          (Play recoding named a)
 10@a        (Play 10 times)
+
+@@          (Repeat the privious @a)
+
+:help q
+:help @@
 ```
 <!--- }}} -->
 
@@ -2081,6 +2086,18 @@ Vim global plugin for math on visual regions
 使用++對整個buffer或選擇的區域中的數字運算：sum, avg, min, max
 結果存放在對應的暫存器中：s, a, n, x
 使用"sp, "ap, "np, "xp 取得結果
+```
+<!--- }}} -->
+
+<!--- terminus {{{ -->
+###[terminus]
+```
+Enhanced terminal integration for Vim
+
+~/.vim/vundle_plugins/terminus.vim
+
++ 讓遊標在插入模式下變成直線符號，而在正常模式下爲區塊符號。
++ 讓貼入動作更流暢，不必在考慮paste的問題。
 ```
 <!--- }}} -->
 
