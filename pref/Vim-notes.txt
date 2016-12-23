@@ -1,4 +1,4 @@
-*Vim-notes.txt*        Y.S. Chu's Vim Notes v 2.7.1
+*Vim-notes.txt*        Y.S. Chu's Vim Notes v 2.7.2
 ```
       __           _                 __      _
 /\_/\/ _\   /\   /(_)_ __ ___     /\ \ \___ | |_ ___  ___
@@ -2098,6 +2098,19 @@ Enhanced terminal integration for Vim
 
 + 讓遊標在插入模式下變成直線符號，而在正常模式下爲區塊符號。
 + 讓貼入動作更流暢，不必在考慮paste的問題。
+```
+<!--- }}} -->
+
+<!--- vim-maketable {{{ -->
+###[vim-maketable]
+```
+Create a table from comma-separated data
+
+~/.vim/vundle_plugins/vim-maketable.vim
+
++ 使用visual mode選擇範圍（欄位以逗號分開）
+:'<,>'MakeTable
+:'<,>'MakeTable!   把第一列當作表頭
 ```
 <!--- }}} -->
 
