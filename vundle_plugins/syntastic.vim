@@ -1,5 +1,6 @@
+" https://github.com/vim-syntastic/syntastic
 if exists('g:vundle_installing_plugins')
-  Plugin 'scrooloose/syntastic'
+  Plugin 'vim-syntastic/syntastic'
   finish
 endif
 
@@ -15,3 +16,5 @@ let g:syntastic_html_checkers = ['handlebars']
 " let g:syntastic_error_symbol = '✗'
 " let g:syntastic_warning_symbol = '⚠'
 " let g:syntastic_full_redraws = 1
+
+let g:syntastic_python_python_exec='/usr/local/bin/python3'
