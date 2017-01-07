@@ -1,4 +1,5 @@
+" https://github.com/plasticboy/vim-markdown
 if exists('g:vundle_installing_plugins')
-  Plugin 'gabrielelana/vim-markdown'
+  Plugin 'plasticboy/vim-markdown'
   finish
 endif
