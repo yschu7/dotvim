@@ -2156,6 +2156,16 @@ and extensions.
 
 ~/.vim/vundle_plugins/Tabular.vim
 
+<leader> = 以等號爲準做對齊
+<leader> : 以冒號後第1個空白爲準做對齊
+
+輸入pipe(|)符號時，自動呼叫Tabularize對齊
+
+:Tabularize /<Regex>
+
+:'<,>'Tab /=
+:'<,>'Tab /:\zs
+
 :help tabular
 ```
 <!--- }}} -->
@@ -2166,6 +2176,8 @@ and extensions.
 Open the current Markdown buffer in Marked. (MacOS only)
 
 ~/.vim/vundle_plugins/vim-marked.vim
+
+按下F5執行，呼叫Marked 2顯示結果
 
 :help marked
 ```
