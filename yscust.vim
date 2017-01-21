@@ -183,20 +183,23 @@ endfunction
 nnoremap <F3> :call ToggleSpell()<CR>
 inoremap <F3> <Esc>:call ToggleSpell()<CR>a
 
-" F4 : Paste with paste mode
-function! PasteWithPasteMode()
-  if &paste
-    normal p
-  else
-    " Enable paste mode and paste the text, then disable paste mode.
-    set paste
-    normal p
-    set nopaste
-  endif
+" F4 : QuickFix Windows toggle
+let g:quickfix_is_open = 0
+
+function! s:QuickfixToggle()
+    if g:quickfix_is_open
+        cclose
+        let g:quickfix_is_open = 0
+        execute g:quickfix_return_to_window . "wincmd w"
+    else
+        let g:quickfix_return_to_window = winnr()
+        copen
+        let g:quickfix_is_open = 1
+    endif
 endfunction
 
-command! PasteWithPasteMode call PasteWithPasteMode()
-nnoremap <silent> <F4> :PasteWithPasteMode<CR>
+nnoremap <silent><leader>q :call <SID>QuickfixToggle()<CR>
+nnoremap <silent> <F4> :call <SID>QuickfixToggle()<CR>
 
 " F5 : run script
 nnoremap <F5> <ESC>:up!<CR>:! ./%<CR>
