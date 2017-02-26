@@ -229,10 +229,11 @@ noremap <silent><leader>ic :ChgColor<CR>
 noremap <silent><leader>ia :ChgAirColor<CR>
 " }}}
 
-" ============================
-" Source file : ysmain.vim {{{
-" ~/.vim/pref/ysmain.vim
-" ============================
+" ===============================
+"  Source file : ysmain.vim {{{
+"  ~/.vim/pref/ysmain.vim
+" ===============================
+" g:dotvim_dir defined in ~/.vim/platforms.vim
 let g:w32_dir = g:dotvim_dir . '\pref\'
 let g:lnx_dir = g:dotvim_dir . '/pref/'
 if has('win32') || has('win64')

@@ -6,7 +6,7 @@ set directory=$HOME/vimfiles/tmp//,.
 
 " set path for searching cmd like: gf, <c-w>f, <c-w>gf
 " use :set path< to copy this global value to local buffers
-set path=g:/Ruby/YSTest/**,,.
+set path=d:/Ruby/YSTest/**,,.
 
 " fencview
 let g:fencview_autodetect=1
@@ -27,12 +27,5 @@ if !has("gui_running")
   map <silent> <leader>u <esc>:hi cursorline ctermfg=Yellow ctermbg=Darkmagenta cterm=bold<CR>
   " autocmd InsertLeave * hi CursorLine term=none cterm=none ctermbg=233
   " autocmd InsertEnter * hi CursorLine term=none cterm=none ctermbg=4
-endif
-
-" dbext setting
-" w32_dir global in vimrc
-let fn = expand("$HOME") . w32_dir . 'dbextwin.vim'
-if filereadable(fn)
-  execute ':source ' . fn
 endif
 
