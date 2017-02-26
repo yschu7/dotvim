@@ -43,5 +43,5 @@ let g:dbext_default_profile_MSSQLServer = 'type=ODBC:user=' . msuser . ':passwd=
 
 " Mapping
 " Reference :h dbext-maps-commands
-noremap <silent> <Leader>sdt <ESC>gUiw:DBDescribeTable<CR>
+" noremap <silent> <Leader>sdt <ESC>gUiw:DBDescribeTable<CR>
 
