@@ -41,6 +41,10 @@ let g:dbext_default_profile_mysql_DBI = 'type=DBI:user=' . myuser . ':passwd=' .
 
 let g:dbext_default_profile_MSSQLServer = 'type=ODBC:user=' . msuser . ':passwd=' . mspasswd . ':dsnname=' . msdsnname
 
+" Ref: [setup](http://jonathansacramento.com/posts/20160122-improve-postgresql-workflow-vim-dbext.html)
+" PostgreSQL
+let g:dbext_default_profile_PostgreSQL = 'type=PGSQL:host=' . pohost . ':dbname=' . podb . ':user=' . pouser
+
 " Mapping
 " Reference :h dbext-maps-commands
 " noremap <silent> <Leader>sdt <ESC>gUiw:DBDescribeTable<CR>

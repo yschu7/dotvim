@@ -3,7 +3,7 @@
 "   loaded by dbextpc.vim
 "
 "   This is a template file, you need copy
-"   it to ~/.vim/bundle
+"   it to ~/.vim/bundle/dbuserpwd.vim
 " ========================================
 let orauser    = 'hr'             " Oracle user
 let orapasswd  = 'pass01'         " Password
@@ -20,3 +20,7 @@ let mydb       = 'demo'           " MySQL database
 let msuser     = 'sa'             " MS SQLSever user
 let mspasswd   = 'pass01'         " Password
 let msdsnname  = 'MyMSSQLDB'      " ODBC DSN Name
+
+let pouser     = 'yschu'          " postgreSQL user
+let pohost     = 'localhost'      " Host
+let podb       = 'Adventureworks' " Database
