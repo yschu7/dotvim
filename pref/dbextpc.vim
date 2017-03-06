@@ -21,9 +21,9 @@ execute ':source ' . fn
 
 let g:dbext_default_use_jobs = 0  " Disable using async job
 
-let g:dbext_default_profile_oracle = 'type=ORA:user=' . orauser . ':passwd=' . orapasswd . ':srvname=' . orasrvname
+let g:dbext_default_profile_oracle = 'type=ORA:user=' . orauser . ':passwd=' . orapasswd . ':srvname=' . orasrvname . ':port=' . oraport
 
-let g:dbext_default_profile_oracle_DBI = 'type=DBI:user=' . orauser . ':passwd=' . orapasswd . ':driver=Oracle:conn_parms=sid=' . orasid . ';host=' . orahost . ':port=1521'
+let g:dbext_default_profile_oracle_DBI = 'type=DBI:user=' . orauser . ':passwd=' . orapasswd . ':driver=Oracle:conn_parms=sid=' . orasid . ';host=' . orahost . ';port=' . oraport
 
 let g:dbext_default_profile_oracle_URL = 'type=ORA:srvname=//'. orahost . '\:' . oraport . '/' . orasid . ':user=' . orauser . ':passwd=' . orapasswd
 
@@ -44,6 +44,10 @@ let g:dbext_default_profile_MSSQLServer = 'type=ODBC:user=' . msuser . ':passwd=
 " Ref: [setup](http://jonathansacramento.com/posts/20160122-improve-postgresql-workflow-vim-dbext.html)
 " PostgreSQL
 let g:dbext_default_profile_PostgreSQL = 'type=PGSQL:host=' . pohost . ':dbname=' . podb . ':user=' . pouser
+
+" SQLite
+let g:dbext_default_profile_SQLite = 'type=SQLITE:SQLITE_bin=sqlite3:dbname=/Users/yschu/Dropbox/Software/sqlite/test.db'
+let g:dbext_default_profile_SQLite_DBI = 'type=DBI:driver=SQLite:conn_parms=dbname=/Users/yschu/Dropbox/Software/sqlite/test.db'
 
 " Mapping
 " Reference :h dbext-maps-commands
