@@ -25,6 +25,8 @@ let g:dbext_default_profile_oracle = 'type=ORA:user=' . orauser . ':passwd=' . o
 
 let g:dbext_default_profile_oracle_DBI = 'type=DBI:user=' . orauser . ':passwd=' . orapasswd . ':driver=Oracle:conn_parms=sid=' . orasid . ';host=' . orahost . ';port=' . oraport
 
+let g:dbext_default_profile_oracle_DBI2 = 'type=DBI:user=' . orauser . ':passwd=' . orapasswd . ':driver=Oracle:conn_parms=' . orasrvname
+
 let g:dbext_default_profile_oracle_URL = 'type=ORA:srvname=//'. orahost . '\:' . oraport . '/' . orasid . ':user=' . orauser . ':passwd=' . orapasswd
 
 " DBD::mysql [installation](https://metacpan.org/pod/DBD::mysql::INSTALL)
