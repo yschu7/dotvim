@@ -52,7 +52,9 @@ set relativenumber   " Relative Number on
 set wrap             " Line wrapping on
 set linebreak        " not break in the middle of the word
 let &showbreak='⤷ '  " symbol to shwo where the linebreak is (U+2937)
-set breakindent      " indent wrapped lines to match start
+if v:version >= 800  " check vim version >= 8.0
+  set breakindent    " indent wrapped lines to match start
+endif
 if exists('&breakindentopt')
   set breakindentopt=shift:2   " emphasize broken lines by indenting them
 endif
