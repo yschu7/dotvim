@@ -2266,6 +2266,9 @@ macOS:
 <leader>pe :PickerEdit
 <leader>ph :PickerHelp
 
+[fzy-tmux](https://github.com/jhawthorn/fzy/blob/master/contrib/fzy-tmux)
+if run vim within tmux, setting:
+let g:picker_selector = 'fzy-tmux'
 ```
 <!--- }}} -->
 

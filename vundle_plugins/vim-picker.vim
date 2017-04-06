@@ -14,9 +14,10 @@ nmap <unique> <leader>ph <Plug>PickerHelp
 
 " https://github.com/jhawthorn/fzy
 " fzy is used as the default fuzzy selector. To use an alternative selector:
-" let g:picker_selector = 'pick'
+" If run Vim within tmux:
+" let g:picker_selector = 'fzy-tmux'
 
-" To specify the height of the window in which the fuzzy selector is opened:
+" To specify the height of the window in which the fuzzy selector is opened in Neovim:
 " let g:picker_height = 10
 
 " https://github.com/BurntSushi/ripgrep
