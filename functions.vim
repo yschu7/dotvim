@@ -40,12 +40,12 @@ ruby << EOF
 
   # Returns the contents of the <title> tag of a given page
   def fetch_title(url)
-    if RUBY_VERSION < '1.9'
-      open(url).read.match(/<title>(.*?)<\/title>?/i)[1]
-    else
+    # if RUBY_VERSION < '1.9'
+    #   open(url).read.match(/<title>(.*?)<\/title>?/i)[1]
+    # else
       open(url, :ssl_verify_mode => OpenSSL::SSL::VERIFY_NONE).read.
         match(/<title>(.*?)<\/title>?/i)[1]
-    end
+    # end
   end
 
   # Paste the title and url for the url on the clipboard in markdown format:

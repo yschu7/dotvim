@@ -1,4 +1,4 @@
-*Vim-notes.txt*        Y.S. Chu's Vim Notes v 2.8.6
+*Vim-notes.txt*        Y.S. Chu's Vim Notes v 2.8.8
 ```
       __           _                 __      _
 /\_/\/ _\   /\   /(_)_ __ ___     /\ \ \___ | |_ ___  ___
@@ -1642,6 +1642,7 @@ gsip    對當前所在的段（paragraph）做排序
 <leader> tw  寫入buffer後，執行最後一個命令
 <leader> tr  在tmux視窗執行目前選擇的內容(或遊標所在paragraph的內容)
 <leader> tz  將畫面切換到tmux視窗後放大(使用 <Ctrl-a> z 切換回來)
+<leader> ti  將畫面切換到tmux視窗,並進入copy模式
 
 :h vimux
 ```
@@ -2016,18 +2017,18 @@ visual mode … cp : select with visual mode then copy to system clipboard
 ```
 <!--- }}} -->
 
-<!--- YouCompleteMe {{{ -->
-###[YouCompleteMe](https://github.com/Valloric/YouCompleteMe)
+<!--- neocomplete {{{ -->
+###[neocomplete](https://github.com/Shougo/neocomplete.vim)
 ```
-~/.vim/vundle_plugins/YouCompleteMe.vim
+~/.vim/vundle_plugins/neocomplete.vim
 
-* A [code-completion engine for Vim:](http://valloric.github.io/YouCompleteMe/)
-* ~/.vim/bundle/YouCompleteMe/ReadMe.md
+```
+<!--- }}} -->
 
-* Compile with C, Rust and JavaScript support
-  > cd ~/.vim/bundle/YouCompleteMe
-  > ./install.py --clang-completer --racer-completer --tern-completer
-* Go support: --gocode-completer
+<!--- deoplete.nvim {{{ -->
+###[deoplete.nvim](https://github.com/Shougo/deoplete.nvim)
+```
+~/.vim/vundle_plugins/deoplete.vim
 
 ```
 <!--- }}} -->
