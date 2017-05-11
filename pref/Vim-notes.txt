@@ -2368,8 +2368,8 @@ Misc                                                        *Misc*
 * <leader> o  : 在瀏覽器內開啓目前遊標所在的網址(功能同gx,定義於:~/.vim/functions.vim)
 * <leader> gg : 在瀏覽器內使用Google查詢目前遊標所在的單字([vim-voogle][01])
 * <Ctrl-w> o  : 將目前的視窗最大化，再按一次恢復原狀(Toggle, [ZoomWin][02])
-* <leader> g  : 使用Ag命令尋找選擇的text object
-                viw<leader>g, <leader>gi( , <leader>gt;
+* <leader> g  : 使用Ag命令尋找遊標所在的單字
+                與denite.vim定義的<leader>fg 功能類似
 * <leader> q  : QuickFix視窗切換鍵(Toggle)
 
 * Argument Lists：相當於從vim指令傳入的參數列，在vim中也可以調整它

@@ -237,25 +237,26 @@ endfunction
 command! -range=% WordFrequency <line1>,<line2>call WordFrequency()
 
 " new operator <leader>g : search the selected object with Ag
-nnoremap <leader>g :set operatorfunc=<SID>AgOperator<CR>g@
-vnoremap <leader>g :<C-U>call <SID>AgOperator(visualmode())<CR>
-function! s:AgOperator(type)
-    let saved_unnamed_register = @@
+" nnoremap <leader>g :set operatorfunc=<SID>AgOperator<CR>g@
+" vnoremap <leader>g :<C-U>call <SID>AgOperator(visualmode())<CR>
+" function! s:AgOperator(type)
+"     let saved_unnamed_register = @@
+"
+"     if a:type ==# 'v'
+"         normal! `<v`>y
+"     elseif a:type ==# 'char'
+"         normal! `[v`]y
+"     else
+"         return
+"     endif
+"
+"     silent execute "Ag " . shellescape(@@) . " ."
+"
+"     let @@ = saved_unnamed_register
+" endfunction
 
-    if a:type ==# 'v'
-        normal! `<v`>y
-    elseif a:type ==# 'char'
-        normal! `[v`]y
-    else
-        return
-    endif
-
-    silent execute "Ag " . shellescape(@@) . " ."
-
-    let @@ = saved_unnamed_register
-endfunction
-
-" nnoremap <leader>g :silent execute "Ag ".shellescape(expand("<cWORD>"))." ."<CR>
+let g:ag_prg="ag --vimgrep --smart-case"
+nnoremap <leader>g :silent execute "Ag ".shellescape(expand("<cWORD>"))." ."<CR>
 
 " Clean all end of line extra whitespace with ,S
 " Credit: voyeg3r https://github.com/mitechie/pyvim/issues/#issue/1
