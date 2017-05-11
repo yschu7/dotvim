@@ -1,11 +1,31 @@
-" neovim : use deoplete
+" ---------------
+" neocomplete.vim
+" ---------------
+" if neovim : use deoplete.vim
 if has('nvim')
   finish
 endif
 
 " https://github.com/Shougo/neocomplete.vim
+
+" ----
+" Ruby
+" ----
+" https://github.com/vim-ruby/vim-ruby/wiki/VimRubySupport
+" Ctrl-x Ctrl-o : activate completion
+" [1,2,3].re <-- ctrl-x ctrl-o to show the completion menu
+
+" ------
+" Python
+" ------
+" https://github.com/davidhalter/jedi-vim
+" > pip2 install jedi
+" and/or
+" > pip3 install jedi
+
 if exists('g:vundle_installing_plugins')
   Plugin 'Shougo/neocomplete.vim'
+  Plugin 'davidhalter/jedi-vim'
   finish
 endif
 
@@ -53,7 +73,7 @@ inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 "inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
 
 " AutoComplPop like behavior.
-"let g:neocomplete#enable_auto_select = 1
+" let g:neocomplete#enable_auto_select = 1
 
 " Shell like behavior(not recommended).
 "set completeopt+=longest
@@ -65,8 +85,17 @@ inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+"autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType python setlocal omnifunc=python3complete#Complete
+autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+if has("autocmd") && exists("+omnifunc")
+  autocmd Filetype *
+      \	if &omnifunc == "" |
+      \		setlocal omnifunc=syntaxcomplete#Complete |
+      \	endif
+endif
 
 " Enable heavy omni completion.
 if !exists('g:neocomplete#sources#omni#input_patterns')
@@ -75,6 +104,7 @@ endif
 "let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 "let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
 "let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+let g:neocomplete#sources#omni#input_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
 
 " For perlomni.vim setting.
 " https://github.com/c9s/perlomni.vim
