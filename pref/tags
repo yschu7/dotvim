@@ -10,6 +10,7 @@ CommandArguments	Vim-notes.txt	/*CommandArguments*
 CommandMode	Vim-notes.txt	/*CommandMode*
 Completion	Vim-notes.txt	/*Completion*
 Configuration	Vim-notes.txt	/*Configuration*
+Denite	Vim-notes.txt	/*Denite*
 EditingText	Vim-notes.txt	/*EditingText*
 FileOperations	Vim-notes.txt	/*FileOperations*
 Files	Vim-notes.txt	/*Files*

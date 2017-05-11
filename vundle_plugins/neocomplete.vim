@@ -12,7 +12,7 @@ endif
 " Ruby
 " ----
 " https://github.com/vim-ruby/vim-ruby/wiki/VimRubySupport
-" Ctrl-x Ctrl-o : activate completion
+" Ctrl-x Ctrl-o : activate completion  (insert mode mapping --> Ctrl-b)
 " [1,2,3].re <-- ctrl-x ctrl-o to show the completion menu
 
 " ------
@@ -72,6 +72,9 @@ inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 " Close popup by <Space>.
 "inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
 
+" Activate AutoComplPop with Ctrl-b
+inoremap <C-b> <C-x><C-o>
+
 " AutoComplPop like behavior.
 " let g:neocomplete#enable_auto_select = 1
 
@@ -85,6 +88,7 @@ inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+" Python 2
 "autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType python setlocal omnifunc=python3complete#Complete
 autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
