@@ -663,6 +663,7 @@ gI  在列首插入 (I為在列首非空白位置)
 g&  重複執行上次的替代指令，以整個buffer爲範圍(同:%s)
 gt  移動到下一個tab。3gt 移動到第3個tab
 gT  移動到上一個tab。
+gx  將遊標所在的HTTP位址在瀏覽器內開啓（與<leader>o設定相同）
 ```
 <!--- }}} -->
 
@@ -2364,7 +2365,7 @@ Misc                                                        *Misc*
 
 * <leader> /  : Clear search highlight, 或<Ctrl> n
 * <leader> m  : open in Markd
-* <leader> o  : 在瀏覽器內開啓目前遊標所在的網址
+* <leader> o  : 在瀏覽器內開啓目前遊標所在的網址(功能同gx,定義於:~/.vim/functions.vim)
 * <leader> gg : 在瀏覽器內使用Google查詢目前遊標所在的單字([vim-voogle][01])
 * <Ctrl-w> o  : 將目前的視窗最大化，再按一次恢復原狀(Toggle, [ZoomWin][02])
 * <leader> g  : 使用Ag命令尋找選擇的text object
