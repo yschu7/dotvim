@@ -1,11 +1,10 @@
-snippet im "Default import packages" b
+snippet imp "Default import packages" b
 import static java.lang.System.*;
 import java.lang.*;
 import java.util.*;
 import java.io.*;
 import java.math.BigInteger;
 import java.math.BigDecimal;
-
 endsnippet
 
 snippet main "Main function header" b
@@ -14,4 +13,8 @@ public class ${1:`!p snip.rv = snip.basename`} {
 		$2
 	}
 }
+endsnippet
+
+snippet syso "System.out.println" b
+System.out.println($1)
 endsnippet
