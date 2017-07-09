@@ -70,7 +70,7 @@ augroup YSAutoCommands
   au FileType markdown setlocal fdm=marker ts=4 sw=4 sts=4 nospell
 
   au FileType ruby,python,java,swift,javascript,php,rust,sh,vim,go setlocal matchpairs-=<:>
-  au FileType c,cpp,plsql,coffee setlocal matchpairs-=<:>
+  au FileType c,cpp,plsql,coffee,lua setlocal matchpairs-=<:>
 
   " automatically give executable permissions if file begins with #! and
   " contains '/bin/' in the path (replaced by vim-eunuch)
@@ -117,6 +117,8 @@ augroup YSAutoCommands
   autocmd FileType java inoremap <buffer><F5> <ESC>:up!<CR>:call JavaCompileAndRun()<CR>
   autocmd FileType markdown nnoremap <buffer><F5> <ESC>:up!<CR>:MarkedOpen!<CR>
   autocmd FileType markdown inoremap <buffer><F5> <ESC>:up!<CR>:MarkedOpen!<CR>
+  autocmd FileType lua nnoremap <buffer><F5> <ESC>:up!<CR>:!lua ./%<CR>
+  autocmd FileType lua inoremap <buffer><F5> <ESC>:up!<CR>:!lua ./%<CR>
 
   " [Buffer-Local](http://learnvimscriptthehardway.stevelosh.com/chapters/11.html)
   " tmux run script (Split screen to show result)
@@ -127,6 +129,7 @@ augroup YSAutoCommands
   au FileType coffee nnoremap <buffer><leader>tx :up!<CR>:call VimuxRunCommand("coffee ".expand('%:p')."\n")<CR>
   au FileType rust nnoremap <buffer><leader>tx :up!<CR>:call VimuxRunCommand("clear && rustc ".expand('%:t')." && ./".expand('%:r')."\n")<CR>
   au FileType java nnoremap <buffer><leader>tx :up!<CR>:call VimuxRunCommand("clear && javac ".expand('%:t')." && java ".expand('%:t:r')."\n")<CR>
+  au FileType lua nnoremap <buffer><leader>tx :up!<CR>:call VimuxRunCommand("lua ".expand('%:p')."\n")<CR>
 
   " Leave paste mode on exit
   au InsertLeave * set nopaste
@@ -137,6 +140,7 @@ augroup YSAutoCommands
   autocmd FileType ruby   let b:dispatch = 'ruby %'
   autocmd FileType python let b:dispatch = 'python3 %'
   autocmd FileType cpp    let b:dispatch = 'g++ % -o %<'
+  autocmd FileType ruby   let b:dispatch = 'lua %'
 
   " Set path
   autocmd BufEnter *.rb set path+=~/ruby/**
