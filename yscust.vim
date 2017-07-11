@@ -19,6 +19,9 @@ highlight ColorColumn ctermfg=magenta
 " True color support in nvim
 if has('nvim')
   set termguicolors
+  tnoremap <Esc> <C-\><C-n>
+else
+  set ttymouse=xterm2
 endif
 " }}}
 
