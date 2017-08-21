@@ -94,6 +94,11 @@ augroup YSAutoCommands
     execute "! javac " . expand('%:t') . " && java " . expand('%:r')
   endfun
 
+  fun! KotlinCompileAndRun()
+    silent !clear
+    execute "! kotlinc -include-runtime " . expand('%:t') . " -d " . expand('%:r') . ".jar && java -jar " . expand('%:r') . ".jar"
+  endfun
+
   fun! AsciiCompileAndOpen()
     silent !clear
     execute "! asciidoctor " . expand('%:t') . " && open -a '/Applications/Google Chrome.app'  ./" . expand('%:r') . ".html"
@@ -118,6 +123,8 @@ augroup YSAutoCommands
   autocmd FileType asciidoc inoremap <buffer><F5> <ESC>:up!<CR>:call AsciiCompileAndOpen()<CR>
   autocmd FileType java nnoremap <buffer><F5> <ESC>:up!<CR>:call JavaCompileAndRun()<CR>
   autocmd FileType java inoremap <buffer><F5> <ESC>:up!<CR>:call JavaCompileAndRun()<CR>
+  autocmd FileType kotlin nnoremap <buffer><F5> <ESC>:up!<CR>:call KotlinCompileAndRun()<CR>
+  autocmd FileType kotlin inoremap <buffer><F5> <ESC>:up!<CR>:call KotlinCompileAndRun()<CR>
   autocmd FileType markdown nnoremap <buffer><F5> <ESC>:up!<CR>:MarkedOpen!<CR>
   autocmd FileType markdown inoremap <buffer><F5> <ESC>:up!<CR>:MarkedOpen!<CR>
   autocmd FileType lua nnoremap <buffer><F5> <ESC>:up!<CR>:!lua ./%<CR>
@@ -143,11 +150,11 @@ augroup YSAutoCommands
   autocmd FileType ruby   let b:dispatch = 'ruby %'
   autocmd FileType python let b:dispatch = 'python3 %'
   autocmd FileType cpp    let b:dispatch = 'g++ % -o %<'
-  autocmd FileType ruby   let b:dispatch = 'lua %'
+  autocmd FileType lua    let b:dispatch = 'lua %'
 
   " Set path
-  autocmd BufEnter *.rb set path+=~/ruby/**
-  autocmd BufEnter *.py set path+=~/python/**
+  " autocmd BufEnter *.rb set path+=~/ruby/**
+  " autocmd BufEnter *.py set path+=~/python/**
 augroup END
 " }}}
 
