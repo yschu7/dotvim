@@ -68,7 +68,7 @@ augroup YSAutoCommands
   autocmd FileType vim    setlocal foldmethod=marker
   autocmd FileType css    setlocal foldmethod=indent shiftwidth=2 tabstop=2 softtabstop=2
 
-  au FileType python,swift,java setlocal fdm=indent sw=4 ts=4 sts=4
+  au FileType python,swift,java,kotlin setlocal fdm=indent sw=4 ts=4 sts=4
 
   au FileType markdown setlocal fdm=marker ts=4 sw=4 sts=4 nospell
 
