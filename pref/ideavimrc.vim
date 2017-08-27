@@ -119,39 +119,7 @@ nnoremap <leader>k "kp
 nnoremap <silent> <C-N> :silent noh<CR>
 nnoremap <silent> <BS> :nohlsearch<CR>
 
-" list and select buffer
-nnoremap <silent> <leader>l :ls<CR>:b
-nnoremap <silent> <leader>d :bd<CR>
-nnoremap <silent> <leader>n :bn<CR>
-nnoremap <silent> <leader>p :bp<CR>
-" nnoremap <leader>w :w<CR>
-
-" Actions after helpgrep
-" nnoremap <leader>cn :cnext<CR>
-" nnoremap <leader>cnf :cnfile<CR><C-G>
-" nnoremap <leader>cp :cprev<CR>
-" nnoremap <leader>cpf :cpfile<CR><C-G>
-" shortcuts to open/close the quickfix window
-" nmap <leader>co :copen<CR>
-" nmap <leader>cc :cclose<CR>
-
-" for when we forget to use sudo to open/edit a file
-cnoremap w!! w !sudo tee % >/dev/null
-
-"---------
-" Windows
-"---------
-" and lets make these all work in insert mode too ( <C-O> makes next cmd
-" happen as if in command mode )
-"inoremap <C-W> <C-O><C-W>
-
-" use - and + to resize horizontal splits
-nnoremap - <C-W>-
-nnoremap + <C-W>+
-
-" and for vsplits with <TAB> and Shift<TAB>
-nnoremap <TAB> <C-W>>
-nnoremap <s-TAB> <C-W><
+nnoremap <leader>w :w<CR>
 
 " Quickly switch to last buffer
 nnoremap <leader>, :e#<CR>
