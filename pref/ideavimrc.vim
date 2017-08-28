@@ -75,6 +75,7 @@ nnoremap <leader>d :action CloseContent<CR>
 nnoremap <leader>n :action NextTab<CR>
 nnoremap <leader>p :action PreviousTab<CR>
 nnoremap <leader>r :action Run<CR>
+nnoremap <leader>R :action RunClass<CR>
 
 " built in search looks better
 nnoremap / :action Find<cr>
