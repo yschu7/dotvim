@@ -1,8 +1,10 @@
 " -----------------------------------------------
 " source file of $HOME/.ideavimrc
 "
-" > cd 
+" > cd
 " > ln -s ~/.vim/pref/ideavimrc.vim .ideavimrc
+"
+" https://github.com/JetBrains/ideavim
 " -----------------------------------------------
 
 " Set leader to ,
@@ -10,22 +12,9 @@
 let mapleader=","
 let maplocalleader = "\\"
 
-" -----------------------
-" Unmapped While Learning
-" -----------------------
-
-" No-op ^ and $ while learning H and L
-" noremap ^ <nop>
-" noremap $ <nop>
-" nnoremap <leader>sc <nop>
-
 " ---------------
 " Regular Mappings
 " ---------------
-
-" Use ; for : in normal and visual mode, less keystrokes
-" nnoremap ; :
-" vnoremap ; :
 
 " Yank entire buffer with gy
 nnoremap gy :0,$ y<cr>
@@ -55,18 +44,9 @@ nnoremap U <C-r>
 nnoremap ' `
 nnoremap ` '
 
-" Use very magic (Perl-like) regex style
-nnoremap / /\v
-vnoremap / /\v
-nnoremap ? ?\v
-vnoremap ? ?\v
-
 " ---------------
 " Modifer Mappings
 " ---------------
-
-" Make line completion easier.
-inoremap <C-l> <C-x><C-l>
 
 " Scroll larger amounts with C-j / C-k
 nnoremap <C-j> 15gjzz
@@ -84,22 +64,31 @@ inoremap JK <Esc>
 inoremap Jk <Esc>
 inoremap jK <Esc>
 
-" ---------------
-" Leader Mappings
-" ---------------
-
-" Clear search
-noremap <silent><leader>/ :nohls<CR>
-
-" Highlight search word under cursor without jumping to next
-"nnoremap <leader>h *<C-O>
-
 "-------------
 " YS mappings
+"
+" use :actionlist [command] to check available commands
 "-------------
-" map ctrl-c to something else so I quick using it
-nnoremap <c-c> <Nop>
-inoremap <c-c> <Nop>
+nnoremap gc :action CommentByLineComment<CR>
+nnoremap <leader>d :action CloseContent<CR>
+
+nnoremap <leader>n :action NextTab<CR>
+nnoremap <leader>p :action PreviousTab<CR>
+nnoremap <leader>r :action Run<CR>
+
+" built in search looks better
+nnoremap / :action Find<cr>
+" but preserve ideavim search
+nnoremap g/ /
+
+" easy system clipboard copy/paste
+noremap <leader>Y "*Y
+noremap <leader>P "*P
+
+" ,v brings up my .vimrc
+" ,V reloads it -- making all changes active (have to save first)
+noremap <leader>v :sp ~/.ideavimrc<CR>
+noremap <silent> <leader>V :source ~/.ideavimrc<CR>
 
 " visual mode indent with <TAB> and <S-TAB>
 "nnoremap <TAB> v>
@@ -107,38 +96,10 @@ inoremap <c-c> <Nop>
 vnoremap <TAB> >gv
 vnoremap <s-TAB> <gv
 
-" show the registers from things cut/yanked
-nnoremap <leader>r :registers<CR>
-
-" map the various registers to a leader shortcut for pasting from them
-nnoremap <leader>0 "0p
-nnoremap <leader>1 "1p
-nnoremap <leader>k "kp
-
-" Press Ctrl-N to turn off highlighting.
-nnoremap <silent> <C-N> :silent noh<CR>
-nnoremap <silent> <BS> :nohlsearch<CR>
-
 nnoremap <leader>w :w<CR>
 
 " Quickly switch to last buffer
 nnoremap <leader>, :e#<CR>
-
-" Underline the current line with '-'
-nnoremap <silent> <leader>ul :t.\|s/./-/\|:nohls<cr>
-
-" Underline the current line with '='
-nnoremap <silent> <leader>uul :t.\|s/./=/\|:nohls<cr>
-
-" Surround the commented line with lines.
-"
-" Example:
-"          # Test 123
-"          becomes
-"          # --------
-"          # Test 123
-"          # --------
-nnoremap <silent> <leader>cul :normal "lyy"lpwv$r-^"lyyk"lP<cr>
 
 " Swap v and CTRL-V, because Block mode is more useful that Visual mode
 nnoremap    v   <C-V>
@@ -159,3 +120,6 @@ vnoremap K k
 
 noreabbrev teh the
 
+" Plugins
+" Emulates vim-surround
+set surround
