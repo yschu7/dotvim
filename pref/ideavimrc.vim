@@ -23,7 +23,6 @@ nnoremap gy :0,$ y<cr>
 nnoremap vy ggVG
 
 " Make Y behave like other capital commands.
-" Hat-tip http://vimbits.com/bits/11
 nnoremap Y y$
 
 " Just to beginning and end of lines easier. From http://vimbits.com/bits/16
@@ -76,6 +75,16 @@ nnoremap <leader>n :action NextTab<CR>
 nnoremap <leader>p :action PreviousTab<CR>
 nnoremap <leader>r :action Run<CR>
 nnoremap <leader>R :action RunClass<CR>
+nnoremap <leader>re :action RenameElement<cr>
+nnoremap <leader>rf :action RenameFile<cr>
+"nnoremap <leader>gi :action GotoImplementation<cr>
+nnoremap <leader>go :action GotoClass<cr>
+nnoremap <leader>gf :action GotoFile<cr>
+nnoremap <leader>gs :action GotoSymbol<cr>
+nnoremap <leader>gd :action GotoDeclaration<cr>
+nnoremap <leader>gt :action GotoTest<cr>
+nnoremap <leader>tl V"*Y<cr>:action ActivateTerminalToolWindow<cr>
+vnoremap <leader>tl "*Y<cr>:action ActivateTerminalToolWindow<cr>
 
 " built in search looks better
 nnoremap / :action Find<cr>
@@ -110,17 +119,15 @@ vnoremap    v   <C-V>
 vnoremap <C-V>     v
 
 " ---------------
-" Typo Fixes
+" Window Movement
 " ---------------
+nnoremap <silent> gh <C-w>h
+nnoremap <silent> gj <C-w>j
+nnoremap <silent> gk <C-w>k
+nnoremap <silent> gl <C-w>l
 
-cnoremap w' w<CR>
-
-" Removes doc lookup mapping because it's easy to fat finger and never useful.
-nnoremap K k
-vnoremap K k
-
-noreabbrev teh the
-
+" ---------------
 " Plugins
+" ---------------
 " Emulates vim-surround
 set surround
