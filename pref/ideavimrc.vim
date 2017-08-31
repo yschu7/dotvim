@@ -75,19 +75,19 @@ nnoremap <leader>n :action NextTab<CR>
 nnoremap <leader>p :action PreviousTab<CR>
 nnoremap <leader>r :action Run<CR>
 nnoremap <leader>R :action RunClass<CR>
-nnoremap <leader>re :action RenameElement<cr>
-nnoremap <leader>rf :action RenameFile<cr>
-"nnoremap <leader>gi :action GotoImplementation<cr>
-nnoremap <leader>go :action GotoClass<cr>
-nnoremap <leader>gf :action GotoFile<cr>
-nnoremap <leader>gs :action GotoSymbol<cr>
-nnoremap <leader>gd :action GotoDeclaration<cr>
-nnoremap <leader>gt :action GotoTest<cr>
-nnoremap <leader>tl V"*Y<cr>:action ActivateTerminalToolWindow<cr>
-vnoremap <leader>tl "*Y<cr>:action ActivateTerminalToolWindow<cr>
+nnoremap <leader>re :action RenameElement<CR>
+nnoremap <leader>rf :action RenameFile<CR>
+nnoremap <leader>go :action GotoImplementation<CR>
+nnoremap <leader>gc :action GotoClass<CR>
+nnoremap <leader>gf :action GotoFile<CR>
+nnoremap <leader>gs :action GotoSymbol<CR>
+nnoremap <leader>gd :action GotoDeclaration<CR>
+nnoremap <leader>gt :action GotoTest<CR>
+nnoremap <leader>tl V"*Y<CR>:action ActivateTerminalToolWindow<CR>
+vnoremap <leader>tl "*Y<CR>:action ActivateTerminalToolWindow<CR>
 
 " built in search looks better
-nnoremap / :action Find<cr>
+nnoremap / :action Find<CR>
 " but preserve ideavim search
 nnoremap g/ /
 
@@ -121,10 +121,10 @@ vnoremap <C-V>     v
 " ---------------
 " Window Movement
 " ---------------
-nnoremap <silent> gh <C-w>h
-nnoremap <silent> gj <C-w>j
-nnoremap <silent> gk <C-w>k
-nnoremap <silent> gl <C-w>l
+nnoremap <silent> gh <C-W>h
+nnoremap <silent> gj <C-W>j
+nnoremap <silent> gk <C-W>k
+nnoremap <silent> gl <C-W>l
 
 " ---------------
 " Plugins
