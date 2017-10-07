@@ -4,13 +4,13 @@ if exists('g:vundle_installing_plugins')
   finish
 endif
 
-nmap <unique> <leader>pe <Plug>PickerEdit
+nnoremap <leader>pe <Plug>PickerEdit
 "nmap <unique> <leader>ps <Plug>PickerSplit
 "nmap <unique> <leader>pt <Plug>PickerTabedit
 "nmap <unique> <leader>pv <Plug>PickerVsplit
 "nmap <unique> <leader>pb <Plug>PickerBuffer
 "nmap <unique> <leader>p] <Plug>PickerTag
-nmap <unique> <leader>ph <Plug>PickerHelp
+nnoremap <leader>ph <Plug>PickerHelp
 
 " https://github.com/jhawthorn/fzy
 " fzy is used as the default fuzzy selector. To use an alternative selector:

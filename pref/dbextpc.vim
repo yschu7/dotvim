@@ -32,7 +32,7 @@ let g:dbext_default_profile_oracle_URL = 'type=ORA:srvname=//'. orahost . '\:' .
 " DBD::mysql [installation](https://metacpan.org/pod/DBD::mysql::INSTALL)
 " MySQL profile
 
-let g:dbext_default_profile_mysql= 'type=MYSQL:user=' . myuser . ':passwd=' . mypasswd . ':host=' . myhost . ':dbname=' . mydb . ':extra=-t'
+let g:dbext_default_profile_mysql= 'type=MYSQL:user=' . myuser . ':passwd=' . mypasswd . ':host=' . myhost . ':dbname=' . mydb . ':port=' . myport . ':extra=-t'
 
 let g:dbext_default_profile_mysql_DBI = 'type=DBI:user=' . myuser . ':passwd=' . mypasswd . ':driver=mysql:conn_parms=database='. mydb . ';host=' . myhost
 
