@@ -16,6 +16,7 @@ let myuser     = 'yschu'          " MySQL user
 let mypasswd   = 'pass01'         " Password
 let myhost     = '192.168.3.118'  " Host
 let mydb       = 'demo'           " MySQL database
+let myport     = '3306'           " MySQL listen port
 
 let msuser     = 'sa'             " MS SQLSever user
 let mspasswd   = 'pass01'         " Password
