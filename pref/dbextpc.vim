@@ -34,7 +34,7 @@ let g:dbext_default_profile_oracle_URL = 'type=ORA:srvname=//'. orahost . '\:' .
 
 let g:dbext_default_profile_mysql= 'type=MYSQL:user=' . myuser . ':passwd=' . mypasswd . ':host=' . myhost . ':dbname=' . mydb . ':port=' . myport . ':extra=-t'
 
-let g:dbext_default_profile_mysql_DBI = 'type=DBI:user=' . myuser . ':passwd=' . mypasswd . ':driver=mysql:conn_parms=database='. mydb . ';host=' . myhost
+let g:dbext_default_profile_mysql_DBI = 'type=DBI:user=' . myuser . ':passwd=' . mypasswd . ':driver=mysql:conn_parms=database='. mydb . ';host=' . myhost . ';port=' . myport
 
 " Ref: [Setup](http://blog.gypsydave5.com/2015/11/17/vim-mac-mssql-client/#fn8)
 " /usr/local/etc/odbcinst.ini : Declare freetds as ODBC driver
