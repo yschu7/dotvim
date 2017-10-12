@@ -25,3 +25,5 @@ let msdsnname  = 'MyMSSQLDB'      " ODBC DSN Name
 let pouser     = 'yschu'          " postgreSQL user
 let pohost     = 'localhost'      " Host
 let podb       = 'Adventureworks' " Database
+"let popasswd   = 'pass01'        " ~/.pgpass
+let poport     = '5432'            " PostgreSQL port
