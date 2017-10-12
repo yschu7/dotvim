@@ -45,7 +45,10 @@ let g:dbext_default_profile_MSSQLServer = 'type=ODBC:user=' . msuser . ':passwd=
 
 " Ref: [setup](http://jonathansacramento.com/posts/20160122-improve-postgresql-workflow-vim-dbext.html)
 " PostgreSQL
-let g:dbext_default_profile_PostgreSQL = 'type=PGSQL:host=' . pohost . ':dbname=' . podb . ':user=' . pouser
+let g:dbext_default_profile_PG = 'type=PGSQL:host=' . pohost . ':dbname=' . podb . ':user=' . pouser
+
+" password : $HOME/.pgpass
+let g:dbext_default_profile_PG_DBI = 'type=DBI:user=' . pouser . ':driver=Pg:conn_parms=database='. podb . ';host=' . pohost . ';port=' . poport
 
 " SQLite
 let g:dbext_default_profile_SQLite = 'type=SQLITE:SQLITE_bin=sqlite3:dbname=/Users/yschu/Dropbox/Software/sqlite/test.db'
