@@ -2360,6 +2360,19 @@ let g:picker_selector = 'fzy-tmux'
 ```
 <!--- }}} -->
 
+<!--- vim-fugitive {{{ -->
+###[vim-fugitive](https://github.com/tpope/vim-fugitive)
+```
+A Git wrapper
+
+~/.vim/vundle_plugins/vim-fugitive.vim
+
+:GStatus (<leader>gs)，開啓git status buffer。
+使用減號 "-" 把已經改變的檔案 "加入"、"反加入" changed to commit
+如果有多個檔案，也可以visual mode多選後，一次操作。
+
+<!--- }}} -->
+
 <!--- Misc {{{ -->
 Misc                                                        *Misc*
 ====
@@ -2404,11 +2417,12 @@ Misc                                                        *Misc*
 * <leader> /  : Clear search highlight, 或<Ctrl> n
 * <leader> m  : open in Markd
 * <leader> o  : 在瀏覽器內開啓目前遊標所在的網址(功能同gx,定義於:~/.vim/functions.vim)
+                它以ruby寫成，所以vim本身要有has('ruby')功能，否則無效
 * <leader> gg : 在瀏覽器內使用Google查詢目前遊標所在的單字([vim-voogle][01])
-* <Ctrl-w> o  : 將目前的視窗最大化，再按一次恢復原狀(Toggle, [ZoomWin][02])
 * <leader> g  : 使用Ag命令尋找遊標所在的單字
                 與denite.vim定義的<leader>fg 功能類似
 * <leader> q  : QuickFix視窗切換鍵(Toggle)
+* <Ctrl-w> o  : 將目前的視窗最大化，再按一次恢復原狀(Toggle, [ZoomWin][02])
 
 * Argument Lists：相當於從vim指令傳入的參數列，在vim中也可以調整它
     * :args `find lib spec -name '*.rb'`    puts results into argument lists
