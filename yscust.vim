@@ -73,7 +73,7 @@ augroup YSAutoCommands
   au FileType markdown setlocal fdm=marker ts=4 sw=4 sts=4 nospell
 
   au FileType ruby,python,java,swift,javascript,php,rust,sh,vim,go setlocal matchpairs-=<:>
-  au FileType c,cpp,plsql,coffee,lua setlocal matchpairs-=<:>
+  au FileType c,cpp,plsql,coffee,lua,kotlin,groovy setlocal matchpairs-=<:>
 
   " automatically give executable permissions if file begins with #! and
   " contains '/bin/' in the path (replaced by vim-eunuch)
@@ -113,6 +113,8 @@ augroup YSAutoCommands
   autocmd FileType ruby inoremap <buffer><F5> <ESC>:up!<CR>:!ruby ./%<CR>
   autocmd FileType python nnoremap <buffer><F5> <ESC>:up!<CR>:!python3 ./%<CR>
   autocmd FileType python inoremap <buffer><F5> <ESC>:up!<CR>:!python3 ./%<CR>
+  autocmd FileType groovy nnoremap <buffer><F5> <ESC>:up!<CR>:!groovy ./%<CR>
+  autocmd FileType groovy inoremap <buffer><F5> <ESC>:up!<CR>:!groovy ./%<CR>
   autocmd FileType vim nnoremap <buffer><F5> <ESC>:up!<CR>:source ./%<CR>
   autocmd FileType vim inoremap <buffer><F5> <ESC>:up!<CR>:source ./%<CR>
   autocmd FileType sh nnoremap <buffer><F5> <ESC>:up!<CR>:!clear<CR>:!bash ./%<CR>
@@ -134,6 +136,7 @@ augroup YSAutoCommands
   " tmux run script (Split screen to show result)
   au FileType ruby nnoremap <buffer><leader>tx :up!<CR>:call VimuxRunCommand("ruby ".expand('%:p')."\n")<CR>
   au FileType python nnoremap <buffer><leader>tx :up!<CR>:call VimuxRunCommand("python ".expand('%:p')."\n")<CR>
+  au FileType groovy nnoremap <buffer><leader>tx :up!<CR>:call VimuxRunCommand("groovy ".expand('%:p')."\n")<CR>
   au FileType go nnoremap <buffer><leader>tx :up!<CR>:call VimuxRunCommand("go run ".expand('%:p')."\n")<CR>
   au FileType javascript nnoremap <buffer><leader>tx :up!<CR>:call VimuxRunCommand("node ".expand('%:p')."\n")<CR>
   au FileType coffee nnoremap <buffer><leader>tx :up!<CR>:call VimuxRunCommand("coffee ".expand('%:p')."\n")<CR>
@@ -149,6 +152,7 @@ augroup YSAutoCommands
   autocmd FileType rust   let b:dispatch = 'rustc %'
   autocmd FileType ruby   let b:dispatch = 'ruby %'
   autocmd FileType python let b:dispatch = 'python3 %'
+  autocmd FileType groovy let b:dispatch = 'groovy %'
   autocmd FileType cpp    let b:dispatch = 'g++ % -o %<'
   autocmd FileType lua    let b:dispatch = 'lua %'
 
