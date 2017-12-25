@@ -23,3 +23,7 @@ if filereadable(fn)
   execute ':source ' . fn
 endif
 
+let fn2 = g:w32_dir . 'SQHuserpwd.vim'
+if filereadable(fn2)
+  execute ':source ' . fn2
+endif

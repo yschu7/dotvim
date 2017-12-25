@@ -1,5 +1,6 @@
 " https://github.com/yschu7/dbext
-if exists('g:vundle_installing_plugins')
+" exclude neovim, it does not support Perl
+if exists('g:vundle_installing_plugins') && !has('nvim')
   Plugin 'yschu7/dbext'
   finish
 endif

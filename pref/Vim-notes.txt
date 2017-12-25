@@ -1,4 +1,4 @@
-*Vim-notes.txt*        Y.S. Chu's Vim Notes v 2.9.9
+*Vim-notes.txt*        Y.S. Chu's Vim Notes v 3.0
 ```
       __           _                 __      _
 /\_/\/ _\   /\   /(_)_ __ ___     /\ \ \___ | |_ ___  ___
@@ -2325,6 +2325,21 @@ port   : Port server is running on
 
 :help dbext
 :help dbext-maps-commands
+```
+<!--- }}} -->
+
+<!--- SQHell {{{ -->
+###[SQHell](https://github.com/joereynolds/SQHell.vim)
+```
+Neovim沒有支援Perl語言，dbext無法執行，所以使用此簡易模組，目前支援MySQL, PostgreSQL, Sqlite
+實際的DB密碼放在~/.vim/bundle目錄，第一次安裝必須將SQHuserpwd.vim複製到此。
+
+~/.vim/vundle_plugins/SQHell.vim
+
+<leader> sel 執行當前列
+<leader> sea 執行全部（命令以分號隔開）
+
+:help sqhell
 ```
 <!--- }}} -->
 
