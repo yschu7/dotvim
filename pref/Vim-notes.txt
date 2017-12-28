@@ -1,4 +1,4 @@
-*Vim-notes.txt*        Y.S. Chu's Vim Notes v 3.0
+*Vim-notes.txt*        Y.S. Chu's Vim Notes v 3.0.1
 ```
       __           _                 __      _
 /\_/\/ _\   /\   /(_)_ __ ___     /\ \ \___ | |_ ___  ___
@@ -2335,6 +2335,10 @@ Neovim沒有支援Perl語言，dbext無法執行，所以使用此簡易模組�
 實際的DB密碼放在~/.vim/bundle目錄，第一次安裝必須將SQHuserpwd.vim複製到此。
 
 ~/.vim/vundle_plugins/SQHell.vim
+
+macOS: /usr/local/etc/my.cnf 可以指定不同的埠號
+[client]
+port=3307
 
 <leader> sel 執行當前列
 <leader> sea 執行全部（命令以分號隔開）
