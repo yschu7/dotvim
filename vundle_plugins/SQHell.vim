@@ -7,10 +7,12 @@ endif
 
 " Ref: ~/.vim/pref/SQHuser.vim
 
+if has('nvim')
   " sql - execute - all
   nnoremap <unique> <Leader>sea :1,$SQHExecute<CR>
 
   " Execute the current line
   " sql - execute - line
   nnoremap <unique> <Leader>sel :.,.SQHExecute<CR>
+endif
 
