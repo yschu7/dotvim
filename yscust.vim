@@ -133,6 +133,8 @@ augroup YSAutoCommands
   autocmd FileType markdown inoremap <buffer><F5> <ESC>:up!<CR>:MarkedOpen!<CR>
   autocmd FileType lua nnoremap <buffer><F5> <ESC>:up!<CR>:!lua ./%<CR>
   autocmd FileType lua inoremap <buffer><F5> <ESC>:up!<CR>:!lua ./%<CR>
+  autocmd FileType php nnoremap <buffer><F5> <ESC>:up!<CR>:!php ./%<CR>
+  autocmd FileType php inoremap <buffer><F5> <ESC>:up!<CR>:!php ./%<CR>
 
   " [Buffer-Local](http://learnvimscriptthehardway.stevelosh.com/chapters/11.html)
   " tmux run script (Split screen to show result)
