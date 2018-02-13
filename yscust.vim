@@ -54,7 +54,7 @@ augroup YSAutoCommands
   " If we're editing a .txt file then skip line numbers
   autocmd BufRead,BufNewFile *.txt setlocal nonu
   " ansible
-  au BufNewFile,BufRead */*playbook*/*.yml setlocal filetype=ansible
+  au BufNewFile,BufRead */*book*/*.yml setlocal filetype=ansible
 
   autocmd BufEnter *.txt call HelpInNewTab()
   "Only apply to help files
