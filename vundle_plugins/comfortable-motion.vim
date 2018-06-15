@@ -7,3 +7,7 @@ endif
 " mouse support
 noremap <silent> <ScrollWheelDown> :call comfortable_motion#flick(40)<CR>
 noremap <silent> <ScrollWheelUp>   :call comfortable_motion#flick(-40)<CR>
+
+" modify Ctrl-j and Ctrl-k
+nnoremap <silent> <C-j> :call comfortable_motion#flick(150)<CR>
+nnoremap <silent> <C-k> :call comfortable_motion#flick(-150)<CR>
