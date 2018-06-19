@@ -1,3 +1,12 @@
+" ----------------------
+" comfortable_motion.vim
+" ----------------------
+
+" For neovim and vim version 8
+if ! has('nvim') && v:version < 800
+  finish
+endif
+
 " https://github.com/yuttie/comfortable-motion.vim
 if exists('g:vundle_installing_plugins')
   Plugin 'yuttie/comfortable-motion.vim'
