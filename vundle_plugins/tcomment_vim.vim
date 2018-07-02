@@ -4,7 +4,6 @@ if exists('g:vundle_installing_plugins')
   finish
 endif
 
-"let g:tcommentMaps = 1
 let g:tcomment_maps = 1
 nnoremap <silent><leader>cc :TComment<CR>
 vnoremap <silent><leader>cc :TComment<CR>
