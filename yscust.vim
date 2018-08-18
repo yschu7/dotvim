@@ -136,6 +136,11 @@ augroup YSAutoCommands
   autocmd FileType php nnoremap <buffer><F5> <ESC>:up!<CR>:!php ./%<CR>
   autocmd FileType php inoremap <buffer><F5> <ESC>:up!<CR>:!php ./%<CR>
 
+  autocmd FileType go nnoremap <buffer><F5> <ESC>:WriteBufferIfNecessary<CR>:GoRun<CR>
+  autocmd FileType go inoremap <buffer><F5> <ESC>:WriteBufferIfNecessary<CR>:GoRun<CR>
+  " clear :GoRun output
+  autocmd FileType go nnoremap <buffer><silent> <leader>c :WriteBufferIfNecessary<CR>:wincmd h<CR>:q<CR>
+
   " [Buffer-Local](http://learnvimscriptthehardway.stevelosh.com/chapters/11.html)
   " tmux run script (Split screen to show result)
   au FileType ruby nnoremap <buffer><leader>tx :up!<CR>:call VimuxRunCommand("ruby ".expand('%:p')."\n")<CR>
@@ -147,7 +152,6 @@ augroup YSAutoCommands
   au FileType rust nnoremap <buffer><leader>tx :up!<CR>:call VimuxRunCommand("clear && rustc ".expand('%:t')." && ./".expand('%:r')."\n")<CR>
   au FileType java nnoremap <buffer><leader>tx :up!<CR>:call VimuxRunCommand("clear && javac ".expand('%:t')." && java ".expand('%:t:r')."\n")<CR>
   au FileType lua nnoremap <buffer><leader>tx :up!<CR>:call VimuxRunCommand("lua ".expand('%:p')."\n")<CR>
-
   " Leave paste mode on exit
   au InsertLeave * set nopaste
 
