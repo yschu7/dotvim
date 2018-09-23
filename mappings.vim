@@ -164,6 +164,9 @@ nnoremap <silent> <leader>n :bn<CR>
 nnoremap <silent> <leader>p :bp<CR>
 " nnoremap <leader>w :w<CR>
 
+" Close preview buffer
+nnoremap <silent> <leader>x :pclose<CR>
+
 " Actions after helpgrep
 " nnoremap <leader>cn :cnext<CR>
 " nnoremap <leader>cnf :cnfile<CR><C-G>
