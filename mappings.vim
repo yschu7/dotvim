@@ -151,7 +151,7 @@ nnoremap <leader>r :registers<CR>
 " map the various registers to a leader shortcut for pasting from them
 nnoremap <leader>0 "0p
 nnoremap <leader>1 "1p
-nnoremap <leader>k "kp
+"nnoremap <leader>k "kp
 
 " Press Ctrl-N to turn off highlighting.
 nnoremap <silent> <C-N> :silent noh<CR>
@@ -251,8 +251,8 @@ vmap <expr> D        DVB_Duplicate()
 cnoremap w' w<CR>
 
 " Removes doc lookup mapping because it's easy to fat finger and never useful.
-nnoremap K k
-vnoremap K k
+"nnoremap K k
+"vnoremap K k
 
 " Insert date
 inoreabbrev ddate <C-R>=strftime("%Y-%m-%d")<CR>

@@ -135,6 +135,9 @@ augroup YSAutoCommands
   autocmd FileType lua inoremap <buffer><F5> <ESC>:up!<CR>:!lua ./%<CR>
   autocmd FileType php nnoremap <buffer><F5> <ESC>:up!<CR>:!php ./%<CR>
   autocmd FileType php inoremap <buffer><F5> <ESC>:up!<CR>:!php ./%<CR>
+  autocmd FileType julia nnoremap <buffer><F5> <ESC>:WriteBufferIfNecessary<CR>:!julia ./%<CR>
+  autocmd FileType julia inoremap <buffer><F5> <ESC>:WriteBufferIfNecessary<CR>:!julia ./%<CR>
+  autocmd FileType julia nmap <buffer> ? <Plug>(JuliaDocPrompt)
 
   autocmd FileType go nnoremap <buffer><F5> <ESC>:WriteBufferIfNecessary<CR>:GoRun<CR>
   autocmd FileType go inoremap <buffer><F5> <ESC>:WriteBufferIfNecessary<CR>:GoRun<CR>
@@ -228,8 +231,8 @@ nnoremap <silent><leader>q :call <SID>QuickfixToggle()<CR>
 nnoremap <silent> <F4> :call <SID>QuickfixToggle()<CR>
 
 " F5 : run script
-nnoremap <F5> <ESC>:up!<CR>:! ./%<CR>
-inoremap <F5> <ESC>:up!<CR>:! ./%<CR>
+nnoremap <F5> <ESC>:WriteBufferIfNecessary<CR>:! ./%<CR>
+inoremap <F5> <ESC>:WriteBufferIfNecessary<CR>:! ./%<CR>
 
 " F6 : [Dispatch](https://github.com/tpope/vim-dispatch)
 nnoremap <F6> :Dispatch<CR>
