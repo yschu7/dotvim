@@ -20,8 +20,10 @@ highlight ColorColumn ctermfg=magenta
 if has('nvim')
   set termguicolors          " True color support in nvim
   set inccommand=nosplit     " Preview changes on :substitute command
-  tnoremap <Esc> <C-\><C-n>  " Exit Terminal buffer with ESC
-  tnoremap <A-[> <Esc>       " Send ESC key in Terminal buffer
+  " Exit Terminal buffer with ESC key
+  tnoremap <Esc> <C-\><C-n>
+  " Send ESC key in Terminal buffer
+  tnoremap <A-[> <Esc>
   " Window switching in terminal mode
   tnoremap <a-h> <c-\><c-n><c-w>h
   tnoremap <a-j> <c-\><c-n><c-w>j
