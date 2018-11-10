@@ -1,4 +1,5 @@
 " =============================================================================
+" Filename: vimrc symbolic link: ~/.vimrc ~/.config/nvim/init.vim
 " Who: Jeremy Mack (@mutewinter)
 " Description: The Vim Configuration of Champions
 " Version: 3.0 - Now each plugin is included and managed in its own file!
@@ -18,13 +19,14 @@ source ~/.vim/config.vim
 source ~/.vim/commands.vim
 " All hotkeys, not dependant on plugins, are mapped here.
 source ~/.vim/mappings.vim
-" Load plugin-specific configuration.
+" Load plugin-specific configuration. (~/.vim/vundle_plugins/*.vim)
+" To disable plugins, change file name to *.opt
 source ~/.vim/plugins.vim
 " Small custom functions.
 source ~/.vim/functions.vim
-" Auto commands.
+" Auto commands.(Filetypes)
 source ~/.vim/autocmds.vim
-" YS configuration
+" YS configuration (Function key, Neovim)
 source ~/.vim/yscust.vim
 source ~/.simplenoterc
 

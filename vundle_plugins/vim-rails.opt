@@ -1,5 +1,6 @@
-" disable this plugin without deleting it
-finish
+" -------------
+" vim-rails.vim
+" -------------
 
 if exists('g:vundle_installing_plugins')
   Plugin 'tpope/vim-rails'

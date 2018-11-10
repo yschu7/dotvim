@@ -68,6 +68,7 @@ nnoremap <silent> gh :WriteBufferIfNecessary<CR>:wincmd h<CR>
 nnoremap <silent> gj :WriteBufferIfNecessary<CR>:wincmd j<CR>
 nnoremap <silent> gk :WriteBufferIfNecessary<CR>:wincmd k<CR>
 nnoremap <silent> gl :WriteBufferIfNecessary<CR>:wincmd l<CR>
+" Neovim : Alt + h, j, k, l (define @ yscust.vim)
 
 "   Splits Horizontal
 "   -----------------
@@ -96,7 +97,7 @@ nnoremap <silent> gp :wincmd p<CR>
 nnoremap <silent> g= :wincmd =<CR>
 " Swap Windows
 nnoremap <silent> gx :wincmd x<CR>
-" Close Window or F2 defined in ~/.vim/yscust.vim
+" Close Window
 nnoremap <silent> gz :close!<CR>
 
 " ---------------
