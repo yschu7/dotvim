@@ -5,16 +5,21 @@
 " ---------------
 " Color
 " ---------------
+" Force 256 color mode if available or Unix like systems
+if !has('nvim')
+  if $TERM =~ "-256color" || has('unix')
+    set t_Co=256
+  endif
+else
+  set termguicolors          " True color support in nvim
+endif
+
 set background=dark
 "colorscheme jellybeans
 "https://github.com/kristijanhusak/vim-hybrid-material
 "colorscheme hybrid_material
-colorscheme gruvbox
-
-" Force 256 color mode if available or Unix like systems
-if $TERM =~ "-256color" || has('unix')
-   set t_Co=256
-endif
+"colorscheme gruvbox
+colorscheme solarized8_high
 
 " -----------------------------
 " File Locations

@@ -18,7 +18,6 @@ highlight ColorColumn ctermfg=magenta
 
 " Neovim specific settings
 if has('nvim')
-  set termguicolors          " True color support in nvim
   set inccommand=nosplit     " Preview changes on :substitute command
   " Exit Terminal buffer with ESC key
   tnoremap <Esc> <C-\><C-n>
@@ -34,6 +33,8 @@ if has('nvim')
   nnoremap <a-j> <c-w>j
   nnoremap <a-k> <c-w>k
   nnoremap <a-l> <c-w>l
+  " Pasting a register in terminal mode
+  tnoremap <expr> <A-r> '<C-\><C-n>"'.nr2char(getchar()).'pi'
 else
   set ttymouse=xterm2
 endif
