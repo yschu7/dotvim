@@ -1,7 +1,7 @@
 " =============================================================================
 " Filename: vimrc symbolic link: ~/.vimrc ~/.config/nvim/init.vim
-" Who: Jeremy Mack (@mutewinter)
-" Description: The Vim Configuration of Champions
+" Who: Y.S. Chu (@yschu7)
+" Description: The Vim Configuration
 " Version: 3.0 - Now each plugin is included and managed in its own file!
 " =============================================================================
 

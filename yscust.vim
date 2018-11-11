@@ -18,23 +18,7 @@ highlight ColorColumn ctermfg=magenta
 
 " Neovim specific settings
 if has('nvim')
-  set inccommand=nosplit     " Preview changes on :substitute command
-  " Exit Terminal buffer with ESC key
-  tnoremap <Esc> <C-\><C-n>
-  " Send ESC key in Terminal buffer
-  tnoremap <A-[> <Esc>
-  " Window switching in terminal mode
-  tnoremap <a-h> <c-\><c-n><c-w>h
-  tnoremap <a-j> <c-\><c-n><c-w>j
-  tnoremap <a-k> <c-\><c-n><c-w>k
-  tnoremap <a-l> <c-\><c-n><c-w>l
-  " Window switching in normal mode
-  nnoremap <a-h> <c-w>h
-  nnoremap <a-j> <c-w>j
-  nnoremap <a-k> <c-w>k
-  nnoremap <a-l> <c-w>l
-  " Pasting a register in terminal mode
-  tnoremap <expr> <A-r> '<C-\><C-n>"'.nr2char(getchar()).'pi'
+  source ~/.vim/ysnvim.vim
 else
   set ttymouse=xterm2
 endif
