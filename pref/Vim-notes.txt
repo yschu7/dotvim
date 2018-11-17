@@ -1,4 +1,4 @@
-*Vim-notes.txt*        Y.S. Chu's Vim Notes v 3.0.5
+*Vim-notes.txt*        Y.S. Chu's Vim Notes v 3.0.6
 ```
       __           _                 __      _
 /\_/\/ _\   /\   /(_)_ __ ___     /\ \ \___ | |_ ___  ___
@@ -869,6 +869,7 @@ cs)change surround tag          "'<[{()}]> with tag     cs'"
 ys)insert surround tag                                  ysiw"
 cp)copy to system clipboard                             cpip
 gs)sort                                                 gsip
+gr)replace with register                                griw
                                 e)ntire content         gsae
                                 i)ndent                 gcii
                                 l)ine                   yil
@@ -1186,7 +1187,13 @@ yiw         Yank inner word (copy word under cursor, say "first").
 ciw<C-r>0   Change "second", replacing it with "first" (<C-r> is Ctrl-R).
 ...         Move the cursor to another word (say "third").
 .           Change "third", replacing it with "first".
+
+使用plugin: ReplaceWithRegister
+griw        把前面yiw的內容，覆蓋到目前遊標所在的位置(inner word),效果同上。
+
 ```
+[ReplaceWithRegister - Replace text with the contents of a register](https://www.vim.org/scripts/script.php?script_id=2703)
+
 <!--- }}} -->
 
 <!--- ACK command in VIM {{{ -->
@@ -1635,6 +1642,18 @@ ysiw#  將遊標所在的單字var變成#{var}，for ruby特別好用。
 
 gs5j    往下5列排序（當前列+5）
 gsip    對當前所在的段（paragraph）做排序
+
+```
+<!--- }}} -->
+
+<!--- ReplaceWithRegister {{{ -->
+### [ReplaceWithRegister](https://github.com/vim-scripts/ReplaceWithRegister)
+
+```
+~/.vim/vundle_plugins/ReplaceWithRegister.vim
+覆蓋，使用gr指令以暫存器內容，對其後的Motion text覆蓋。
+
+使用 yiw 複製內容之後，遊標移動到要覆蓋位置，griw 覆蓋內容。
 
 ```
 <!--- }}} -->
