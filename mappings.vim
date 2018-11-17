@@ -113,15 +113,13 @@ nnoremap <C-k> 15gkzz
 vnoremap <C-j> 15gjzz
 vnoremap <C-k> 15gkzz
 
-" ---------------
+" --------------------
 " Insert Mode Mappings
-" ---------------
+" --------------------
 
-" Let's make escape better, together.
+" Let's make escape better, together. Ctrl-[
 inoremap jk <Esc>
-inoremap JK <Esc>
-inoremap Jk <Esc>
-inoremap jK <Esc>
+inoremap kj <Esc>
 
 " ---------------
 " Leader Mappings
@@ -183,10 +181,18 @@ noremap <leader>v :sp $MYVIMRC<CR><C-W>_
 noremap <silent> <leader>V :source $MYVIMRC<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
 
 " ,h brings up my Vim-notes.txt
-noremap <leader>h :sp ~/.vim/pref/Vim-notes.md<CR><C-W>_
+noremap <leader>h :sp ~/.vim/pref/Vim-notes.txt<CR><C-W>_:set filetype=help<CR>
 
 " for when we forget to use sudo to open/edit a file
 cnoremap w!! w !sudo tee % >/dev/null
+
+" It takes current line as input and execute the command and reads the output
+" into the buffer. $SHELL is your default shell, you can change it..
+" yyp - copy the original command line
+nnoremap Q yyp<esc>!!$SHELL <cr>
+
+" Copy the entire buffer into the system register
+nnoremap <leader>co ggVG*y
 
 "---------
 " Windows
@@ -263,11 +269,6 @@ inoreabbrev ddate <C-R>=strftime("%Y-%m-%d")<CR>
 
 noreabbrev teh the
 noreabbrev Wq wq
-
-" It takes current line as input and execute the command and reads the output
-" into the buffer. $SHELL is your default shell, you can change it..
-" yyp - copy the original command line
-nnoremap Q yyp<esc>!!$SHELL <cr>
 
 " copy current file name (relative/absolute) to system clipboard
 " from http://stackoverflow.com/a/17096082/22423

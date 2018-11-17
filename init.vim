@@ -1,1 +1,1 @@
-/Users/yschu/.vimrc
+vimrc

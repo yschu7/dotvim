@@ -9,10 +9,12 @@ endif
 
 if has('nvim')
   " sql - execute - all
-  nnoremap <unique> <Leader>sea :1,$SQHExecute<CR>
+  "nnoremap <unique> <Leader>sea :1,$SQHExecute<CR>
+  nnoremap <Leader>sea :1,$SQHExecute<CR>
 
   " Execute the current line
   " sql - execute - line
-  nnoremap <unique> <Leader>sel :.,.SQHExecute<CR>
+  "nnoremap <unique> <Leader>sel :.,.SQHExecute<CR>
+  nnoremap <Leader>sel :.,.SQHExecute<CR>
 endif
 

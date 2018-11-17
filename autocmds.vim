@@ -1,6 +1,6 @@
-" ----------------------------------------
+" ---------------
 " Auto Commands
-" ----------------------------------------
+" ---------------
 
 " AutoCommands settings  {{{
 if has("autocmd")
@@ -26,14 +26,14 @@ if has("autocmd")
           \*.php,*.js,*.sql,*.plsql,*.c,*.cpp,*.java,*.kt,*.go,*.jl
           \ silent! :StripTrailingWhiteSpace
 
+    " ----------
+    " Filetypes
+    " ----------
     " Help mode bindings
     " <enter> to follow tag, <bs> to go back, and q to quit.
-    " From http://ctoomey.com/posts/an-incremental-approach-to-vim/
-    if has("mac")
-      autocmd filetype help nnoremap <buffer><cr> <c-]>
-      autocmd filetype help nnoremap <buffer><bs> <c-T>
-      autocmd filetype help nnoremap <buffer>q :q<CR>
-    endif
+    autocmd FileType help nnoremap <buffer><CR> <c-]>
+    autocmd FileType help nnoremap <buffer><ESC> <C-T>
+    autocmd Filetype help nnoremap <buffer>q :q<CR>
 
     " Fix accidental indentation in html files
     " from http://morearty.com/blog/2013/01/22/fixing-vims-indenting-of-html-files.html
@@ -51,17 +51,9 @@ if has("autocmd")
     " Auto change the directory to the current file I'm working on
     "autocmd BufEnter * lcd %:p:h
 
-    " --------------------------
-    " Filetypes
-    " --------------------------
     " make the following files plsql files
     au BufNewFile,BufRead *.fun,*.pks,*.pkb,*.sql,*.pls,*.plsql setlocal filetype=plsql
     au FileType plsql runtime! indent.vim
-
-    " Enter selects subject
-    au FileType help nnoremap <buffer><cr> <c-]>
-    " ESC to go back
-    au FileType help nnoremap <buffer><ESC> <C-T>
 
     " If we're editing a .txt file then skip line numbers
     autocmd BufRead,BufNewFile *.txt setlocal nonu
