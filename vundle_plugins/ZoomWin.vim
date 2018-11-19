@@ -1,5 +1,5 @@
 if exists('g:vundle_installing_plugins')
-  Plugin 'ZoomWin'
+  Plugin 'horace0422/ZoomWin'
   finish
 endif
 
