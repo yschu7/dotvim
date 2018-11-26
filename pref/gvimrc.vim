@@ -18,12 +18,12 @@ endif
 set antialias                    " MacVim: smooth fonts.
 set encoding=utf-8               " Use UTF-8 everywhere.
 "set guioptions-=T                " Hide toolbar.
-set background=light             " Background.
+"set background=light             " Background.
 set lines=40 columns=120          " Window dimensions.
 set guioptions-=r                " Don't show right scrollbar
 
 "colorscheme vividchalk
-colorscheme jellybeans
+"colorscheme jellybeans
 
 if has ('win32')                 " Reload menu with UTF-8 encoding
   let $LANG="zh_TW.UTF-8"
