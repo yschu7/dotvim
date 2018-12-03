@@ -1,3 +1,14 @@
+" -------------
+" syntastic.vim
+" -------------
+
+" ALE for neovim and vim8 : ale.vim
+
+" Only for vim version less than 8
+if has('nvim') || v:version > 800
+  finish
+endif
+
 " https://github.com/vim-syntastic/syntastic
 if exists('g:vundle_installing_plugins')
   Plugin 'vim-syntastic/syntastic'

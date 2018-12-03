@@ -8,8 +8,11 @@ endif
 " ----
 " Ruby
 " ----
-" https://github.com/Shougo/deoplete-rct
-" > gem install rcodetools
+" https://github.com/uplus/deoplete-solargraph
+" > gem install solargraph
+" > pip3 install solargraph-utils.py
+" > yard gems
+" > yard config --gem-install-yri
 
 " ------
 " Python
@@ -20,7 +23,6 @@ endif
 
 if exists('g:vundle_installing_plugins')
   Plugin 'Shougo/deoplete.nvim'
-  Plugin 'Shougo/deoplete-rct'
   Plugin 'zchee/deoplete-jedi'
   finish
 endif
