@@ -14,3 +14,6 @@ if exists('g:vundle_installing_plugins')
   Plugin 'w0rp/ale'
   finish
 endif
+
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_enter = 0
