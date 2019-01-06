@@ -14,12 +14,13 @@ else
   set termguicolors          " True color support in nvim
 endif
 
-set background=dark
+"set background=dark
 "colorscheme jellybeans
 "https://github.com/kristijanhusak/vim-hybrid-material
 "colorscheme hybrid_material
 "colorscheme gruvbox
 colorscheme solarized8_high
+set background=dark
 
 " -----------------------------
 " File Locations
