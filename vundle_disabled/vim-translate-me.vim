@@ -1,3 +1,6 @@
+"disable
+finish
+
 if ! has('nvim') && v:version < 800
   finish
 endif

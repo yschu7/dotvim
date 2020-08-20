@@ -1,3 +1,6 @@
+"disable
+finish
+
 " https://github.com/PProvost/vim-ps1
 if exists('g:vundle_installing_plugins')
   Plugin 'PProvost/vim-ps1'

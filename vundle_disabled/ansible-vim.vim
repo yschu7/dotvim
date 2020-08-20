@@ -1,3 +1,6 @@
+"disable
+finish
+
 " https://github.com/pearofducks/ansible-vim
 if exists('g:vundle_installing_plugins')
   Plugin 'pearofducks/ansible-vim'

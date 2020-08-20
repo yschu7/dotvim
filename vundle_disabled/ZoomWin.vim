@@ -1,3 +1,6 @@
+"disable
+finish
+
 if exists('g:vundle_installing_plugins')
   Plugin 'regedarek/ZoomWin'
   finish
