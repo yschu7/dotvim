@@ -2,7 +2,7 @@
 " neocomplete.vim
 " ---------------
 " if neovim : use deoplete.vim
-if has('nvim')
+if has('nvim') || v:version < 800
   finish
 endif
 
