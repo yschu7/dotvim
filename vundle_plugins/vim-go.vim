@@ -9,5 +9,5 @@ if exists('g:vundle_installing_plugins')
 endif
 
 " if ! has('nvim-0.3.1') || v:version < 800
-"   let g:go_version_warning = 0
+  let g:go_version_warning = 0
 " endif
