@@ -69,10 +69,14 @@ if has("autocmd")
       endif
     endfun
 
+    " set matchpairs for markup languanges
+    autocmd FileType xml   setlocal matchpairs+=<:>
+    autocmd FileType html  setlocal matchpairs+=<:>
+
     " Automatic fold settings for specific files.
-    autocmd FileType ruby   setlocal foldmethod=syntax
-    autocmd FileType vim    setlocal foldmethod=marker
-    autocmd FileType css    setlocal foldmethod=indent shiftwidth=2 tabstop=2 softtabstop=2
+    autocmd FileType ruby  setlocal foldmethod=syntax
+    autocmd FileType vim   setlocal foldmethod=marker
+    autocmd FileType css   setlocal foldmethod=indent shiftwidth=2 tabstop=2 softtabstop=2
 
     au FileType python,swift,java,kotlin setlocal fdm=indent sw=4 ts=4 sts=4
 

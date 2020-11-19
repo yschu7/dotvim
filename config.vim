@@ -136,7 +136,7 @@ set wildignore+=*.o,*.obj,*.exe,*.so,*.dll,*.pyc,.svn,.hg,.bzr,.git,
   \.sass-cache,*.class,*.scssc,*.cssc,sprockets%*,*.lessc,*/node_modules/*,
   \rake-pipeline-*,vendor/gems/*
 
-set matchpairs+=<:>
+"set matchpairs+=<:>
 " https://github.com/lilydjwg/dotvim/commit/880fc3b
 try
   set matchpairs+=《:》,〈:〉,［:］,（:）,「:」,『:』,‘:’,“:”
