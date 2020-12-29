@@ -2,11 +2,13 @@
 " Filename: vimrc symbolic link: ~/.vimrc ~/.config/nvim/init.vim
 " Who: Y.S. Chu (@yschu7)
 " Description: The Vim Configuration
-" Version: 3.0 - Now each plugin is included and managed in its own file!
+" Version: 3.1 - Changed from Vundle to Vimplug
 " =============================================================================
 
-" All of the plugins are installed with Vundle from this file.
-source ~/.vim/vundle.vim
+" be iMproved
+set nocompatible
+" All of the plugins are installed with vimplug from this file.
+source ~/.vim/vimplug.vim
 
 " Automatically detect file types. (must turn on after Vundle)
 filetype plugin indent on
@@ -19,8 +21,7 @@ source ~/.vim/config.vim
 source ~/.vim/commands.vim
 " All hotkeys, not dependant on plugins, are mapped here.
 source ~/.vim/mappings.vim
-" Load plugin-specific configuration. (~/.vim/vundle_plugins/*.vim)
-" To disable plugins, change file name to *.opt
+" Load plugin-specific configuration. (~/.vim/plugcfg/*.vim)
 source ~/.vim/plugins.vim
 " Small custom functions.
 source ~/.vim/functions.vim

@@ -1,4 +1,4 @@
-" Source all the plugin files again, this time loading their configuration.
-for file in split(glob('~/.vim/vundle_plugins/*.vim'), '\n')
+" Source all the plugin configuration files.
+for file in split(glob('~/.vim/plugcfg/*.vim'), '\n')
   exe 'source' file
 endfor
