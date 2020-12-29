@@ -1,4 +1,6 @@
+" -------------------------------------
 " https://github.com/tpope/vim-surround
+" -------------------------------------
 
 " Use # to get a variable interpolation (inside of a string)}
 " ysiw#   Wrap the token under the cursor in #{}

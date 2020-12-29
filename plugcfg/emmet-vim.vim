@@ -1,6 +1,6 @@
-" -----
-" Emmet
-" -----
+" ----------------------------------
+" https://github.com/mattn/emmet-vim
+" ----------------------------------
 let g:user_emmet_expandabbr_key = '<c-y>'
 let g:use_emmet_complete_tag = 1
 " Enable just for html/css

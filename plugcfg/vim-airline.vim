@@ -1,4 +1,6 @@
+" ------------------------------------------
 " https://github.com/vim-airline/vim-airline
+" ------------------------------------------
 
 " https://github.com/vim-airline/vim-airline/wiki/Screenshots
 let g:airline_theme = 'jellybeans'

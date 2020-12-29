@@ -1,4 +1,6 @@
+" --------------------------------------
 " https://github.com/tpope/vim-fugitive/
+" --------------------------------------
 
 nnoremap <Leader>gs :Gstatus<CR>
 nnoremap <Leader>gc :Gcommit -v<CR>

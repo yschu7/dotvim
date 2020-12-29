@@ -1,11 +1,14 @@
+" ---------------------------------------------------------------------
+" [Minimalist Vim Plugin Manager](https://github.com/junegunn/vim-plug)
+" ---------------------------------------------------------------------
 " Plugins will be downloaded under the specified directory.
 call plug#begin('~/.vim/plugged')
 
 " Declare the list of plugins.
   Plug 'yschu7/FIGlet.vim'
   Plug 'Valloric/MatchTagAlways'
-  Plug 'rking/ag.vim'
-  Plug 'w0rp/ale'
+  Plug 'mileszs/ack.vim'
+  Plug 'dense-analysis/ale'
   Plug 'Raimondi/delimitMate'
   Plug 'Shougo/denite.nvim'
   Plug 'Shougo/neomru.vim'

@@ -1,4 +1,6 @@
+" ----------------------------------------
 " https://github.com/mrtazz/simplenote.vim
+" ----------------------------------------
 
 " In ~/.simplenoterc
 " let g:SimplenoteUsername = "your simplenote username"

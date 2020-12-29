@@ -1,7 +1,6 @@
-" [Minimalist Vim Plugin Manager](https://github.com/junegunn/vim-plug)
-" -----------
-" vimplug.vim
-" -----------
+" ----------------------------------------------------------
+" [Vim Plugin Manager](https://github.com/junegunn/vim-plug)
+" ----------------------------------------------------------
 
 function! PluginReloadAndRun(command)
   execute a:command
