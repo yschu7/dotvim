@@ -1,4 +1,4 @@
-*Vim-notes.txt*        Y.S. Chu's Vim Notes v 3.0.8
+*Vim-notes.txt*        Y.S. Chu's Vim Notes v 3.1
 ```
       __           _                 __      _
 /\_/\/ _\   /\   /(_)_ __ ___     /\ \ \___ | |_ ___  ___
@@ -90,13 +90,11 @@ Cheat Sheet                                                 *CheatSheet*
     1. vim plugins初次安裝步驟
         ```
         $ git clone git@github.com:yschu7/dotvim.git ~/.vim
-        $ cd .vim
-        $ git clone http://github.com/gmarik/vundle.git bundle/vundle
-        $ vim +PluginInstall +qall
+        啓動 vim 後
+        :PlugInstall
         ```
     2. 更新plugins
-        單獨更新某一Plugin
-        + `vim '+PluginUpdate vim-airline' +qall`
+        + :PlugUpdate [name ...]
         + 在vim中按快捷鍵：
           * <leader> pi : plugin install
           * <leader> pu : plugin update
@@ -106,7 +104,7 @@ Cheat Sheet                                                 *CheatSheet*
        $ ln -s ~/.vim nvim
 
        啓動nvim, 安裝Plugin
-       :PluginInstall
+       :PlugInstall
        ```
 
 <!--- }}} -->
@@ -1559,37 +1557,15 @@ alias vi="vim --servername $HOSTNAME --remote-silent"
 Plugins                                                     *Plugins*
 =======
 
-<!--- mutewinter {{{ -->
-### mutewinter [Plugins List](https://github.com/mutewinter/dot_vim)
-
-### Pathogen (已使用Vundle取代)
+<!--- vim-plug {{{ -->
+### [vim-plug](https://github.com/junegunn/vim-plug)
 
 ```
-Store plugins in self-contained directories. Pathogen reworks the load path
-to find plugin, doc, syntax, and other files in the plugins's directory instead
-of at the .vim root
+~/.vim/autoload/plug.vim
+配置檔：~/.vim/vimplug.vim
+下載目錄：~/.vim/plugged
+客製目錄：~/.vim/plugcfg
 
-~/.vimrc
-silent! call pathogen#runtime_append_all_bundles()
-silent! call pathogen#helptags()
-
-:call pathogen#helptags()   Regenerate docs from all installed plugins
-:helptags ~/.vim/doc        Import standard plugin docs
-```
-<!--- }}} -->
-
-<!--- Vundle {{{ -->
-### [Vundle](http://blog.xuite.net/yschu/wretch/312992849)
-
-```
-~/.vim/vundle.vim
-設定要安裝的Plugins(~/.vim/vundle_plugins, ~/.vim/vundle_plugins/custom)
-
-* 更新全部Plugins
-    * > vim +PluginUpdate +qall
-    * 目錄.vim/bundle爲此更新的目標目錄，不在git的控管範圍
-* 更新單一Plugin : vim-markdown
-    * > vim +'PluginUpdate vim-markdown' +qall
 * 在vim之中使用快捷鍵：
     * <leader> pi : install
     * <leader> pu : update
