@@ -61,6 +61,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-unimpaired'
   Plug 'papanikge/vim-voogle'
   Plug 'mattn/webapi-vim'
+  Plug 'kana/vim-arpeggio'
 
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()

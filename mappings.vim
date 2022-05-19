@@ -119,8 +119,9 @@ vnoremap <C-k> 15gkzz
 " --------------------
 
 " Let's make escape better, together. Ctrl-[
-inoremap jk <Esc>
-inoremap kj <Esc>
+" Replace by ./plugcfg/vim-arpeggio.vim
+"inoremap jk <Esc>
+"inoremap kj <Esc>
 
 " ---------------
 " Leader Mappings
