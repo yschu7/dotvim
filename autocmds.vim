@@ -147,8 +147,8 @@ if has("autocmd")
     autocmd FileType julia inoremap <buffer><F5> <ESC>:WriteBufferIfNecessary<CR>:!julia ./%<CR>
     autocmd FileType julia nmap <buffer> ? <Plug>(JuliaDocPrompt)
 
-    autocmd FileType go nnoremap <buffer><F5> <ESC>:WriteBufferIfNecessary<CR>:GoRun<CR>
-    autocmd FileType go inoremap <buffer><F5> <ESC>:WriteBufferIfNecessary<CR>:GoRun<CR>
+    autocmd FileType go nnoremap <buffer><F5> <ESC>:WriteBufferIfNecessary<CR>:GoRun %<CR>
+    autocmd FileType go inoremap <buffer><F5> <ESC>:WriteBufferIfNecessary<CR>:GoRun %<CR>
     " clear :GoRun output
     autocmd FileType go nnoremap <buffer><silent> <leader>c :WriteBufferIfNecessary<CR>:wincmd h<CR>:q<CR>
 
