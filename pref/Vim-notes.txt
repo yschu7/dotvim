@@ -2401,15 +2401,15 @@ A fuzzy picker for Neovim and Vim.
 ~/.vim/vundle_plugins/vim-picker.vim
 
 macOS:
-> brew install fzy
+> brew install fzf
 > brew install ripgrep
 
 <leader>pe :PickerEdit
 <leader>ph :PickerHelp
 
-[fzy-tmux](https://github.com/jhawthorn/fzy/blob/master/contrib/fzy-tmux)
+[fzf-tmux](https://github.com/junegunn/fzf#fzf-tmux-script)
 if run vim within tmux, setting:
-let g:picker_selector = 'fzy-tmux'
+let g:picker_selector = 'fzf-tmux'
 ```
 <!--- }}} -->
 
