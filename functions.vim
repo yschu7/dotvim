@@ -1,11 +1,10 @@
-" ----------------------------------------
+" ---------
 " Functions
-" ----------------------------------------
+" ---------
 
-" ---------------
+" -------
 " OpenURL
-" ---------------
-
+" -------
 if has('ruby')
 ruby << EOF
   #encoding: utf-8
@@ -23,7 +22,6 @@ ruby << EOF
 
   def open_url
     line = VIM::Buffer.current.line
-
     if url = extract_url(line)
       if RUBY_PLATFORM.downcase =~ /(win|mingw)(32|64)/
         `start cmd /c chrome #{url}`
@@ -35,65 +33,27 @@ ruby << EOF
     else
       VIM::message("No URL found on this line.")
     end
-
   end
 
-  # Returns the contents of the <title> tag of a given page
-  def fetch_title(url)
-    # if RUBY_VERSION < '1.9'
-    #   open(url).read.match(/<title>(.*?)<\/title>?/i)[1]
-    # else
-      open(url, :ssl_verify_mode => OpenSSL::SSL::VERIFY_NONE).read.
-        match(/<title>(.*?)<\/title>?/i)[1]
-    # end
-  end
-
-  # Paste the title and url for the url on the clipboard in markdown format:
-  #   [Title](url)
-  # Note: Clobbers p register
-  def paste_url_and_title
-    clipboard = VIM::evaluate('@+')
-    url = extract_url(clipboard)
-    if url and url.strip != ""
-      puts "Fetching title"
-      title = fetch_title(url)
-      VIM::command "let @p = '[#{title}](#{url})'"
-      VIM::command 'normal! "pp'
-    else
-      VIM::message("Clipboard does not contain URL: '#{clipboard[1..10]}'...")
-    end
-  end
 EOF
 
-" Open a URL
-if !exists("*OpenURL")
-  function! OpenURL()
-    :ruby open_url
-  endfunction
-endif
+  " ----------
+  " Open a URL
+  " ----------
+  if !exists("*OpenURL")
+    function! OpenURL()
+      :ruby open_url
+    endfunction
+  endif
 
-command! OpenUrl call OpenURL()
-nnoremap <leader>o :call OpenURL()<CR>
-
-" ---------------
-" Paste link with Title
-" ---------------
-
-" Open a URL
-if !exists("*PasteURLTitle")
-  function! PasteURLTitle()
-    :ruby paste_url_and_title
-  endfunction
-endif
-
-command! PasteURLTitle call PasteURLTitle()
-noremap <leader>pt :PasteURLTitle<CR>
+  command! OpenUrl call OpenURL()
+  nnoremap <leader>o :call OpenURL()<CR>
 
 endif " endif has('ruby')
 
-" ---------------
+" ------------------------------------------
 " Quick spelling fix (first item in z= list)
-" ---------------
+" ------------------------------------------
 function! QuickSpellingFix()
   if &spell
     normal 1z=
@@ -108,26 +68,27 @@ endfunction
 command! QuickSpellingFix call QuickSpellingFix()
 nnoremap <silent> <leader>z :QuickSpellingFix<CR>
 
-" ---------------
+" --------------------------------------------------------
 " Convert Ruby 1.8 hash rockets to 1.9 JSON style hashes.
 " From: http://git.io/cxmJDw
 " Note: Defaults to the entire file unless in visual mode.
-" ---------------
+" --------------------------------------------------------
+
 command! -bar -range=% NotRocket execute
   \'<line1>,<line2>s/:\(\w\+\)\s*=>/\1:/e' . (&gdefault ? '' : 'g')
 
-" ------------------------------------
+" ---------------------------------------
 " Convert .should rspec syntax to expect.
 " From: https://coderwall.com/p/o2oyrg
-" ------------------------------------
+" ---------------------------------------
 command! -bar -range=% Expect execute
   \'<line1>,<line2>s/\(\S\+\).should\(\s\+\)==\s*\(.\+\)' .
   \'/expect(\1).to\2eq(\3)/e' .
   \(&gdefault ? '' : 'g')
 
-" ---------------
+" --------------------------
 " Strip Trailing White Space
-" ---------------
+" --------------------------
 " From http://vimbits.com/bits/377
 " Preserves/Saves the state, executes a command, and returns to the saved state
 function! Preserve(command)
@@ -148,11 +109,10 @@ endfunction
 command! StripTrailingWhiteSpaceAndSave :call StripTrailingWhiteSpaceAndSave()<CR>
 nnoremap <silent> <leader>stw :silent! StripTrailingWhiteSpaceAndSave<CR>
 
-" ---------------
+" -------------------------
 " Write Buffer if Necessary
-"
+" -------------------------
 " Writes the current buffer if it's needed, unless we're the in QuickFix mode.
-" ---------------
 
 function! WriteBufferIfNecessary()
   if &modified && !&readonly
@@ -177,11 +137,10 @@ function! MapCR()
 endfunction
 call MapCR()
 
-" ---------------
+" ---------------------------------------------------------
 " Make a scratch buffer with all of the leader keybindings.
-"
+" ---------------------------------------------------------
 " Adapted from http://ctoomey.com/posts/an-incremental-approach-to-vim/
-" ---------------
 function! ListLeaders()
   silent! redir @b
   silent! nmap <LEADER>
@@ -236,28 +195,6 @@ function! WordFrequency() range
 endfunction
 command! -range=% WordFrequency <line1>,<line2>call WordFrequency()
 
-" new operator <leader>g : search the selected object with Ag
-" nnoremap <leader>g :set operatorfunc=<SID>AgOperator<CR>g@
-" vnoremap <leader>g :<C-U>call <SID>AgOperator(visualmode())<CR>
-" function! s:AgOperator(type)
-"     let saved_unnamed_register = @@
-"
-"     if a:type ==# 'v'
-"         normal! `<v`>y
-"     elseif a:type ==# 'char'
-"         normal! `[v`]y
-"     else
-"         return
-"     endif
-"
-"     silent execute "Ag " . shellescape(@@) . " ."
-"
-"     let @@ = saved_unnamed_register
-" endfunction
-
-let g:ag_prg="ag --vimgrep --smart-case"
-nnoremap <leader>g :silent execute "Ag ".shellescape(expand("<cWORD>"))." ."<CR>
-
 " Clean all end of line extra whitespace with ,S
 " Credit: voyeg3r https://github.com/mitechie/pyvim/issues/#issue/1
 " deletes excess space but maintains the list of jumps unchanged
@@ -271,7 +208,9 @@ fun! s:CleanExtraSpaces()
 endfun
 noremap <silent><leader>S <esc>:keepjumps call <SID>CleanExtraSpaces()<cr>
 
+" ----------------------
 " Zoom / Restore window.
+" ----------------------
 function! s:ZoomToggle() abort
     if exists('t:zoomed') && t:zoomed
         execute t:zoom_winrestcmd

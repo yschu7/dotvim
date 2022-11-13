@@ -11,3 +11,5 @@ if executable('rg')
   cnoreabbrev rg Ack
   cnoreabbrev Rg Ack
 endif
+" <leader>g : search the selected object with Ack
+nnoremap <leader>g :silent execute "Ack ".shellescape(expand("<cWORD>"))." ."<CR>
