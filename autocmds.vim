@@ -78,7 +78,7 @@ if has("autocmd")
     autocmd FileType vim   setlocal foldmethod=marker
     autocmd FileType css   setlocal foldmethod=indent shiftwidth=2 tabstop=2 softtabstop=2
 
-    au FileType python,swift,java,kotlin setlocal fdm=indent sw=4 ts=4 sts=4
+    au FileType c,python,swift,java,kotlin setlocal fdm=indent sw=4 ts=4 sts=4
 
     au FileType markdown setlocal fdm=marker ts=4 sw=4 sts=4 nospell
 
@@ -97,6 +97,11 @@ if has("autocmd")
     fun! RustCompileAndRun()
       silent !clear
       execute "! rustc " . expand('%:t') . " && ./" . expand('%:r')
+    endfun
+
+    fun! CCompileAndRun()
+      silent !clear
+      execute "! gcc " . expand('%:t') . " && ./a.out | less"
     endfun
 
     fun! JavaCompileAndRun()
@@ -131,6 +136,8 @@ if has("autocmd")
     autocmd FileType sh inoremap <buffer><F5> <ESC>:up!<CR>:!clear<CR>:!bash ./%<CR>
     autocmd FileType rust nnoremap <buffer><F5> <ESC>:up!<CR>:call RustCompileAndRun()<CR>
     autocmd FileType rust inoremap <buffer><F5> <ESC>:up!<CR>:call RustCompileAndRun()<CR>
+    autocmd FileType c nnoremap <buffer><F5> <ESC>:up!<CR>:call CCompileAndRun()<CR>
+    autocmd FileType c inoremap <buffer><F5> <ESC>:up!<CR>:call CCompileAndRun()<CR>
     autocmd FileType asciidoc nnoremap <buffer><F5> <ESC>:up!<CR>:call AsciiCompileAndOpen()<CR>
     autocmd FileType asciidoc inoremap <buffer><F5> <ESC>:up!<CR>:call AsciiCompileAndOpen()<CR>
     autocmd FileType java nnoremap <buffer><F5> <ESC>:up!<CR>:call JavaCompileAndRun()<CR>

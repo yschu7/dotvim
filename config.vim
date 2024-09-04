@@ -32,13 +32,13 @@ if exists('$SUDO_USER')
   set noundofile
   set viminfo=
 else
-  set backupdir=~/.vim/.backup// " Double // causes backups to use full file path
-  set directory=~/.vim/.tmp//
-  set spellfile=~/.vim/spell/custom.en.utf-8.add
+  set backupdir=~/.dotvim/.backup// " Double // causes backups to use full file path
+  set directory=~/.dotvim/.tmp//
+  set spellfile=~/.dotvim/spell/custom.en.utf-8.add
   " Persistent Undo
   if has('persistent_undo')
     set undofile
-    set undodir=~/.vim/.undo
+    set undodir=~/.dotvim/.undo
   endif
 endif
 

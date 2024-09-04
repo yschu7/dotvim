@@ -1,4 +1,4 @@
-*Vim-notes.txt*        Y.S. Chu's Vim Notes v 3.11
+*Vim-notes.txt*        Y.S. Chu's Vim Notes v 3.2      2024/09/04
 ```
       __           _                 __      _
 /\_/\/ _\   /\   /(_)_ __ ___     /\ \ \___ | |_ ___  ___
@@ -54,20 +54,15 @@ Cheat Sheet                                                 *CheatSheet*
 ===========
 
 * ![vim命令圖解](http://blog.vgod.tw.s3.amazonaws.com/wp-content/uploads/2009/12/vim-cheat-sheet-full.png)
-* ![vim鍵盤指令](http://photo.xuite.net/yschu/11773543/16.jpg)
 * ![vim CheetSheet1](http://www.viemu.com/vi-vim-cheat-sheet.gif)
 * ![vim CheetSheet2](https://cdn.shopify.com/s/files/1/0165/4168/files/preview.png)
 * ![vim commands](http://bruxy.regnet.cz/programming/vim_cheatsheet/vim_cheatsheet.pdf)
-* [Vim subreddit](http://reddit.com/r/vim)
 * [Learn Vimscript the Hard Way](http://learnvimscriptthehardway.stevelosh.com/)
 * [Learn Vimscript中文版](http://learnvimscriptthehardway.onefloweroneworld.com/)
-* [Help Web version](http://blog.xuite.net/yschu/wretch/313272957)
-* [Vim Videos](http://derekwyatt.org/vim/tutorials/)
-* [Nettuts+ Vim](http://net.tutsplus.com/articles/web-roundups/25-vim-tutorials-screencasts-and-resources)
 * [VimAwesome](https://vimawesome.com/)
 
 * ,h  開啟本檔  F2 :bd :close 關閉
-* ,v  開啓 ~/.vimrc  ,vs  開啓 ~/.vim/yscust.vim
+* ,v  開啓 ~/.vimrc  ,vs  開啓 ~/.dotvim/yscust.vim
 
 * vimtutor 基礎vim訓練課程
 * set ft=help 開啓爲help檔案,使用目錄鏈接
@@ -89,7 +84,10 @@ Cheat Sheet                                                 *CheatSheet*
 * vim plugin的安裝與維護：
     1. vim plugins初次安裝步驟
         ```
-        $ git clone git@github.com:yschu7/dotvim.git ~/.vim
+        $ git clone git@github.com:yschu7/dotvim.git ~/.dotvim
+
+        $ ln -s ~/.dotvim/vimrc .vimrc
+
         啓動 vim 後
         :PlugInstall
         ```
@@ -297,7 +295,7 @@ Configuration                                               *Configuration*
 =============
 * ~/.vimrc    Most settings go here. Shared terminal and graphical options.
 * ~/.gvimrc   Graphic-only settings (font, windows size)
-* ~/.vim/     Plugins, language-specific options, color schemes
+* ~/.dotvim/  Plugins, language-specific options, color schemes
 
 ### 設定：（老方法）
 * 所有檔案放在$HOME/bin/dotvim目錄內。
@@ -311,7 +309,7 @@ Configuration                                               *Configuration*
 ```
 
 ### 設定：（新方法）
-* 採用Vundle方式管理Plugins，並使用以下的設定爲基礎
+* 採用vimplug方式管理Plugins，並使用以下的設定爲基礎
 [The Vim Configuration of Champions](https://github.com/mutewinter/dot_vim)
 
 <!--- }}} -->
@@ -1576,7 +1574,7 @@ Plugins                                                     *Plugins*
 ### [Surround](https://github.com/tpope/vim-surround)
 
 ```
-~/.vim/vundle_plugins/vim-surround.vim
+~/.dotvim/plugcfg/vim-surround.vim
 
 cst    Change surrounding tag
 dst    Delete surrounding tag
@@ -1603,7 +1601,7 @@ ysiw#  將遊標所在的單字var變成#{var}，for ruby特別好用。
 ### [Repeat](https://github.com/tpope/vim-repeat)
 
 ```
-~/.vim/vundle_plugins/vim-repeat.vim
+~/.dotvim/vimplug.vim [vim-repeat.vim]
 擴充.指令的重複功能，讓其他的plugins也可以使用.重複執行。
 
 ```
@@ -1613,7 +1611,7 @@ ysiw#  將遊標所在的單字var變成#{var}，for ruby特別好用。
 ### [Sort-Motion](https://github.com/christoomey/vim-sort-motion)
 
 ```
-~/.vim/vundle_plugins/vim-sort-motion.vim
+~/.dotvim/vimplug.vim [vim-sort-motion.vim]
 排序，使用gs指令來對其後的Motion做排序。
 
 gs5j    往下5列排序（當前列+5）
@@ -1626,7 +1624,7 @@ gsip    對當前所在的段（paragraph）做排序
 ### [ReplaceWithRegister](https://github.com/vim-scripts/ReplaceWithRegister)
 
 ```
-~/.vim/vundle_plugins/ReplaceWithRegister.vim
+~/.dotvim/vimplug.vim [ReplaceWithRegister.vim]
 覆蓋，使用gr指令以暫存器內容，對其後的Motion text覆蓋。
 
 使用 yiw 複製內容之後，遊標移動到要覆蓋位置，griw 覆蓋內容。
@@ -1641,7 +1639,7 @@ gsip    對當前所在的段（paragraph）做排序
 * [tmux](http://blog.xuite.net/yschu/wretch/104922439)
 
 ```
-~/.vim/vundle_plugins/vimux.vim
+~/.dotvim/vimplug.vim [vimux.vim]
 
 * tmux視窗會在執行命令時自動開啓
 * tmux的prefix key爲 <Ctrl-a>
@@ -1663,7 +1661,7 @@ gsip    對當前所在的段（paragraph）做排序
 ### [vimcmdline](https://github.com/jalvesaq/vimcmdline)
 
 ```
-~/.vim/vundle_plugins/vimcmdline.vim
+~/.dotvim/vimplug.vim [vimcmdline.vim]
 
 <LocalLeader>s 啓動直譯器分割視窗（\s）
 <LocalLeader>q 結束分割視窗（\q）
@@ -1678,7 +1676,7 @@ gsip    對當前所在的段（paragraph）做排序
 ### [Gist](https://github.com/mattn/gist-vim)
 
 ```
-~/.vim/vundle_plugins/gist-vim.vim
+~/.dotvim/vimplug.vim [gist-vim.vim]
 token file: $HOME/.gist-vim, user file: $HOME/.gitconfig
 
 :Gist       將目前編輯內容上傳到Gist，第一次會詢問git密碼，而後產生$HOME/.gist-vim
@@ -1700,7 +1698,7 @@ token file: $HOME/.gist-vim, user file: $HOME/.gitconfig
 ### [Tcomment](https://github.com/tomtom/tcomment_vim)
 
 ```
-~/.vim/vundle_plugins/tcomment_vim.vim
+~/.dotvim/vimplug.vim [tcomment_vim.vim]
 
 gcc         將目前游標所在註解/反註解
 gc          將目前以Visual mode標識的區域註解/反註解
@@ -1715,7 +1713,7 @@ control - b 有些語言對單列及多列的註解方式不同，如：ruby, cp
 ### [Ag](https://github.com/rking/ag.vim)
 
 ```
-~/.vim/vundle_plugins/ag.vim
+~/.dotvim/vimplug.vim [ag.vim]
 
 可取代grep，把尋找的結果放在QuickFix視窗
 
@@ -1741,7 +1739,7 @@ for the {pattern}.   遞迴搜尋符合樣式(若未指定目錄，預設爲當�
 ### [vim-ruby](https://github.com/vim-ruby/vim-ruby)
 
 ```
-~/.vim/vundle_plugins/vim-ruby.vim
+~/.dotvim/vimplug.vim [vim-ruby.vim]
 
 在插入模式下，使用Ctrl-x Ctrl-o 來啓動completion menu (在.之後)
 它會根據上下文顯示相關的方法，使用Ctrl-n、Ctrl-p 往前、往後，Ctrl-y選擇。
@@ -1755,7 +1753,7 @@ for the {pattern}.   遞迴搜尋符合樣式(若未指定目錄，預設爲當�
 ### [NERDTree](https://github.com/scrooloose/nerdtree)          *NERDTree*
 
 ```
-~/.vim/vundle_plugins/nerdtree.vim
+~/.dotvim/plugcfg/nerdtree.vim
 
 * <leader>nt : 啓動NERDTree
 * <leader>nn : NERDTree Toggle
@@ -1803,7 +1801,7 @@ for the {pattern}.   遞迴搜尋符合樣式(若未指定目錄，預設爲當�
 * ~/.vim/bundle/vim-airline-themes/autoload/airline/themes/*.vim
 
 ```
-~/.vim/vundle_plugins/vim-airline.vim
+~/.dotvim/plugcfg/vim-airline.vim
 
 * AirlineTheme murmur   改變airline狀態列的主題
 * 設定選擇畫面改變Airline主題(~/.vim/pref/setcolors.vim)
@@ -1816,8 +1814,8 @@ for the {pattern}.   遞迴搜尋符合樣式(若未指定目錄，預設爲當�
 ###[UltiSnips](https://github.com/SirVer/ultisnips)
 
 ```
-~/.vim/vundle_plugins/ultisnips.vim
-~/.vim/MyUltiSnips : 設定的snippet存放目錄
+~/.dotvim/vimplug.vim [ultisnips.vim]
+~/.dotvim/MyUltiSnips : 設定的snippet存放目錄
 
 * <Ctrl> n : 下一個snippet
 * <Ctrl> p : 上一個snippet
@@ -1858,7 +1856,7 @@ for the {pattern}.   遞迴搜尋符合樣式(若未指定目錄，預設爲當�
 * [Zen Coding](https://code.google.com/p/zen-coding/)
 
 ```
-~/.vim/vundle_plugins/emmet-vim.vim
+~/.dotvim/plugcfg/emmet-vim.vim
 
 * <Ctrl> y : 展開
 
@@ -1900,10 +1898,10 @@ p>{Click }+a{here}+{ to continue}
 ###[vim-textobj-user](https://github.com/kana/vim-textobj-user)
 
 ```
-~/.vim/vundle_plugins/vim-textobj-user.vim
-~/.vim/vundle_plugins/vim-textobj-line.vim
-~/.vim/vundle_plugins/vim-textobj-indent.vim
-~/.vim/vundle_plugins/vim-textobj-entire.vim
+~/.dotvim/vimplug.vim [vim-textobj-user.vim]
+~/.dotvim/vimplug.vim [vim-textobj-line.vim]
+~/.dotvim/vimplug.vim [vim-textobj-indent.vim]
+~/.dotvim/vimplug.vim [vim-textobj-entire.vim]
 
 yil  : 複製整列（不含前後空白）
 gcii : 將整個indent block做註解(gc)
@@ -1916,7 +1914,7 @@ cpae : 複製(cp)全部內容到system clipboard
 ###[vim-textobj-rubyblock](https://github.com/nelstrom/vim-textobj-rubyblock)
 
 ```
-~/.vim/vundle_plugins/vim-textobj-rubyblock.vim
+~/.dotvim/vimplug.vim [vim-textobj-rubyblock.vim]
 擴展textobjects到Ruby的class, module, method, block
 
 ar : select all of a ruby block
@@ -1930,7 +1928,7 @@ gcar : 將整個ruby block做註解(gc)
 ###[vim-system-copy](https://github.com/christoomey/vim-system-copy)
 
 ```
-~/.vim/vundle_plugins/vim-system-copy.vim
+~/.dotvim/vimplug.vim [vim-system-copy.vim]
 將指定的text object複製到系統剪貼板上
 
 cpiw : copy word into system clipboard
@@ -1946,7 +1944,7 @@ visual mode … cp : select with visual mode then copy to system clipboard
 ###[vim-simplenote.vim](https://github.com/mrtazz/simplenote.vim)
 
 ```
-~/.vim/vundle_plugins/vim-simplenote.vim
+~/.dotvim/plugcfg/vim-simplenote.vim
 使用者和密碼設定檔：~/.simplenoterc
 
 :Simplenote -l  [list all]
@@ -1961,7 +1959,7 @@ visual mode … cp : select with visual mode then copy to system clipboard
 ###[unite.vim](https://github.com/Shougo/unite.vim)             *Unite*
 
 ```
-~/.vim/vundle_plugins/unite.vim
+~/.dotvim/vimplug.vim [unite.vim]
 
 設定爲Vim 7.xx版本專用plugin, 與denite互斥
 
@@ -1995,7 +1993,7 @@ visual mode … cp : select with visual mode then copy to system clipboard
 ###[denite.nvim](https://github.com/Shougo/denite.nvim)        *Denite*
 
 ```
-~/.vim/vundle_plugins/denite.vim
+~/.dotvim/plugcfg/denite.vim
 
 設定爲Neovim, Vim 8.0以上專用plugin, 與unite互斥
 
@@ -2027,7 +2025,7 @@ visual mode … cp : select with visual mode then copy to system clipboard
 <!--- base16.vim {{{ -->
 ###[Base16.vim](https://github.com/chriskempson/base16-vim)
 ```
-~/.vim/vundle_plugins/Base16.vim
+~/.dotvim/vimplug.vim [Base16.vim]
 
 * iTerm2配合的[themes](https://github.com/chriskempson/base16-iterm2)
 
@@ -2042,7 +2040,7 @@ visual mode … cp : select with visual mode then copy to system clipboard
 <!--- FIGlet.vim {{{ -->
 ###[FIGlet.vim](https://github.com/yschu7/FIGlet.vim)
 ```
-~/.vim/vundle_plugins/FIGlet.vim
+~/.dotvim/vimplug.vim [FIGlet.vim]
 
 * 由vimscripts:[FIGlet.vim](http://www.vim.org/scripts/script.php?script_id=3359)
 
@@ -2057,7 +2055,7 @@ visual mode … cp : select with visual mode then copy to system clipboard
 <!--- taglist.vim {{{ -->
 ###[taglist.vim](https://github.com/yschu7/taglist.vim)
 ```
-~/.vim/vundle_plugins/taglist.vim
+~/.dotvim/vimplug.vim [taglist.vim]
 
 * 由vimscripts:[taglist.vim](http://vim.sourceforge.net/scripts/script.php?script_id=273)
 
@@ -2069,7 +2067,7 @@ visual mode … cp : select with visual mode then copy to system clipboard
 <!--- vim-devicons {{{ -->
 ###[vim-devicons](https://github.com/ryanoasis/vim-devicons)
 ```
-~/.vim/vundle_plugins/vim-devicons.vim
+~/.dotvim/plugcfg/vim-devicons.vim
 
 * 字型 [nerd-fonts](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts)
 * 下載 Dropbox/Software/iTerm2/newfonts.tgz
@@ -2124,10 +2122,7 @@ visual mode … cp : select with visual mode then copy to system clipboard
 ###[deoplete.nvim](https://github.com/Shougo/deoplete.nvim)
 
 ```
-* ----------------------
-* deoplete : Neovim only
-* ----------------------
-~/.vim/vundle_plugins/deoplete.vim
+~/.dotvim/plugcfg/deoplete.vim
 
 * Ruby [deoplete-solargraph](https://github.com/uplus/deoplete-solargraph)
 * Python [deoplete-jedi](https://github.com/zchee/deoplete-jedi)
@@ -2141,7 +2136,7 @@ visual mode … cp : select with visual mode then copy to system clipboard
 <!--- Gundo.vim {{{ -->
 ###[Gundo.vim](https://github.com/sjl/gundo.vim/)
 ```
-~/.vim/vundle_plugins/Gundo.vim
+~/.dotvim/vimplug.vim [Gundo.vim]
 
 * [Gundo](http://sjl.bitbucket.org/gundo.vim/)
 
@@ -2155,19 +2150,9 @@ visual mode … cp : select with visual mode then copy to system clipboard
 ```
 asynchronous build and test dispatcher
 
-~/.vim/vundle_plugins/vim-dispatch.vim
+~/.dotvim/vimplug.vim [vim-dispatch.vim]
 
 * F6: Dispatch
-
-```
-<!--- }}} -->
-
-<!--- test.vim {{{ -->
-###[test.vim](https://github.com/janko-m/vim-test)
-```
-Run your tests at the speed of thought
-
-~/.vim/vundle_plugins/vim-test.vim
 
 ```
 <!--- }}} -->
@@ -2176,7 +2161,7 @@ Run your tests at the speed of thought
 ###[vim-scripts/vis](https://github.com/vim-scripts/vis)
 ```
 Visual Block Commands
-~/.vim/vundle_plugins/vim-vis.vim
+~/.dotvim/vimplug.vim [vim-vis.vim]
 
 Use V, v, or ctrl-v to visually mark some region.  Then use
 :B cmd     (this command will appear as:   :'<,'>B cmd)
@@ -2199,7 +2184,7 @@ For examples:
 ```
 Vim global plugin for dragging virtual blocks
 
-~/.vim/pref/dragvisuals.vim
+~/.dotvim/pref/dragvisuals.vim
 
 使用方向鍵（上下左右）對選擇的區域，移動其內容。
 使用 D 來複製一個選擇的區域，方向鍵移動其內容。
@@ -2211,7 +2196,7 @@ Vim global plugin for dragging virtual blocks
 ```
 Vim global plugin for math on visual regions
 
-~/.vim/pref/vmath.vim
+~/.dotvim/pref/vmath.vim
 
 使用++對整個buffer或選擇的區域中的數字運算：sum, avg, min, max
 結果存放在對應的暫存器中：s, a, n, x
@@ -2224,7 +2209,7 @@ Vim global plugin for math on visual regions
 ```
 Enhanced terminal integration for Vim
 
-~/.vim/vundle_plugins/terminus.vim
+~/.dotvim/vimplug.vim [terminus.vim]
 
 + 讓遊標在插入模式下變成直線符號，而在正常模式下爲區塊符號。
 + 讓貼入動作更流暢，不必在考慮paste的問題。
@@ -2239,7 +2224,7 @@ Enhanced terminal integration for Vim
 ```
 Create a table from comma-separated data
 
-~/.vim/vundle_plugins/vim-maketable.vim
+~/.dotvim/vimplug.vim [vim-maketable.vim]
 
 + 使用visual mode選擇範圍（欄位以逗號分開）
 :'<,>'MakeTable
@@ -2254,7 +2239,7 @@ Create a table from comma-separated data
 It run files through external syntax checkers and display any resulting error
 to the user.
 
-~/.vim/vundle_plugins/syntastic.vim
+~/.dotvim/vimplug.vim [syntastic.vim]
 
 :help syntastic
 :help syntastic-checkers
@@ -2267,7 +2252,7 @@ to the user.
 Syntax highlighting, matching rules and mappings for the original Markdown
 and extensions.
 
-~/.vim/vundle_plugins/vim-markdown.vim
+~/.dotvim/vimplug.vim [vim-markdown.vim]
 
 :help vim-markdown
 ```
@@ -2278,7 +2263,7 @@ and extensions.
 ```
 [Aligning text with Tabular](http://vimcasts.org/episodes/aligning-text-with-tabular-vim/)
 
-~/.vim/vundle_plugins/Tabular.vim
+~/.dotvim/vimplug.vim [Tabular.vim]
 
 <leader> = 以等號爲準做對齊
 <leader> : 以冒號後第1個空白爲準做對齊
@@ -2294,88 +2279,12 @@ and extensions.
 ```
 <!--- }}} -->
 
-<!--- dbext {{{ -->
-###[dbext](http://www.vim.org/scripts/script.php?script_id=356)
-```
-已經複製一份到git, 以方便vundle安裝。
-實際的DB密碼放在~/.vim/bundle目錄，第一次安裝必須將dbuserpwd.vim複製到此。
-
-~/.vim/vundle_plugins/dbext.vim
-
-簡要說明參考[這裏](http://blog.xuite.net/yschu/wretch/104920727)
-
-編輯檔案中使用modeline指定預設的profile,定義於(~/.vim/pref/dbextpc.vim)
-例如在檔案內第一行指定要使用MySQL DBI方式存取資料庫
--- dbext:profile=mysql_DBI
-實際設定放在： ~/.vim/bundle/dbuserpwd.vim
-
-<leader> sel 執行當前列
-<leader> sea 執行全部（命令以分號隔開）
-<leader> se  執行選擇範圍
-<leader> sE  執行選擇範圍，可選擇(詢問)傳回多少列
-
-<leader> st  傳回遊標所在表格內容
-<leader> sT  傳回遊標所在表格內容，詢問要傳回多少列
-
-<leader> sdt 查詢表格結構
-<leader> sdv 查詢視圖結構
-<leader> sdp 查詢程序結構
-
-<leader> slt 列出表格
-<leader> slv 列出視圖
-<leader> slp 列出程序
-<leader> slc 取得遊標所在表格的所有欄位，詢問alias prefix並輸入後，放入paste buffer
-
-<leader> sh  顯示歷史命令
-
-改變連線的設定：
-:DBSetOption user=scoot:passwd=tiger
-
-user   : User id
-passwd : Password
-dsnname: ODBC DSN to connect to
-srvname: Server name
-dbname : Which database on the server to connect to
-host   : Machine name or IP address of server
-port   : Port server is running on
-
-物件自動完成：
-:DBCompleteTables     (載人連接資料庫的表格到字典中)
-:DBCompleteViews
-
-在輸入時，可以使用Ctrl-X Ctrl-K功能鍵，在字典中尋找當前輸入文字。
-使用Ctrl-N, Ctrl-P在符合的內容中，向下、向上移動，輸入任何文字後傳回。
-
-:help dbext
-:help dbext-maps-commands
-```
-<!--- }}} -->
-
-<!--- SQHell {{{ -->
-###[SQHell](https://github.com/joereynolds/SQHell.vim)
-```
-Neovim沒有支援Perl語言，dbext無法執行，所以使用此簡易模組，目前支援MySQL, PostgreSQL, Sqlite
-實際的DB密碼放在~/.vim/bundle目錄，第一次安裝必須將SQHuserpwd.vim複製到此。
-
-~/.vim/vundle_plugins/SQHell.vim
-
-macOS: /usr/local/etc/my.cnf 可以指定不同的埠號
-[client]
-port=3307
-
-<leader> sel 執行當前列
-<leader> sea 執行全部（命令以分號隔開）
-
-:help sqhell
-```
-<!--- }}} -->
-
 <!--- comfortable-motion.vim {{{ -->
 ###[comfortable-motion](https://github.com/yuttie/comfortable-motion.vim)
 ```
 改變了預設的跳頁動作爲捲動頁：ctrl-u, ctrl-d, ctrl-f, ctrl-b
 
-~/.vim/vundle_plugins/comfortable-motion.vim
+~/.dotvim/vimplug.vim [comfortable-motion.vim]
 
 ```
 <!--- }}} -->
@@ -2385,7 +2294,7 @@ port=3307
 ```
 Open the current Markdown buffer in Marked. (MacOS only)
 
-~/.vim/vundle_plugins/vim-marked.vim
+~/.dotvim/vimplug.vim [vim-marked.vim]
 
 按下F5執行，呼叫Marked 2顯示結果
 
@@ -2398,7 +2307,7 @@ Open the current Markdown buffer in Marked. (MacOS only)
 ```
 A fuzzy picker for Neovim and Vim.
 
-~/.vim/vundle_plugins/vim-picker.vim
+~/.dotvim/vimplug.vim [vim-picker.vim]
 
 macOS:
 > brew install fzf
@@ -2418,7 +2327,7 @@ let g:picker_selector = 'fzf-tmux'
 ```
 A Git wrapper
 
-~/.vim/vundle_plugins/vim-fugitive.vim
+~/.dotvim/plugcfg/vim-fugitive.vim
 
 :Gstatus (<leader>gs)，開啓git status buffer。
 
@@ -2520,20 +2429,6 @@ Misc                                                        *Misc*
 
     :echo expand("%:p")
     :help %<
-```
-
-###[homebrew-neovim](https://github.com/neovim/homebrew-neovim/blob/master/README.md)
-
-```
-# To upgrade neovim:
-
-$ brew update
-$ brew reinstall --HEAD neovim
-
-$ pip install neovim
-$ pip install -U neovim      # upgrade neovim package
-
-$ sudo gem install neovim
 ```
 
 [01]: https://github.com/papanikge/vim-voogle

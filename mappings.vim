@@ -183,7 +183,7 @@ noremap <leader>v :sp $MYVIMRC<CR><C-W>_
 noremap <silent> <leader>V :source $MYVIMRC<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
 
 " ,h brings up my Vim-notes.txt
-noremap <leader>h :sp ~/.vim/pref/Vim-notes.txt<CR><C-W>_:set filetype=help<CR>
+noremap <leader>h :sp ~/.dotvim/pref/Vim-notes.txt<CR><C-W>_:set filetype=help<CR>
 
 " for when we forget to use sudo to open/edit a file
 cnoremap w!! w !sudo tee % >/dev/null
@@ -245,11 +245,11 @@ nnoremap <C-V>     v
 vnoremap    v   <C-V>
 vnoremap <C-V>     v
 
-" ~/.vim/pref/vmath.vim
+" ~/.dotvim/pref/vmath.vim
 vmap <expr> ++  VMATH_YankAndAnalyse()
 nmap        ++  vip++
 
-" ~/.vim/pref/dragvisuals.vim
+" ~/.dotvim/pref/dragvisuals.vim
 vmap <expr> <LEFT>   DVB_Drag('left')
 vmap <expr> <RIGHT>  DVB_Drag('right')
 vmap <expr> <DOWN>   DVB_Drag('down')

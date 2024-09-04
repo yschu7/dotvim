@@ -1,7 +1,7 @@
 " =====================================================
 " Vim configuration.
 " -----------------------------------------------------
-" ~/.vim/config.vim       Regular Vim Configuration
+" ~/.dotvim/config.vim       Regular Vim Configuration
 " =====================================================
 " Basic Settings  {{{
 if exists("$GOROOT")
@@ -18,21 +18,21 @@ highlight ColorColumn ctermfg=magenta
 
 " Neovim specific settings
 if has('nvim')
-  source ~/.vim/ysnvim.vim
+  source ~/.dotvim/ysnvim.vim
 else
   set ttymouse=xterm2
 endif
 " }}}
 
-" ==================================
 " Basic Maps
-" ~/.vim/mappings.vim   Mappings
-" ==================================
+" ---------------------------------
+" ~/.dotvim/mappings.vim   Mappings
+" ---------------------------------
 
-" ===================================
 " Filetypes
-" ~/.vim/autocmds.vim   AutoCommands
-" ===================================
+" -------------------------------------
+" ~/.dotvim/autocmds.vim   AutoCommands
+" -------------------------------------
 
 " ===================
 "  Function Keys  {{{
@@ -110,7 +110,7 @@ nnoremap <silent><F7> :TlistToggle<CR>
 " F8 : Undo graph toggle
 nnoremap <silent><F8> :GundoToggle<CR>
 
-" F9 : SetColor (~/.vim/pref/setcolors.vim)
+" F9 : SetColor (~/.dotvim/pref/setcolors.vim)
 " F9 (next), <Shift>-F9 (prev), <Alt>-F9 (random)
 noremap <silent><leader>sc :SetColor all<CR>
 " ChgColor: Change Colorscheme
@@ -119,11 +119,11 @@ noremap <silent><leader>ic :ChgColor<CR>
 noremap <silent><leader>ia :ChgAirColor<CR>
 " }}}
 
-" ===============================
 "  Source file : ysmain.vim {{{
-"  ~/.vim/pref/ysmain.vim
-" ===============================
-" g:dotvim_dir defined in ~/.vim/platforms.vim
+"  -------------------------
+"  ~/.dotvim/pref/ysmain.vim
+"  -------------------------
+" g:dotvim_dir defined in ~/.dotvim/platforms.vim
 let g:w32_dir = g:dotvim_dir . '\pref\'
 let g:lnx_dir = g:dotvim_dir . '/pref/'
 if has('win32') || has('win64')

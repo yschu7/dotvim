@@ -1,9 +1,9 @@
 " -----------
 " neovim only
 " -----------
-if ! has('nvim')
-  finish
-endif
+" if ! has('nvim')
+"   finish
+" endif
 
 " https://github.com/Shougo/deoplete.nvim
 
@@ -22,7 +22,6 @@ endif
 " https://github.com/zchee/deoplete-jedi
 " > pip2 install jedi
 " > pip3 install jedi
-
 
 let g:deoplete#enable_at_startup = 1
 

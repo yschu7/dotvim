@@ -2,7 +2,7 @@
 " Platform Specific Configuration
 " ----------------------------------------
 
-let g:dotvim_dir = expand("$HOME") . '/.vim'
+let g:dotvim_dir = expand("$HOME") . '/.dotvim'
 
 if has('win32') || has('win64')
   " Windows

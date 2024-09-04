@@ -2,7 +2,7 @@
 " [Minimalist Vim Plugin Manager](https://github.com/junegunn/vim-plug)
 " ---------------------------------------------------------------------
 " Plugins will be downloaded under the specified directory.
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.dotvim/plugged')
 
 " Declare the list of plugins.
   Plug 'yschu7/FIGlet.vim'
@@ -10,13 +10,20 @@ call plug#begin('~/.vim/plugged')
   Plug 'mileszs/ack.vim'
   Plug 'dense-analysis/ale'
   Plug 'Raimondi/delimitMate'
-  Plug 'Shougo/denite.nvim'
+  if has('nvim')
+    Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  else
+    Plug 'Shougo/denite.nvim'
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/vim-hug-neovim-rpc'
+    Plug 'roxma/nvim-yarp'
+  endif
   Plug 'Shougo/neomru.vim'
   Plug 'Shougo/deoplete.nvim'
   Plug 'zchee/deoplete-jedi'
   Plug 'mattn/gist-vim'
   Plug 'adelarsq/vim-matchit'
-  Plug 'Shougo/neocomplete.vim'
   Plug 'yschu7/taglist.vim'
   Plug 'tomtom/tcomment_vim'
   Plug 'wincent/terminus'
@@ -52,7 +59,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
   Plug 'rust-lang/rust.vim', { 'for': 'rust' }
   Plug 'tpope/vim-repeat'
-  Plug 'mrtazz/simplenote.vim'
+  " Plug 'mrtazz/simplenote.vim'
   Plug 'lifepillar/vim-solarized8'
   Plug 'mhinz/vim-startify'
   Plug 'wavded/vim-stylus'
